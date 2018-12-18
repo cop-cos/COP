@@ -11,12 +11,17 @@
 
 # 对外开放的API服务体系 #
 根据对外API需求和模式的不同，其总体技术亦有所区别。对外API模式分为两类：
-* **基于HTTP(S)协议**：服务于同步调用和异步调用；
+
+## 基于HTTP(S)协议 ##
+
+服务于同步调用和异步调用；
 ![标准/定制同步API](https://github.com/Chenjp/COP/blob/master/docs/images/overview_001.png)
 
 ![标准异步API](https://github.com/Chenjp/COP/blob/master/docs/images/overview_002.png)
 
-* **基于MQ协议**：服务于异步调用，仅适用于深度定制的应用场景，对于MQ的安全管理、端到端的MQ协议网络等存在要求；
+## 基于MQ协议 ##
+
+服务于异步调用，仅适用于深度定制的应用场景，对于MQ的安全管理、端到端的MQ协议网络等存在要求；
 ![定制异步API](https://github.com/Chenjp/COP/blob/master/docs/images/overview_003.png)
 
 
