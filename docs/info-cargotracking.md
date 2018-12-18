@@ -6,7 +6,7 @@
 # 1. 根据提单号查询 #
 
 ## 1.1 地址和方法 ## 
-* **URL**："/info/tracking/**#YOUR_BL_NO**?type=bl"
+* **相对URL**："/info/tracking/**#YOUR_BL_NO**?type=bl"
 
 * **方法**：GET
 
