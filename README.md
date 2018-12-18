@@ -4,8 +4,8 @@
 
 中远海运集运的**Open API**主要基于集装箱运输业务，向供应链上下游、前后端延伸，一方面服务于传统运输客户，为行业客户定制信息解决方案，深化和客户的信息合作，增强服务黏性；另一方面通过建立丰富完善的全方位供应链和电子商务API体系，乃至允许第三方（独立开发者、行业解决方案供应商、客户）基于我司的API体系进行定制开发，推动物流信息平台的生态建设。
 
-
-**Application/Consumer**：指经过一定业务申请和审核流程，允许接入之COP的客户应用。每个application将被分配一组apiKey和secretKey作为application的识别凭证，开发者务必妥善保存apiKey和secretKey。
+## COP客户应用 ##
+为保证用户数据的安全与隐私，COP的客户应用("Application"或称"Consumer")需要经过一定业务申请和审核流程，取得授权后才能接入至COP平台。每个application将被分配一组apiKey和secretKey作为application的识别凭证，开发者务必妥善保存apiKey和secretKey，生产正式环境中的apiKey和secretKey将作为COP客户应用的**唯一凭证**。
 
 
 
@@ -21,10 +21,22 @@
 
 
 
-# 运行环境 #
+# 运行环境说明 #
 
-* **生产环境**： https://api.lines.coscoshipping.com/service 
-* **测试环境**：待定
+|调用环境类别|服务地址(HTTPS)|
+|---| :---: |
+|生产正式环境|https://api.lines.coscoshipping.com/service|
+|测试环境|**待定**|
+
+>注:后续所有API清单中的URL均是指相对于**服务地址**的路径。
+
+## 生产正式环境 ##
+
+中远海运集运COP生产正式环境是指中远海运集运COP平台提供给真实的客户、合作方和独立软件开发商的正式生产运行的环境。其中的数据均为真实数据，生产正式环境的apiKey和secretKey是客户应用的唯一凭证，需要妥善保管，客户应用对其在COP平台的行为和数据负有法律责任。
+
+## 测试环境 ##
+
+TBD.
 
 
 
