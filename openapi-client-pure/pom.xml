@@ -8,7 +8,7 @@
 	<packaging>jar</packaging>
 
 	<name>openapi-client-pure</name>
-	<url>http://maven.apache.org</url>
+	<url>api.lines.coscoshipping.com/docs</url>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -34,14 +34,4 @@
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>
-	<distributionManagement>
-		<repository>
-			<id>coscon-releases</id>
-			<url>http://ntbsss02:8081/repository/coscon-releases/</url>
-		</repository>
-		<snapshotRepository>
-			<id>coscon-snapshots</id>
-			<url>http://ntbsss02:8081/repository/coscon-snapshots/</url>
-		</snapshotRepository>
-	</distributionManagement>
 </project>
