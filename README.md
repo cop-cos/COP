@@ -1,7 +1,13 @@
 # COP
-Cosco shipping lines Open api Platform
+
+**Cosco shipping lines Open api Platform**
 
 中远海运集运的**Open API**主要基于集装箱运输业务，向供应链上下游、前后端延伸，一方面服务于传统运输客户，为行业客户定制信息解决方案，深化和客户的信息合作，增强服务黏性；另一方面通过建立丰富完善的全方位供应链和电子商务API体系，乃至允许第三方（独立开发者、行业解决方案供应商、客户）基于我司的API体系进行定制开发，推动物流信息平台的生态建设。
+
+
+**Application/Consumer**：指经过一定业务申请和审核流程，允许接入之COP的客户应用。每个application将被分配一组apiKey和secretKey作为application的识别凭证，开发者务必妥善保存apiKey和secretKey。
+
+
 
 ## 对外开放的API服务体系
 根据对外API需求和模式的不同，其总体技术亦有所区别。对外API模式分为两类：
@@ -13,3 +19,27 @@ Cosco shipping lines Open api Platform
 * **基于MQ协议**：服务于异步调用，仅适用于深度定制的应用场景，对于MQ的安全管理、端到端的MQ协议网络等存在要求；
 ![定制异步API](https://github.com/Chenjp/COP/blob/master/docs/images/overview_003.png)
 
+
+
+## 安全体系
+
+### 1. API账号
+
+**申请和审核流程**：待定
+
+### 2. Hmac Auth认证体系
+
+COP平台为每一个Application生成一组**App Key**和**Secret Key**用以识别Application。COP平台根据申请和业务需求，指派其对API的访问权限。
+
+**Hmac Auth**体系使用了Api Key、Secret Key，摘要等技术，对于使用者访问的URI地址和请求报文进行服务端验证，安全性较高，性能开销略高。
+
+详情代码请参考：com.coscon.oaclient.pure.HmacPureExecutor#buildHmacKeys [Hmac安全和摘要处理](https://github.com/Chenjp/COP/blob/master/openapi-client-pure/src/main/java/com/coscon/oaclient/pure/HmacPureExecutor.java) 
+
+
+
+## API清单
+
+| 模块           | 服务        | 文档 |
+| ------------ | ---------- | :-------: |
+| 公共查询        | 货物跟踪|[doc](https://github.com/Chenjp/COP/blob/master/docs/info-cargotracking.md)|
+|         | 船期查询|[doc](https://github.com/Chenjp/COP/blob/master/docs/info-cargotracking.md)|
