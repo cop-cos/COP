@@ -1,6 +1,6 @@
 # COP #
 
-**Cosco shipping lines Open api Platform**：目前处于**试运行**！！！
+**Cosco shipping lines Open api Platform**：目前处于**试运行**！！！试运行期间提供免费的数据服务。
 
 中远海运集运的**Open API**主要基于集装箱运输业务，向供应链上下游、前后端延伸，一方面服务于传统运输客户，为行业客户定制信息解决方案，深化和客户的信息合作，增强服务黏性；另一方面通过建立丰富完善的全方位供应链和电子商务API体系，乃至允许第三方（独立开发者、行业解决方案供应商、客户）基于我司的API体系进行定制开发，推动物流信息平台的生态建设。
 
@@ -66,5 +66,5 @@ COP平台为每一个Application发布一组**App Key**和**Secret Key**用以�
 
 | 用户类型           | 模块           | 服务        | 文档 | 流量限制|
 | ------------ | ------------ | ---------- | :-------: | :-------: |
-| 公共组   | 公共查询        | 货物跟踪|[doc](https://github.com/Chenjp/COP/blob/master/docs/info-cargotracking.md)| **账号级别**，每天至多1000次，每月至多30000次|
-|      |         | 船期查询|[doc](https://github.com/Chenjp/COP/blob/master/docs/info-schedule.md)| **账号级别**，每天至多1000次，每月至多30000次|
+| 公共组   | 公共查询        | 货物跟踪|[说明 doc](https://github.com/Chenjp/COP/blob/master/docs/info-cargotracking.md)| **账号级别**，每天至多1000次，每月至多30000次|
+|      |         | 船期查询|[说明 doc](https://github.com/Chenjp/COP/blob/master/docs/info-schedule.md)| **账号级别**，每天至多1000次，每月至多30000次|
