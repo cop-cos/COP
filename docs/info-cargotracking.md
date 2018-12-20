@@ -17,7 +17,7 @@
 
 ## 1.3 请求样例 ##
 
-/info/tracking/6103622780?type=bl
+/info/tracking/6103622780?numberType=bl
 
 ## 1.4 响应参数 ##
 
@@ -275,7 +275,7 @@ content | 返回的数据信息
 
 ## 3.1 地址和方法 ## 
 
-* **URL**："/info/tracking/**#YOUR_CNTR_NO**"
+* **URL**："/info/tracking/**#YOUR_CNTR_NO**?numberType=cntr"
 
 * **方法**：GET
 
@@ -285,7 +285,7 @@ content | 返回的数据信息
 
 ## 3.3 请求样例 ##
 
-/info/tracking/CBHU4398907
+/info/tracking/CBHU4398907?numberType=cntr
 
 ## 3.4 响应参数 ##
 
