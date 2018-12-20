@@ -62,8 +62,8 @@ COP平台为每一个Application发布一组**App Key**和**Secret Key**用以�
 
 
 
-# 例外代码 #
-详情请点击：[例外代码表](https://github.com/cop-cos/COP/blob/master/GlobalExceptions.md)
+# 全局代码 #
+详情请点击：[全局代码](https://github.com/cop-cos/COP/blob/master/GlobalCodes.md)
 
 
 
