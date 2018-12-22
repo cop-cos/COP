@@ -58,7 +58,7 @@ COP平台为每一个Application发布一组**App Key**和**Secret Key**用以�
 
 **Hmac Auth**体系使用了Api Key、Secret Key，摘要等技术，对于使用者访问的URI地址和请求报文进行服务端验证，安全性较高，性能开销略高。
 
-详情请参考Java语言的实现：`com.coscon.oaclient.pure.HmacPureExecutor#buildHmacKeys`[Hmac安全和摘要处理](https://github.com/cop-cos/COP/blob/master/openapi-client-pure/src/main/java/com/coscon/oaclient/pure/HmacPureExecutor.java) 
+详情请参考Java语言的实现：`com.coscon.oaclient.pure.HmacPureExecutor#buildHmacHeaders`[Hmac安全和摘要处理](https://github.com/cop-cos/COP/blob/master/openapi-client-pure/src/main/java/com/coscon/oaclient/pure/HmacPureExecutor.java) 
 
 
 
