@@ -1,9 +1,9 @@
 # 船期查询 #
 
-船期查询是航运物流领域最为常用的功能，为各类客户提供集装箱班轮的信息动态。
+船期查询是航运物流领域最为常用的功能，为各类客户提供集装箱班轮的班期信息。
 
 
-# 1. 根据提单号查询 #
+# 1. 根据起运/目的地查询 #
 
 ## 1.1 地址和方法 ## 
 
@@ -112,6 +112,34 @@ data | 船期信息
 }
 ```
 ## 1.6 异常示例 ##
-暂无
+
+没有查询结果
+```
+{
+    "code":0,
+    "message":"success",
+    "data":{
+        "content":{
+            "conditions":{
+                "dateLength":4,
+                "delivery":"B",
+                "destinationCity":"Shanghai,Shanghai,Shanghai,China,CNSHA",
+                "destinationCityUuid":"738872886232873",
+                "estimateDate":"D",
+                "fromDate":"2018-12-22",
+                "originCity":"Shanghai,Shanghai,Shanghai,China,CNSHA",
+                "originCityUuid":"738872886232873",
+                "pickup":"B",
+                "time":"1545488743149",
+                "toDate":"2019-01-18"
+            }
+        }
+    }
+}
+```
 ## 1.7 错误码解释 ##
-暂无
+错误码 | 解释
+-----|-----
+5400|参数异常
+5415|移动设备信息保存失败
+5500|异常
