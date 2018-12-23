@@ -7,7 +7,7 @@
 
 ## 1.1 地址和方法 ## 
 
-* **相对URL**："service/info/schedule"
+* **相对URL**："/info/schedule"
 
 * **方法**：POST
 
