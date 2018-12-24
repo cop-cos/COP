@@ -152,7 +152,6 @@ public class AbstractOpenapiTestcase extends TestCase {
 				try {
 					client.close();
 				} catch (IOException e) {
-
 				}
 			}
 		}
