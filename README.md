@@ -46,7 +46,11 @@ TBD.
 
 
 # 安全体系 #
+
 关于SSL证书：在使用的过程中，您可能会出现https/ssl证书信任问题。推荐通过浏览器下载服务器端证书文件后，将该证书加载至信任的证书库中。
+```
+keytool -import -trustcacerts -alias cop -keystore "%JAVA_HOME%/JRE/LIB/SECURITY/CACERTS" -file ./api.lines.coscoshipping.com.cer -storepass changeit
+```
 
 ## 1. API账号 ##
 
@@ -58,8 +62,9 @@ COP平台为每一个Application发布一组**App Key**和**Secret Key**用以�
 
 **Hmac Auth**体系使用了Api Key、Secret Key，摘要等技术，对于使用者访问的URI地址和请求报文进行服务端验证，安全性较高，性能开销略高。
 
-详情请参考Java语言的实现：`com.coscon.oaclient.pure.HmacPureExecutor#buildHmacHeaders`[Hmac安全和摘要处理](https://github.com/cop-cos/COP/blob/master/openapi-client-pure/src/main/java/com/coscon/oaclient/pure/HmacPureExecutor.java) 
+Java实现样例1：`com.coscon.oaclient.pure.HmacPureExecutor#buildHmacHeaders`[Hmac安全和摘要处理](https://github.com/cop-cos/COP/blob/master/openapi-client-pure/src/main/java/com/coscon/oaclient/pure/HmacPureExecutor.java) 
 
+Java实现样例2 - HttpClient：`com.coscon.openapi.client.httpclient.CargoTrackingTestcase` [HttpClient样例代码](https://github.com/cop-cos/COP/blob/master/openapi-client-httpclient/src/test/java/com/coscon/openapi/client/httpclient/CargoTrackingTestcase.java)
 
 
 # 全局代码 #
