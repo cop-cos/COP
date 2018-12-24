@@ -10,7 +10,6 @@
 package com.coscon.openapi.client.httpclient;
 
 import java.io.IOException;
-import java.net.URI;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -24,11 +23,8 @@ import org.apache.http.HttpException;
 import org.apache.http.HttpHeaders;
 import org.apache.http.HttpRequest;
 import org.apache.http.HttpRequestInterceptor;
-import org.apache.http.ProtocolVersion;
-import org.apache.http.RequestLine;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
-import org.apache.http.message.BasicLineFormatter;
 import org.apache.http.protocol.HttpContext;
 
 import com.coscon.oaclient.pure.HmacPureExecutor;

@@ -33,7 +33,7 @@
 |生产正式环境|https://api.lines.coscoshipping.com/service|
 |测试环境|**待定**|
 
->注:后续所有API清单中的URL均是指相对于**服务地址**的路径。
+    注:后续所有API清单中的URL均是指相对于**服务地址**的路径。
 
 ## 生产正式环境 ##
 
@@ -62,11 +62,35 @@ COP平台为每一个Application发布一组**App Key**和**Secret Key**用以�
 
 **Hmac Auth**体系使用了Api Key、Secret Key，摘要等技术，对于使用者访问的URI地址和请求报文进行服务端验证，安全性较高，性能开销略高。
 
-Java实现样例1：`com.coscon.oaclient.pure.HmacPureExecutor#buildHmacHeaders`[Hmac安全和摘要处理](https://github.com/cop-cos/COP/blob/master/openapi-client-pure/src/main/java/com/coscon/oaclient/pure/HmacPureExecutor.java) 
+### Java实现样例1 ###
+[Hmac安全和摘要处理](https://github.com/cop-cos/COP/blob/master/openapi-client-pure/src/main/java/com/coscon/oaclient/pure/HmacPureExecutor.java) 
 
-Java实现样例2 - HttpClient：`com.coscon.openapi.client.httpclient.CargoTrackingTestcase` [HttpClient样例代码](https://github.com/cop-cos/COP/blob/master/openapi-client-httpclient/src/test/java/com/coscon/openapi/client/httpclient/CargoTrackingTestcase.java)
+* 初始化并设置ApiKey和SecretKey
 
-1. 设置ApiKey和SecretKey
+```java
+    //com.coscon.oaclient.pure.HmacPureExecutor
+    hmacPureExecutor = new HmacPureExecutor();
+    hmacPureExecutor.setApiKey("YOUR_APK_KEY");
+    hmacPureExecutor.setSecretKey("YOUR_SECRET_KEY");
+```
+
+* 根据HTTP(S)处理组件不同，设置HTTP Header信息
+  
+```java
+    Map<String, String> headers = getHmacPureExecutor().buildHmacKeys(request.getRequestLine().toString(), httpContent);
+    if(headers!=null) {
+        for(Entry<String, String> e:headers.entrySet()) {
+            request.addHeader(e.getKey(), e.getValue());
+        }
+    }
+```
+
+### Java实现样例2 - HttpClient ### 
+ [HttpClient样例代码](https://github.com/cop-cos/COP/blob/master/openapi-client-httpclient/src/test/java/com/coscon/openapi/client/httpclient/CargoTrackingTestcase.java)
+ 
+    com.coscon.openapi.client.httpclient.CargoTrackingTestcase
+
+* 初始化并设置ApiKey和SecretKey
 
 ```java
     /*com.coscon.openapi.client.httpclient.AbstractOpenapiTestcase#setUp*/
@@ -74,12 +98,37 @@ Java实现样例2 - HttpClient：`com.coscon.openapi.client.httpclient.CargoTrac
     hmacPureExecutor.setApiKey("YOUR_APK_KEY");
     hmacPureExecutor.setSecretKey("YOUR_SECRET_KEY");
 ```
-2. 在HttpClientBuilder中，注册Interceptor用以进行访问安全预处理
+
+* 在HttpClientBuilder中，注册Interceptor用以进行访问安全预处理
+  
 ```java
+    HttpClientBuilder builder = HttpClientBuilder.create();
     builder.addInterceptorLast(new HttpRequestInterceptor() {
-        ...
+
+        @Override
+        public void process(HttpRequest request, HttpContext context) throws HttpException, IOException {
+            if(!match(request, hostPatterns)) {
+                return;
+            }
+            byte[] httpContent = new byte[0];
+            if (request instanceof HttpEntityEnclosingRequest) {
+                httpContent = IOUtils.toByteArray(((HttpEntityEnclosingRequest) request).getEntity().getContent());
+            }
+            try {
+                Map<String, String> headers = getHmacPureExecutor().buildHmacKeys(request.getRequestLine().toString(), httpContent);
+                if(headers!=null) {
+                    for(Entry<String, String> e:headers.entrySet()) {
+                        request.addHeader(e.getKey(), e.getValue());
+                    }
+                }
+            } catch (OpenClientSecurityException e) {
+                e.printStackTrace();
+            }
+        }
     });
 ```
+
+
 
 # 全局代码 #
 详情请点击：[全局代码](https://github.com/cop-cos/COP/blob/master/GlobalCodes.md)
