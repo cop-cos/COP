@@ -15,14 +15,14 @@
 ## 基于HTTP(S)协议 ##
 
 服务于同步调用和异步调用；
-![标准/定制同步API](https://github.com/Chenjp/COP/blob/master/docs/images/overview_001.png)
+![标准/定制同步API](https://github.com/cop-cos/COP/blob/master/docs/images/overview_001.png)
 
-![标准异步API](https://github.com/Chenjp/COP/blob/master/docs/images/overview_002.png)
+![标准异步API](https://github.com/cop-cos/COP/blob/master/docs/images/overview_002.png)
 
 ## 基于MQ协议 ##
 
 服务于异步调用，仅适用于深度定制的应用场景，对于MQ的安全管理、端到端的MQ协议网络等存在要求；
-![定制异步API](https://github.com/Chenjp/COP/blob/master/docs/images/overview_003.png)
+![定制异步API](https://github.com/cop-cos/COP/blob/master/docs/images/overview_003.png)
 
 
 
@@ -58,7 +58,12 @@ COP平台为每一个Application发布一组**App Key**和**Secret Key**用以�
 
 **Hmac Auth**体系使用了Api Key、Secret Key，摘要等技术，对于使用者访问的URI地址和请求报文进行服务端验证，安全性较高，性能开销略高。
 
-详情请参考Java语言的实现：`com.coscon.oaclient.pure.HmacPureExecutor#buildHmacKeys`[Hmac安全和摘要处理](https://github.com/Chenjp/COP/blob/master/openapi-client-pure/src/main/java/com/coscon/oaclient/pure/HmacPureExecutor.java) 
+详情请参考Java语言的实现：`com.coscon.oaclient.pure.HmacPureExecutor#buildHmacHeaders`[Hmac安全和摘要处理](https://github.com/cop-cos/COP/blob/master/openapi-client-pure/src/main/java/com/coscon/oaclient/pure/HmacPureExecutor.java) 
+
+
+
+# 全局代码 #
+详情请点击：[全局代码](https://github.com/cop-cos/COP/blob/master/GlobalCodes.md)
 
 
 
@@ -66,5 +71,5 @@ COP平台为每一个Application发布一组**App Key**和**Secret Key**用以�
 
 | 用户类型           | 模块           | 服务        | 文档 | 流量限制|
 | ------------ | ------------ | ---------- | :-------: | :-------: |
-| 公共组   | 公共查询        | 货物跟踪|[说明 doc](https://github.com/Chenjp/COP/blob/master/docs/info-cargotracking.md)| **账号级别**，每天至多1000次，每月至多30000次|
-|      |         | 船期查询|[说明 doc](https://github.com/Chenjp/COP/blob/master/docs/info-schedule.md)| **账号级别**，每天至多1000次，每月至多30000次|
+| 公共组   | 公共查询        | 货物跟踪|[说明 doc](https://github.com/cop-cos/COP/blob/master/docs/info-cargotracking.md)| **账号级别**，每天至多1000次，每月至多30000次|
+|      |         | 船期查询|[说明 doc](https://github.com/cop-cos/COP/blob/master/docs/info-schedule.md)| **账号级别**，每天至多1000次，每月至多30000次|
