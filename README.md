@@ -65,11 +65,20 @@ COP平台为每一个Application发布一组**App Key**和**Secret Key**用以�
 Java实现样例1：`com.coscon.oaclient.pure.HmacPureExecutor#buildHmacHeaders`[Hmac安全和摘要处理](https://github.com/cop-cos/COP/blob/master/openapi-client-pure/src/main/java/com/coscon/oaclient/pure/HmacPureExecutor.java) 
 
 Java实现样例2 - HttpClient：`com.coscon.openapi.client.httpclient.CargoTrackingTestcase` [HttpClient样例代码](https://github.com/cop-cos/COP/blob/master/openapi-client-httpclient/src/test/java/com/coscon/openapi/client/httpclient/CargoTrackingTestcase.java)
+
+1. 设置ApiKey和SecretKey
+
 ```java
     /*com.coscon.openapi.client.httpclient.AbstractOpenapiTestcase#setUp*/
-		hmacPureExecutor = new HmacPureExecutor();
-		hmacPureExecutor.setApiKey("YOUR_APK_KEY");
-		hmacPureExecutor.setSecretKey("YOUR_SECRET_KEY");
+    hmacPureExecutor = new HmacPureExecutor();
+    hmacPureExecutor.setApiKey("YOUR_APK_KEY");
+    hmacPureExecutor.setSecretKey("YOUR_SECRET_KEY");
+```
+2. 在HttpClientBuilder中，注册Interceptor用以进行访问安全预处理
+```java
+    builder.addInterceptorLast(new HttpRequestInterceptor() {
+        ...
+    });
 ```
 
 # 全局代码 #
