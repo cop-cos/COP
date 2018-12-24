@@ -65,7 +65,12 @@ COP平台为每一个Application发布一组**App Key**和**Secret Key**用以�
 Java实现样例1：`com.coscon.oaclient.pure.HmacPureExecutor#buildHmacHeaders`[Hmac安全和摘要处理](https://github.com/cop-cos/COP/blob/master/openapi-client-pure/src/main/java/com/coscon/oaclient/pure/HmacPureExecutor.java) 
 
 Java实现样例2 - HttpClient：`com.coscon.openapi.client.httpclient.CargoTrackingTestcase` [HttpClient样例代码](https://github.com/cop-cos/COP/blob/master/openapi-client-httpclient/src/test/java/com/coscon/openapi/client/httpclient/CargoTrackingTestcase.java)
-
+```java
+    /*com.coscon.openapi.client.httpclient.AbstractOpenapiTestcase#setUp*/
+		hmacPureExecutor = new HmacPureExecutor();
+		hmacPureExecutor.setApiKey("YOUR_APK_KEY");
+		hmacPureExecutor.setSecretKey("YOUR_SECRET_KEY");
+```
 
 # 全局代码 #
 详情请点击：[全局代码](https://github.com/cop-cos/COP/blob/master/GlobalCodes.md)
