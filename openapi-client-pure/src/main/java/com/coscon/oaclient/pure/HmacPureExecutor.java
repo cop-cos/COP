@@ -4,7 +4,7 @@
  *================================================================
  *
  * (c) Copyright COSCON IT. 2017. All rights reserved.
- * 上海中远资讯科技股份有限公司版权所有版权所有.
+ * 上海中远海运资讯科技股份有限公司版权所有版权所有.
  * www.cosconit.com
  */
 package com.coscon.oaclient.pure;
@@ -21,9 +21,12 @@ import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
 
 /**
- * Type comment.
- * 
+ * A Pure Excutor to perform HTTP hmac digest & encryption, used to protect COP secret key over http(s) transportation. <p>
+ * Client application can construct an {@link HttpRequestInterceptor}, add #buildHmacHeaders results as HTTP headers, and 
+ * invoke {@link HttpClientBuilder}.addInterceptorFirst to secure the HTTP operation in background.<p>
+ * @author 陈吉鹏
  * @author <a href="mailto:chenjp2@coscon.com">Chen Jipeng</a>
+ * @emailto ch_jp@msn.com
  */
 public class HmacPureExecutor {
 
@@ -118,7 +121,9 @@ public class HmacPureExecutor {
 	}
 
 	/**
-	 * Builds HMAC authentication key-value pairs.
+	 * Builds HMAC authentication key-value pairs. 
+	 * <p>
+	 * To secure the COP transporation, the hmack key-value pairs shoud be added as HTTP Headers.
 	 * 
 	 * @param requestLine 
 	 * @param httpContent
@@ -126,7 +131,7 @@ public class HmacPureExecutor {
 	 * @return hmac k/v pairs.
 	 * @throws OpenClientSecurityException
 	 */
-	public Map<String, String> buildHmacKeys(String requestLine, byte[] httpContent)
+	public Map<String, String> buildHmacHeaders(String requestLine, byte[] httpContent)
 			throws OpenClientSecurityException {
 		StringBuffer buf = new StringBuffer();
 		String guid = UUID.randomUUID().toString();
