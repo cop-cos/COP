@@ -118,7 +118,7 @@ public class AbstractOpenapiTestcase extends TestCase {
 					httpContent = IOUtils.toByteArray(((HttpEntityEnclosingRequest) request).getEntity().getContent());
 				}
 				try {
-					Map<String, String> headers = getHmacPureExecutor().buildHmacKeys(new HmacHttpSecurityRequestLine(request.getRequestLine()).toString(), httpContent);
+					Map<String, String> headers = getHmacPureExecutor().buildHmacKeys(request.getRequestLine().toString(), httpContent);
 					if(headers!=null) {
 						for(Entry<String, String> e:headers.entrySet()) {
 							request.addHeader(e.getKey(), e.getValue());
@@ -141,6 +141,7 @@ public class AbstractOpenapiTestcase extends TestCase {
 		hmacPureExecutor = new HmacPureExecutor();
 		hmacPureExecutor.setApiKey("YOUR_APK_KEY");
 		hmacPureExecutor.setSecretKey("YOUR_SECRET_KEY");
+		
 	}
 
 	@Override
@@ -157,49 +158,49 @@ public class AbstractOpenapiTestcase extends TestCase {
 		}
 	}
 	
-	
-	private static final class HmacHttpSecurityRequestLine implements RequestLine {
-		private RequestLine source = null;
-
-		/**
-		 * Default constructor.
-		 * 
-		 * @param source
-		 *            the original {@link RequestLine} instance.
-		 */
-		public HmacHttpSecurityRequestLine(RequestLine source) {
-			this.source = source;
-		}
-
-		@Override
-		public String getMethod() {
-			return source.getMethod();
-		}
-
-		@Override
-		public ProtocolVersion getProtocolVersion() {
-			return source.getProtocolVersion();
-		}
-
-		@Override
-		public String getUri() {
-			URI uri = URI.create(source.getUri());
-			StringBuffer sb = new StringBuffer();
-			if (uri.getPath() != null) {
-				sb.append(uri.getRawPath());
-			} else {
-				sb.append("/");
-			}
-			if (uri.getQuery() != null) {
-				sb.append('?');
-				sb.append(uri.getRawQuery());
-			}
-			return sb.toString();
-		}
-
-		@Override
-		public String toString() {
-			return BasicLineFormatter.INSTANCE.formatRequestLine(null, this).toString();
-		}
-	}
+//	
+//	private static final class HmacHttpSecurityRequestLine implements RequestLine {
+//		private RequestLine source = null;
+//
+//		/**
+//		 * Default constructor.
+//		 * 
+//		 * @param source
+//		 *            the original {@link RequestLine} instance.
+//		 */
+//		public HmacHttpSecurityRequestLine(RequestLine source) {
+//			this.source = source;
+//		}
+//
+//		@Override
+//		public String getMethod() {
+//			return source.getMethod();
+//		}
+//
+//		@Override
+//		public ProtocolVersion getProtocolVersion() {
+//			return source.getProtocolVersion();
+//		}
+//
+//		@Override
+//		public String getUri() {
+//			URI uri = URI.create(source.getUri());
+//			StringBuffer sb = new StringBuffer();
+//			if (uri.getPath() != null) {
+//				sb.append(uri.getRawPath());
+//			} else {
+//				sb.append("/");
+//			}
+//			if (uri.getQuery() != null) {
+//				sb.append('?');
+//				sb.append(uri.getRawQuery());
+//			}
+//			return sb.toString();
+//		}
+//
+//		@Override
+//		public String toString() {
+//			return BasicLineFormatter.INSTANCE.formatRequestLine(null, this).toString();
+//		}
+//	}
 }
