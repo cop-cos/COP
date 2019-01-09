@@ -161,7 +161,6 @@ public class HmacPureExecutor {
 
 		Map<String, String> headers = new HashMap<String, String>();
 		headers.put(X_DATE, date);
-		headers.put(X_DATE, date);
 		headers.put(DIGEST, digest);
 		headers.put(CONTENT_MD5, guidMd5);
 		headers.put(AUTHORIZATION, hmacAuth);
