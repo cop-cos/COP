@@ -103,7 +103,7 @@ COP平台为每一个Application发布一组**App Key**和**Secret Key**用以�
 * 根据HTTP(S)处理组件不同，设置HTTP Header信息
   
 ```java
-    Map<String, String> headers = getHmacPureExecutor().buildHmacKeys(request.getRequestLine().toString(), httpContent);
+    Map<String, String> headers = getHmacPureExecutor().buildHmacHeaders(request.getRequestLine().toString(), httpContent);
     if(headers!=null) {
         for(Entry<String, String> e:headers.entrySet()) {
             request.addHeader(e.getKey(), e.getValue());
@@ -141,7 +141,7 @@ COP平台为每一个Application发布一组**App Key**和**Secret Key**用以�
                 httpContent = IOUtils.toByteArray(((HttpEntityEnclosingRequest) request).getEntity().getContent());
             }
             try {
-                Map<String, String> headers = getHmacPureExecutor().buildHmacKeys(request.getRequestLine().toString(), httpContent);
+                Map<String, String> headers = getHmacPureExecutor().buildHmacHeaders(request.getRequestLine().toString(), httpContent);
                 if(headers!=null) {
                     for(Entry<String, String> e:headers.entrySet()) {
                         request.addHeader(e.getKey(), e.getValue());
