@@ -96,7 +96,7 @@ COP平台为每一个Application发布一组**App Key**和**Secret Key**用以�
 ```java
     //com.coscon.oaclient.pure.HmacPureExecutor
     hmacPureExecutor = new HmacPureExecutor();
-    hmacPureExecutor.setApiKey("YOUR_APK_KEY");
+    hmacPureExecutor.setApiKey("YOUR_API_KEY");
     hmacPureExecutor.setSecretKey("YOUR_SECRET_KEY");
 ```
 
