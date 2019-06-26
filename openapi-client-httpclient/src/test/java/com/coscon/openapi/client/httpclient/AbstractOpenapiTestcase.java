@@ -111,7 +111,10 @@ public class AbstractOpenapiTestcase extends TestCase {
 				}
 				byte[] httpContent = new byte[0];
 				if (request instanceof HttpEntityEnclosingRequest) {
-					httpContent = IOUtils.toByteArray(((HttpEntityEnclosingRequest) request).getEntity().getContent());
+					HttpEntity entity = ((HttpEntityEnclosingRequest) request).getEntity();
+					if(entity != null) {
+						httpContent = IOUtils.toByteArray(entity.getContent());
+					}					
 				}
 				try {
 					Map<String, String> headers = getHmacPureExecutor().buildHmacKeys(request.getRequestLine().toString(), httpContent);
