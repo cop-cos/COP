@@ -138,7 +138,10 @@ COP平台为每一个Application发布一组**App Key**和**Secret Key**用以�
             }
             byte[] httpContent = new byte[0];
             if (request instanceof HttpEntityEnclosingRequest) {
-                httpContent = IOUtils.toByteArray(((HttpEntityEnclosingRequest) request).getEntity().getContent());
+				HttpEntity entity = ((HttpEntityEnclosingRequest) request).getEntity();
+				if(entity != null) {
+					httpContent = IOUtils.toByteArray(entity.getContent());
+				}
             }
             try {
                 Map<String, String> headers = getHmacPureExecutor().buildHmacHeaders(request.getRequestLine().toString(), httpContent);
