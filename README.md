@@ -168,5 +168,12 @@ COP平台为每一个Application发布一组**App Key**和**Secret Key**用以�
 
 | 用户类型           | 模块           | 服务        | 文档 | 流量限制|
 | ------------ | ------------ | ---------- | :-------: | :-------: |
-| 公共组   | 公共查询        | 货物跟踪|[说明 doc](https://github.com/cop-cos/COP/blob/master/docs/info-cargotracking.md)| **账号级别**，每天至多1000次，每月至多30000次|
-|      |         | 船期查询|[说明 doc](https://github.com/cop-cos/COP/blob/master/docs/info-schedule.md)| **账号级别**，每天至多1000次，每月至多30000次|
+
+| 公共组   | 公共查询        | 货物跟踪 |[说明 doc](https://github.com/cop-cos/COP/blob/master/docs/info-cargotracking.md)| **账号级别**，每天至多1000次，每月至多30000次|
+|      |         | 船期查询 |[说明 doc](https://github.com/cop-cos/COP/blob/master/docs/info-schedule.md)| **账号级别**，每天至多1000次，每月至多30000次|
+
+
+|      | 内贸服务        | 订舱确认书下载 |[说明 doc](https://github.com/cop-cos/COP/blob/master/docs/dts/bookingConfirmDownload.md)| **账号级别**，每天至多1000次，每月至多30000次|
+|      |         | 签收单链接查询 |[说明 doc](https://github.com/cop-cos/COP/blob/master/docs/dts/cargoReceiptLink.md)| **账号级别**，每天至多1000次，每月至多30000次|
+|      |         | 运单下载 |[说明 doc](https://github.com/cop-cos/COP/blob/master/docs/dts/waybillDownload.md)| **账号级别**，每天至多1000次，每月至多30000次|
+|      |         | 订单信息查询 |[说明 doc](https://github.com/cop-cos/COP/blob/master/docs/dts/waybillInfo.md)| **账号级别**，每天至多1000次，每月至多30000次|
