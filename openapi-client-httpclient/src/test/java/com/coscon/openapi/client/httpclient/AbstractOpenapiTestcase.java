@@ -18,6 +18,7 @@ import java.util.Vector;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.Header;
+import org.apache.http.HttpEntity;
 import org.apache.http.HttpEntityEnclosingRequest;
 import org.apache.http.HttpException;
 import org.apache.http.HttpHeaders;
@@ -117,7 +118,7 @@ public class AbstractOpenapiTestcase extends TestCase {
 					}					
 				}
 				try {
-					Map<String, String> headers = getHmacPureExecutor().buildHmacKeys(request.getRequestLine().toString(), httpContent);
+					Map<String, String> headers = getHmacPureExecutor().buildHmacHeaders(request.getRequestLine().toString(), httpContent);
 					if(headers!=null) {
 						for(Entry<String, String> e:headers.entrySet()) {
 							request.addHeader(e.getKey(), e.getValue());
