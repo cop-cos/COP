@@ -117,7 +117,7 @@ public class AbstractOpenapiTestcase extends TestCase {
 					}					
 				}
 				try {
-					Map<String, String> headers = getHmacPureExecutor().buildHmacKeys(request.getRequestLine().toString(), httpContent);
+					Map<String, String> headers = getHmacPureExecutor().buildHmacHeaders(request.getRequestLine().toString(), httpContent);
 					if(headers!=null) {
 						for(Entry<String, String> e:headers.entrySet()) {
 							request.addHeader(e.getKey(), e.getValue());
