@@ -31,7 +31,7 @@
 |调用环境类别|服务地址(HTTPS)|
 |---| :---: |
 |生产正式环境|https://api.lines.coscoshipping.com/service|
-|测试环境|**待定**|
+|验证测试环境|https://api-pp.lines.coscoshipping.com/service|
 
     注:后续所有API清单中的URL均是指相对于**服务地址**的路径。 
 
