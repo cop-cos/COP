@@ -174,3 +174,5 @@ COP平台为每一个Application发布一组**App Key**和**Secret Key**用以�
 |      |         | 签收单链接查询 |[说明 doc](https://github.com/cop-cos/COP/blob/master/docs/dts/cargoReceiptLink.md)| **账号级别**，每天至多1000次，每月至多30000次|
 |      |         | 运单下载 |[说明 doc](https://github.com/cop-cos/COP/blob/master/docs/dts/waybillDownload.md)| **账号级别**，每天至多1000次，每月至多30000次|
 |      |         | 订单信息查询 |[说明 doc](https://github.com/cop-cos/COP/blob/master/docs/dts/waybillInfo.md)| **账号级别**，每天至多1000次，每月至多30000次|
+|      |         | 自动派车 |[说明 doc](https://github.com/cop-cos/COP/blob/master/docs/dts/autoDispatchToFleet.md)| **账号级别**，每天至多1000次，每月至多30000次|
+|      |         | 提箱校验码 |[说明 doc](https://github.com/cop-cos/COP/blob/master/docs/dts/pickupItemCheckCode.md)| **账号级别**，每天至多1000次，每月至多30000次|
