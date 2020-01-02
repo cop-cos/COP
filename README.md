@@ -178,10 +178,12 @@ COP平台为每一个Application发布一组**App Key**和**Secret Key**用以�
 |      |         | 提箱校验码 |[说明 doc](https://github.com/cop-cos/COP/blob/master/docs/dts/pickupItemCheckCode.md)| **账号级别**，每天至多1000次，每月至多30000次|
 
 
-# 0x08 约定和协议 #
-当您提出入驻申请，即认为您已经同意如下约定和协议：
-| 标题          | 文档 |
-| ------------ | :-------: |
-| 中远海运集运开放平台合作伙伴开发协议   | [中远海运集运开放平台合作伙伴开发协议.docx](https://github.com/cop-cos/COP/blob/master/docs/agreements/中远海运集运开放平台合作伙伴开发协议.docx)|
-| 中远海运集运开放平台合作伙伴应用安全规范   | [中远海运集运开放平台合作伙伴应用安全规范.docx](https://github.com/cop-cos/COP/blob/master/docs/agreements/中远海运集运开放平台合作伙伴应用安全规范.docx)|
-| 中远海运集运开放平台运营规则   | [中远海运集运开放平台运营规则.docx](https://github.com/cop-cos/COP/blob/master/docs/agreements/中远海运集运开放平台运营规则.docx)|
+# 0x08 协议和约定 #
+当您提出入驻申请，即认为您已经同意如下协议和约定：
+
+|协议和约定|
+|---|
+| [中远海运集运开放平台合作伙伴开发协议.docx](https://github.com/cop-cos/COP/blob/master/docs/agreements/中远海运集运开放平台合作伙伴开发协议.docx)|
+| [中远海运集运开放平台合作伙伴应用安全规范.docx](https://github.com/cop-cos/COP/blob/master/docs/agreements/中远海运集运开放平台合作伙伴应用安全规范.docx)|
+| [中远海运集运开放平台运营规则.docx](https://github.com/cop-cos/COP/blob/master/docs/agreements/中远海运集运开放平台运营规则.docx)|
+
