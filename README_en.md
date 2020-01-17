@@ -1,3 +1,5 @@
+[Chinese Version](/README_zh.md)
+
 # 0x01 COP #
 
 **Cosco shipping lines Open-api Platform**：Currently COP is in **trial operation**!!! Free data service is available during the commissioning period.
