@@ -74,6 +74,8 @@ Email Subject: COP developer residency application-<Your Company Name>
 ## Issuance of Crenditials ##
 The COP Platform administration team (mailto:MicroService_Mgmt@coscon.com) will send your credentials ApiKey/SecretKey to your email address after your residency application confirmed. In the event of a SecretKey leak, be sure to contact the COP Platform Operations Team (mailto:MicroService_Mgmt@coscon.com) ASAP.
 
+## Limitations and constraints
+Based on the anti-Deny-of-Service, performance and API features, the size of each http request's body (HTTP Request Body) must not exceed 1MB.
 
 
 # 0x05 Security #
