@@ -73,7 +73,8 @@ TBD.
 ## 安全凭证发放
 入住审核通过之后，[COP平台运营团队](mailto:MicroService_Mgmt@coscon.com)将把您的身份凭证ApiKey/SecretKey发放至您的电子邮箱。如出现SecretKey泄露，请务必在第一时间联系[COP平台运营团队](mailto:MicroService_Mgmt@coscon.com)。
 
-
+## 限制和约束
+基于反DOS、性能和API特性综合考虑，所有API的请求体(HTTP Request Body)长度不得超过1MB。
 
 # 0x05 安全体系 #
 
