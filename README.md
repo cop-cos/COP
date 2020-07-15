@@ -74,7 +74,10 @@ TBD.
 入住审核通过之后，[COP平台运营团队](mailto:MicroService_Mgmt@coscon.com)将把您的身份凭证ApiKey/SecretKey发放至您的电子邮箱。如出现SecretKey泄露，请务必在第一时间联系[COP平台运营团队](mailto:MicroService_Mgmt@coscon.com)。
 
 ## 限制和约束
-基于反DOS、性能和API特性综合考虑，所有API的请求体(HTTP Request Body)长度不得超过1MB。
+基于反DOS、性能和API特性综合考虑，所有API的请求体(HTTP Request Body)长度不得超过1MB。  
+
+HTTP协议版本限制为 **HTTP/1.1** 。  
+
 
 # 0x05 安全体系 #
 
@@ -90,6 +93,38 @@ keytool -import -trustcacerts -alias cop -keystore "%JAVA_HOME%/JRE/LIB/SECURITY
 COP平台为每一个Application发布一组**App Key**和**Secret Key**用以识别Application。COP平台将根据申请和业务需求，指派其对API的访问权限。
 
 **Hmac Auth**体系使用了Api Key、Secret Key，摘要等技术，对于使用者访问的URI地址和请求报文进行服务端验证，安全性较高，性能开销略高。
+
+### Hmac Auth之HTTP头信息说明 ###
+
+* X-Coscon-Date
+```
+格式：EEE, dd MMM yyyy HH:mm:ss z
+精确度：和标准时间偏差不能超过2分钟。
+例如：Tue, 23 Oct 2018 12:58:39 GMT
+```
+* X-Coscon-Content-Md5
+```
+产生一个UUID，其md5摘要的十六进制表示
+```
+* X-Coscon-Digest
+```
+如为http method为POST/PUT，则需对body进行sha256摘要后以Base64编码，前缀为” SHA-256=”，例如：
+SHA-256=ndf/mH+sjQ0ZeQhOveXOi9hVzQZtGjTphDInXMa8Jkw=
+```
+* X-Coscon-Authorization
+```
+hmac username="$YOUR_ApiKey", algorithm="hmac-sha1", headers="x-date digest content-md5 request-line",signature="$Signature"
+- $YOUR_ApiKey： COP平台颁发的ApiKey
+- $Signature: 以COP平台颁发的secretKey对文本"x-date: $X-Coscon-Date\ndigest: $X-Coscon-Digest\nContent-MD5: $X-Coscon-Content-Md5\n$requestLine"进行HmacSHA1摘要后并Base64编码；
+- - $X-Coscon-Date:同Http Header['X-Coscon-Date']取值
+- - $X-Coscon-Digest:同Http Header['X-Coscon-Digest']取值
+- - $X-Coscon-Content-Md5:同Http Header['X-Coscon-Content-Md5']取值
+- - $requestLine:参https://www.w3.org/Protocols/rfc2616/rfc2616-sec5.html 之#5.1 Request-Line
+```
+* X-Coscon-Hmac
+```
+同Http Header['X-Coscon-Content-Md5']取值
+```
 
 ### Java实现样例1 ###
 [Hmac安全和摘要处理](https://github.com/cop-cos/COP/blob/master/openapi-client-pure/src/main/java/com/coscon/oaclient/pure/HmacPureExecutor.java) 
