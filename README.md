@@ -215,7 +215,7 @@ hmac username="$YOUR_ApiKey", algorithm="hmac-sha1", headers="x-date digest cont
 |      |         | 自动派车 |[说明 doc](https://github.com/cop-cos/COP/blob/master/docs/dts/autoDispatchToFleet.md)| **账号级别**，每天至多1000次，每月至多30000次|
 |      |         | 提箱校验码 |[说明 doc](https://github.com/cop-cos/COP/blob/master/docs/dts/pickupItemCheckCode.md)| **账号级别**，每天至多1000次，每月至多30000次|
 |      |         | 拖车动态接收 |[说明 doc](https://github.com/cop-cos/COP/blob/master/docs/dts/truckEventReceiveInfo.md)| **账号级别**，每天至多1000次，每月至多30000次|
-|      |         | 实时位置接口 |[说明 doc](https://github.com/cop-cos/COP/blob/master/docs/dts/truckGetRealtimePositio.md)| **账号级别**，每天至多1000次，每月至多30000次|
+|      |         | 实时位置接口 |[说明 doc](https://github.com/cop-cos/COP/blob/master/docs/dts/truckGetRealtimePosition.md)| **账号级别**，每天至多1000次，每月至多30000次|
 |      |         | 历史轨迹接口 |[说明 doc](https://github.com/cop-cos/COP/blob/master/docs/dts/truckGetTrailerTrack.md)| **账号级别**，每天至多1000次，每月至多30000次|
 |      |         | 运单数据接口 |[说明 doc](https://github.com/cop-cos/COP/blob/master/docs/dts/truckOrderInfo.md)| **账号级别**，每天至多1000次，每月至多30000次|
 
