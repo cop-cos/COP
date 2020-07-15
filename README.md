@@ -94,12 +94,20 @@ COP平台为每一个Application发布一组**App Key**和**Secret Key**用以�
 
 **Hmac Auth**体系使用了Api Key、Secret Key，摘要等技术，对于使用者访问的URI地址和请求报文进行服务端验证，安全性较高，性能开销略高。
 
-### Hmac Auth之HTTP头信息说明 ###
+### 通用实现之HTTP头信息说明 ###
+
+|HTTP Header|类型|是否必须|
+|---------------|----------|----------|
+|X-Coscon-Date|String|Yes|
+|X-Coscon-Content-Md5|String|Yes|
+|X-Coscon-Digest|String|Conditional|
+|X-Coscon-Authorization|String|Yes|
+|X-Coscon-Hmac|String|Yes|
 
 * X-Coscon-Date
 ```
 格式：EEE, dd MMM yyyy HH:mm:ss z
-精确度：和标准时间偏差不能超过2分钟。
+精度：和标准时间偏差不能超过2分钟。
 例如：Tue, 23 Oct 2018 12:58:39 GMT
 ```
 * X-Coscon-Content-Md5
@@ -108,14 +116,14 @@ COP平台为每一个Application发布一组**App Key**和**Secret Key**用以�
 ```
 * X-Coscon-Digest
 ```
-如为http method为POST/PUT，则需对body进行sha256摘要后以Base64编码，前缀为” SHA-256=”，例如：
+如为http method为POST/PUT，则需对body进行sha256摘要后以Base64编码，前缀为"SHA-256="，例如：
 SHA-256=ndf/mH+sjQ0ZeQhOveXOi9hVzQZtGjTphDInXMa8Jkw=
 ```
 * X-Coscon-Authorization
 ```
-hmac username="$YOUR_ApiKey", algorithm="hmac-sha1", headers="x-date digest content-md5 request-line",signature="$Signature"
+hmac username="$YOUR_ApiKey", algorithm="hmac-sha1", headers="X-Coscon-Date X-Coscon-Digest X-Coscon-Content-Md5 request-line",signature="$Signature"
 - $YOUR_ApiKey： COP平台颁发的ApiKey
-- $Signature: 以COP平台颁发的secretKey对文本"x-date: $X-Coscon-Date\ndigest: $X-Coscon-Digest\nContent-MD5: $X-Coscon-Content-Md5\n$requestLine"进行HmacSHA1摘要后并Base64编码；
+- $Signature: 以COP平台颁发的secretKey对文本"X-Coscon-Date: $X-Coscon-Date\nX-Coscon-Digest: $X-Coscon-Digest\nX-Coscon-Content-Md5: $X-Coscon-Content-Md5\n$requestLine"进行HmacSHA1摘要后并Base64编码；
 - - $X-Coscon-Date:同Http Header['X-Coscon-Date']取值
 - - $X-Coscon-Digest:同Http Header['X-Coscon-Digest']取值
 - - $X-Coscon-Content-Md5:同Http Header['X-Coscon-Content-Md5']取值
