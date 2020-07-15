@@ -90,9 +90,11 @@ keytool -import -trustcacerts -alias cop -keystore "%JAVA_HOME%/JRE/LIB/SECURITY
 
 ## Hmac Auth认证体系 ##
 
-COP平台为每一个Application发布一组**App Key**和**Secret Key**用以识别Application。COP平台将根据申请和业务需求，指派其对API的访问权限。
+* COP平台为每一个Application发布一组**App Key**和**Secret Key**用以识别Application。COP平台将根据申请和业务需求，指派其对API的访问权限。
 
-**Hmac Auth**体系使用了Api Key、Secret Key，摘要等技术，对于使用者访问的URI地址和请求报文进行服务端验证，安全性较高，性能开销略高。
+* Hmac Auth 体系使用了Api Key、Secret Key，摘要等技术，对于使用者访问的URI地址和请求报文进行服务端验证，安全性较高，性能开销略高。
+
+* Illegal Request将无法通过Hmac Auth认证体系，COP将返回401或500的HTTP状态码。
 
 ### 通用实现之HTTP头信息说明 ###
 
@@ -116,7 +118,7 @@ COP平台为每一个Application发布一组**App Key**和**Secret Key**用以�
 ```
 * X-Coscon-Digest
 ```
-如为http method为POST/PUT，则需对body进行sha256摘要后以Base64编码，前缀为"SHA-256="，例如：
+如为http method为POST/PUT，则需对Http Body的字节数组进行SHA256摘要，形成摘要数据字节数组，并对该摘要数据字节数组进行Base64编码，前缀为"SHA-256="，例如：
 SHA-256=ndf/mH+sjQ0ZeQhOveXOi9hVzQZtGjTphDInXMa8Jkw=
 ```
 * X-Coscon-Authorization
