@@ -1,3 +1,5 @@
+# 拖车动态接收 #
+
 # 1. 车队准入，拖车动态接收 #
 
 ## 1.1 地址和方法 ##
@@ -7,19 +9,19 @@
 * **方法**：POST
 ## 1.2 请求参数 ## 
 
-字段|说明|是否必填|数据库类型|备注
+字段|说明|是否必填|类型|备注
 -----|-----|-----|-----|-----
-workOrderNo|订单发送接口中的workOrderNo，这个是唯一的|必填|StringVARCHAR2(20BYTE)|拖车内部唯一派单号，拖车动态回传时为必输项
-obIb|进出口标志，I为进口，O为出口|必填|CHAR(1BYTE)|进出口标志，I为进口，O为出口
-msgType|消息类型，参照备注，非常重要的字段！|必填|String(10CHAR)|详情见<a href="#msgType">msgType</a>
-truckFleetName|车队名称|必填|StringNVARCHAR2(50CHAR)|
-truckFleetCde|车队在拖车系统的代码|必填|VARCHAR2(20BYTE)|
-createdAt|消息的创建时间，格式必须为"2019-11-0514:32:38"|必填|TIMESTAMP(6)|
-createdBy|这个为动态的操作人| |VARCHAR2(32BYTE)|
-truckTel|车队电话| |VARCHAR2(70BYTE)|
-receiptOrderPictures|车队箱子拍的照片，建议为http形式的访问路径，多个图片地址用,拼接|msgType为HDQSM时必填|VARCHAR2(600BYTE)|可访问的广域网图片地址
-eventTime|动态时间|必填|TIMESTAMP(6)|动态时间
-isUpdate|是否为同一运单同一箱子同一状态的更新，更新为1，否则为0。拖车的接收规则：一、订单完成，不接受任何动态数据二、比如箱子的当前状态是ZHKSM，则之前的动态不接受数据更新三、更新方式为整条记录全覆盖|必填|CHAR(1BYTE)|是否为更新的动态，更新为1，否则为0。更新方式为整条记录全覆盖
+workOrderNo|订单发送接口中的workOrderNo，这个是唯一的|必填|string|拖车内部唯一派单号，拖车动态回传时为必输项
+obIb|进出口标志|必填|string|I为进口，O为出口
+msgType|消息类型，参照备注，非常重要的字段！|必填|string|详情见<a href="#msgType">msgType</a>
+truckFleetName|车队名称|必填|string|
+truckFleetCde|车队在拖车系统的代码|必填|string|
+createdAt|消息的创建时间|必填|date|格式yyyy-MM-dd'T'HH:mm:ss.SSSZ
+createdBy|这个为动态的操作人| |string|
+truckTel|车队电话| |string|
+receiptOrderPictures|车队箱子拍的照片|msgType为HDQSM时必填|string|建议为http形式的访问路径，可访问的广域网图片地址，多个图片地址用','拼接
+eventTime|动态时间|必填|date|格式yyyy-MM-dd'T'HH:mm:ss.SSSZ
+isUpdate|是否为同一运单同一箱子同一状态的更新|必填|string|更新为1，否则为0。更新方式为整条记录全覆盖。 <br/>拖车的接收规则：<br/> 一、订单完成，不接受任何动态数据 <br/>二、比如箱子的当前状态是ZHKSM，则之前的动态不接受数据更新 <br/>三、更新方式为整条记录全覆盖
 containers|箱信息|必填| |详情见<a href="#containers">containers</a>
 driver|司机信息| | |详情见<a href="#driver">driver</a>
 licence|车牌信息| | |详情见<a href="#licence">licence</a>
@@ -30,51 +32,51 @@ gpsInfo|gsp信息| | |详情见<a href="#gpsInfo">gpsInfo</a>
 其中containers中的元素属性参数如下
 ```
 
-containers|箱子信息|是否必填|数据库类型|备注
+containers|箱子信息|是否必填|类型|备注
 -----|-----|-----|-----|-----
-internalShmtNum|虚拟箱号|必填|VARCHAR2(11BYTE)|
-cntrNum|箱号|必填|NVARCHAR2(11CHAR)|长度11位，含校验位
-cntrType|箱型|必填|CHAR(4BYTE)|
-sealNum|铅封号|必填|NVARCHAR2(36CHAR)|铅封号
-picPaths|箱子的照片| |List<String>|
+internalShmtNum|虚拟箱号|必填|string|
+cntrNum|箱号|必填|string|长度11位，含校验位
+cntrType|箱型|必填|string|
+sealNum|铅封号|必填|string|铅封号
+picPaths|箱子的照片| |array|
 
 <a name="driver"></a>
 ```
 其中driver中的元素属性参数如下
 ```
 
-driver|司机信息|是否必填|数据库类型|备注
+driver|司机信息|是否必填|类型|备注
 -----|-----|-----|-----|-----
-name|姓名|必填|NVARCHAR2(50CHAR)|
-idCard|身份证号，有真实性校验，满足身份证号码规则。司机信息更新主键。|必填|VARCHAR2(18BYTE)|
-tel|电话|必填|NVARCHAR2(20CHAR)|
-email|邮件| |NVARCHAR2(30CHAR)|
+name|姓名|必填|string|
+idCard|身份证号|必填|string|有真实性校验，满足身份证号码规则。司机信息更新主键。
+tel|电话|必填|string|有真实性校验
+email|邮件| |string|
 
 <a name="licence"></a>
 ```
 其中licence中的元素属性参数如下
 ```
 
-licence|车牌车辆信息|是否必填|数据库类型|备注
+licence|车牌车辆信息|是否必填|类型|备注
 -----|-----|-----|-----|-----
-licencePlate|车牌号|必填。有真实性校验，满足车牌号码规则。车辆信息更新主键|VARCHAR2(30BYTE)|
-truckModel|0:普通,1:平板拖车,2:自卸拖车|必填|CHAR(1BYTE)|
-axle|轴数；可选4轴、5轴、6轴，填数字即可| |VARCHAR2(10BYTE)|车辆轴数
-weight|载重，单位是吨，填数字即可| |NUMBER(10,2)|载重
-roadTransportCertificate|道路运输证号|必填|VARCHAR2(25BYTE)|道路运输证
+licencePlate|车牌号|必填|string|有真实性校验，满足车牌号码规则。车辆信息更新主键
+truckModel|拖车类型|必填|string|0:普通, 1:平板拖车, 2:自卸拖车
+axle|车辆轴数| |string|可选4、5、6
+weight|载重| |string|单位:吨
+roadTransportCertificate|道路运输证号|必填|string|
 
 <a name="gpsInfo"></a>
 ```
 其中gpsInfo中的元素属性参数如下
 ```
 
-gpsInfo|经纬度信息|是否必填|数据库类型|备注
+gpsInfo|经纬度信息|是否必填|类型|备注
 -----|-----|-----|-----|-----
-type|经纬度类型，必须为bd09|必填|VARCHAR2(10BYTE)|经纬度类型
-device|设备号| |VARCHAR2(100BYTE)|设备型号
-latitude|纬度，必须为bd09格式|必填|NUMBER(10,6)|
-longitude|经度，必须为bd09格式|必填|NUMBER(10,6)|
-isCorrect|车队内部需对经纬度正确性做校验，比如当前是否在打卡点范围内，打卡误差范围是4km，1（绿卡）为在打卡点内，0（红卡）为不在，拖车平台会对绿卡动态做再次校验。|必填|int|
+type<img width=200/>|经纬度类型<img width=200/>|必填<img width=200/>|string|bd09格式
+device|设备型号| |string|
+latitude|纬度|必填|string|bd09格式，保留小数点后7位
+longitude|经度|必填|string|bd09格式，保留小数点后7位
+isCorrect|打卡正确性|必填|string|可选 <br/>0: 红卡 表示不在打卡范围内（误差范围>4km） <br/>1: 绿卡 表示在打卡范围内（误差范围<=4km） <br/>拖车平台会对绿卡动态做再次校验
 
 <a name="msgType"></a>
 ```
@@ -98,7 +100,7 @@ HDQSM|签收单|需要填写| | | |
 Request Payload:
 {
     "workOrderNo": "SHAIM00000174",
-    "eventTime": "2020-04-01 11:16:30",
+    "eventTime": "2020-04-01T11:16:30.000+0800",
     "obIb": "O",
     "containers": [
         {
@@ -125,14 +127,14 @@ Request Payload:
     "gpsInfo": {
         "type": "BD09",
         "device": "CBHU40",
-        "latitude": "31.229920",
-        "longitude": "121.537425",
+        "latitude": "31.2299200",
+        "longitude": "121.5374250",
         "isCorrect": "0"
     },
     "msgType": "HXM",
     "truckFleetName": "厦门兆冠物流有限公司",
     "truckFleetCde": "XMZG",
-    "createdAt": "2020-04-01 11:16:30",
+    "createdAt": "2020-04-01T11:16:30.000+0800",
     "createdBy": "guonaka",
     "truckTel": "13104173789",
     "receiptOrderPictures": null,
