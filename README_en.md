@@ -89,10 +89,53 @@ keytool -import -trustcacerts -alias cop -keystore "%JAVA_HOME%/JRE/LIB/SECURITY
 
 ## Hmac Auth ##
 
-The COP platform publishes a pair of **App Key** and **Secret Key** for each Application to identify Application. The COP platform assigns access to the API based on the application and business requirements.
+* The COP platform publishes a pair of **App Key** and **Secret Key** for each Application to identify Application. The COP platform assigns access to the API based on the application and business requirements.
 
 
-**Hmac Auth system uses API Key, Secret Key, abstract and other technologies, for the user access to URI address and request message for service-side verification, high security, performance overhead slightly higher.
+* Hmac Auth system uses API Key, Secret Key, abstract and other technologies, for the user access to URI address and request message for service-side verification, high security, performance overhead slightly higher.
+
+* **Illegal Request** will be denied by COP with HTTP Status 401 or 500.
+
+### Generic Implementation - HTTP Header references ###
+
+|HTTP Header|Type|Mandatory/Optional/Conditional Mandatory|
+|---------------|----------|----------|
+|X-Coscon-Date|String|Mandatory|
+|X-Coscon-Content-Md5|String|Mandatory|
+|X-Coscon-Digest|String|Conditional Mandatory|
+|X-Coscon-Authorization|String|Mandatory|
+|X-Coscon-Hmac|String|Mandatory|
+
+* X-Coscon-Date
+```
+Format: EEE, dd MMM yyyy HH:mm:ss z.
+Accuracy: Less than 2 min.
+eg. Tue, 23 Oct 2018 12:58:39 GMT
+```
+* X-Coscon-Content-Md5
+```
+md5Hex of a random UUID.
+```
+* X-Coscon-Digest
+```
+Mandatory when HTTP Method is POST/PUT.
+The Http Body byte array is summarized by SHA256 to an array sha256-bytes, and the sha256-bytes is base64 encoded to a base64-string, and get the final digest by adding prefix "SHA-256=" before the base64-string. For example:
+SHA-256=ndf/mH+sjQ0ZeQhOveXOi9hVzQZtGjTphDInXMa8Jkw=
+```
+* X-Coscon-Authorization
+```
+hmac username="$YOUR_ApiKey", algorithm="hmac-sha1", headers="X-Coscon-Date X-Coscon-Digest X-Coscon-Content-Md5 request-line",signature="$Signature"
+- $YOUR_ApiKey： Your ApiKey
+- $Signature: 1. hmacSha1_string: Using HmacSHA1 algorithm to summary source string "X-Coscon-Date: $X-Coscon-Date\nX-Coscon-Digest: $X-Coscon-Digest\nX-Coscon-Content-Md5: $X-Coscon-Content-Md5\n$requestLine" with your SecretKey. 2. base64_string: Using base64 algorithm to encode hmacSha1_string. 
+- - $X-Coscon-Date:Same as Http Header['X-Coscon-Date']
+- - $X-Coscon-Digest:Same as Http Header['X-Coscon-Digest']
+- - $X-Coscon-Content-Md5:Same as Http Header['X-Coscon-Content-Md5']
+- - $requestLine: refer to https://www.w3.org/Protocols/rfc2616/rfc2616-sec5.html - #5.1 Request-Line
+```
+* X-Coscon-Hmac
+```
+Same as Http Header['X-Coscon-Content-Md5']
+```
 
 ### Java Sample 1 ###
 [Hmac](https://github.com/cop-cos/COP/blob/master/openapi-client-pure/src/main/java/com/coscon/oaclient/pure/HmacPureExecutor.java) 
