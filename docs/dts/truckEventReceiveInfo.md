@@ -72,10 +72,10 @@ roadTransportCertificate|道路运输证号|必填|string|
 
 gpsInfo|经纬度信息|是否必填|类型|备注
 -----|-----|-----|-----|-----
-type<img width=200/>|经纬度类型<img width=200/>|必填<img width=200/>|string|bd09格式
+type<img width=200/>|经纬度类型<img width=200/>|必填<img width=200/>|string|bd09
 device|设备型号| |string|
-latitude|纬度|必填|string|bd09格式，保留小数点后7位
-longitude|经度|必填|string|bd09格式，保留小数点后7位
+latitude|纬度|必填|string|bd09格式，保留小数点后12位
+longitude|经度|必填|string|bd09格式，保留小数点后12位
 isCorrect|打卡正确性|必填|string|可选 <br/>0: 红卡 表示不在打卡范围内（误差范围>4km） <br/>1: 绿卡 表示在打卡范围内（误差范围<=4km） <br/>拖车平台会对绿卡动态做再次校验
 
 <a name="msgType"></a>
