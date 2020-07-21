@@ -1,4 +1,4 @@
-[Chinese Version](/README_zh.md)
+[Chinese Version](/README.md)
 
 # 0x01 COP #
 
