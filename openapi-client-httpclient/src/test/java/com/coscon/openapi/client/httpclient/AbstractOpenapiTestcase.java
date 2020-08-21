@@ -52,7 +52,8 @@ public class AbstractOpenapiTestcase extends TestCase {
 		return hmacPureExecutor;
 	}
 	
-	private String[] hostPatterns = {"api.lines.coscoshipping.com"};
+	private String[] hostPatterns = {"api.lines.coscoshipping.com","api-pp.lines.coscoshipping.com",
+					 "api-internal.lines.coscoshipping.com","api-internal-pp.lines.coscoshipping.com"};
 	private List<CloseableHttpClient> clients = new Vector<CloseableHttpClient>();
 
 	public boolean match(HttpRequest request, String[] patterns) {
