@@ -217,7 +217,7 @@ Detail:[Global Codes](https://github.com/cop-cos/COP/blob/master/GlobalCodes.md)
 
 # 0x07 API List #
 
-| Customer Group           | Module           | Service        | Document | Traffic Control Policy|
+| Customer Group | Module | Service | Document | Traffic Control Policy|
 | ------------ | ------------ | ---------- | :-------: | :-------: |
 | 公共组   | 公共查询        | 货物跟踪 |[说明 doc](https://github.com/cop-cos/COP/blob/master/docs/info-cargotracking.md)| **账号级别**，每天至多1000次，每月至多30000次|
 |      |         | 船期查询 |[说明 doc](https://github.com/cop-cos/COP/blob/master/docs/info-schedule.md)| **账号级别**，每天至多1000次，每月至多30000次|
