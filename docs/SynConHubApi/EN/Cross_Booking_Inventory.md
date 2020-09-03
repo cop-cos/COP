@@ -60,8 +60,8 @@ Fuzzy query of the port information maintained by the platform based on the keyw
                     "cntyName": "Shenzhen", // county name
                     "stateName": "Guangdong",
                     "stateCode": "GD",
-                    "ctryName": "China", // country name
-                    "ctryCode": "CN", // country code
+                    "ctryRegionName": "China", // country / region name
+                    "ctryRegionCode": "CN", // country / region code
                     "cityFullNameEn": "Shenzhen",
                     "cityFullNameCn": "深圳"      
                 }
@@ -154,8 +154,8 @@ Fuzzy query of the port information maintained by the platform based on the keyw
                             "cntyName": "Shenzhen",
                             "stateName": "Guangdong",
                             "stateCode": "GD",
-                            "ctryName": "China",
-                            "ctryCode": "CN",
+                            "ctryRegionName": "China",
+                            "ctryRegionCode": "CN",
                             "cityFullNameEn": "Shenzhen",
                             "cityFullNameCn": "深圳"      
                 		}

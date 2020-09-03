@@ -52,8 +52,8 @@ Fuzzy query of the city information maintained by the platform based on the keyw
                 "cntyName": "Shenzhen", // county name
                 "stateName": "Guangdong",
                 "stateCode": "GD",
-                "ctryName": "China", // country name
-                "ctryCode": "CN", // country code
+                "ctryRegionName": "China", // country / region name
+                "ctryRegionCode": "CN", // country / region code
                 "cityFullNameEn": "Shenzhen",
                 "cityFullNameCn": "深圳"
             }
@@ -157,8 +157,8 @@ Fuzzy query of the city information maintained by the platform based on the keyw
                     "cntyName": "Shenzhen",
                     "stateName": "Guangdong",
                     "stateCode": "GD",
-                    "ctryName": "China",
-                    "ctryCode": "CN",
+                    "ctryRegionName": "China",
+                    "ctryRegionCode": "CN",
                     "cityFullNameEn": "Shekou",
                     "cityFullNameCn": "蛇口"
                 },
@@ -169,8 +169,8 @@ Fuzzy query of the city information maintained by the platform based on the keyw
                     "cntyName": null,
                     "stateName": "KwaZulu-Natal",
                     "stateCode": null,
-                    "ctryName": "South Africa",
-                    "ctryCode": "ZA",
+                    "ctryRegionName": "South Africa",
+                    "ctryRegionCode": "ZA",
                     "cityFullNameEn": "Durban",
                     "cityFullNameCn": "德班"
                 },
@@ -187,8 +187,8 @@ Fuzzy query of the city information maintained by the platform based on the keyw
                         "cntyName": "Shenzhen",
                         "stateName": "Guangdong",
                         "stateCode": "GD",
-                        "ctryName": "China",
-                        "ctryCode": "CN",
+                        "ctryRegionName": "China",
+                        "ctryRegionCode": "CN",
                         "cityFullNameEn": "Shekou",
                         "cityFullNameCn": "蛇口"
                     }
@@ -206,8 +206,8 @@ Fuzzy query of the city information maintained by the platform based on the keyw
                         "cntyName": null,
                         "stateName": "KwaZulu-Natal",
                         "stateCode": null,
-                        "ctryName": "South Africa",
-                        "ctryCode": "ZA",
+                        "ctryRegionName": "South Africa",
+                        "ctryRegionCode": "ZA",
                         "cityFullNameEn": "Durban",
                         "cityFullNameCn": "德班"
                     }
@@ -225,8 +225,8 @@ Fuzzy query of the city information maintained by the platform based on the keyw
                         "cntyName": "Shenzhen",
                         "stateName": "Guangdong",
                         "stateCode": "GD",
-                        "ctryName": "China",
-                        "ctryCode": "CN",
+                        "ctryRegionName": "China",
+                        "ctryRegionCode": "CN",
                         "cityFullNameEn": "Shekou",
                         "cityFullNameCn": "蛇口"
                     }
@@ -244,8 +244,8 @@ Fuzzy query of the city information maintained by the platform based on the keyw
                         "cntyName": null,
                         "stateName": "KwaZulu-Natal",
                         "stateCode": null,
-                        "ctryName": "South Africa",
-                        "ctryCode": "ZA",
+                        "ctryRegionName": "South Africa",
+                        "ctryRegionCode": "ZA",
                         "cityFullNameEn": "Durban",
                         "cityFullNameCn": "德班"
                     }
@@ -258,8 +258,8 @@ Fuzzy query of the city information maintained by the platform based on the keyw
                         "cntyName": "Shenzhen",
                         "stateName": "Guangdong",
                         "stateCode": "GD",
-                        "ctryName": "China",
-                        "ctryCode": "CN",
+                        "ctryRegionName": "China",
+                        "ctryRegionCode": "CN",
                         "cityFullNameEn": "Shekou",
                         "cityFullNameCn": "蛇口"
                     },
@@ -270,8 +270,8 @@ Fuzzy query of the city information maintained by the platform based on the keyw
                         "cntyName": null,
                         "stateName": "KwaZulu-Natal",
                         "stateCode": null,
-                        "ctryName": "South Africa",
-                        "ctryCode": "ZA",
+                        "ctryRegionName": "South Africa",
+                        "ctryRegionCode": "ZA",
                         "cityFullNameEn": "Durban",
                         "cityFullNameCn": "德班"
                     },
@@ -378,7 +378,7 @@ Fuzzy query of the city information maintained by the platform based on the keyw
 
 ```javascript
 {
-    "code": "20000",
+    "code": 20000,
     "message": "cannot identify the user, please contact support for help"
 }
 ```
@@ -449,8 +449,8 @@ GET /service/synconhub/product/instantBooking/8a5e11157351b2df01735562622a0000
             "cntyName": "Shanghai",
             "stateName": "Shanghai",
             "stateCode": "SH",
-            "ctryName": "China",
-            "ctryCode": "CN",
+            "ctryRegionName": "China",
+            "ctryRegionCode": "CN",
             "cityFullNameEn": "Shanghai",
             "cityFullNameCn": "上海"
         },
@@ -461,8 +461,8 @@ GET /service/synconhub/product/instantBooking/8a5e11157351b2df01735562622a0000
             "cntyName": null,
             "stateName": "Hamburg",
             "stateCode": "HH",
-            "ctryName": "Germany",
-            "ctryCode": "DE",
+            "ctryRegionName": "Germany",
+            "ctryRegionCode": "DE",
             "cityFullNameEn": "Hamburg",
             "cityFullNameCn": "汉堡"
         },
@@ -479,8 +479,8 @@ GET /service/synconhub/product/instantBooking/8a5e11157351b2df01735562622a0000
                 "cntyName": "Shanghai",
                 "stateName": "Shanghai",
                 "stateCode": "SH",
-                "ctryName": "China",
-                "ctryCode": "CN",
+                "ctryRegionName": "China",
+                "ctryRegionCode": "CN",
                 "cityFullNameEn": "Shanghai",
                 "cityFullNameCn": "上海"
             }
@@ -498,8 +498,8 @@ GET /service/synconhub/product/instantBooking/8a5e11157351b2df01735562622a0000
                 "cntyName": null,
                 "stateName": "Hamburg",
                 "stateCode": "HH",
-                "ctryName": "Germany",
-                "ctryCode": "DE",
+                "ctryRegionName": "Germany",
+                "ctryRegionCode": "DE",
                 "cityFullNameEn": "Hamburg",
                 "cityFullNameCn": "汉堡"
             }
@@ -517,8 +517,8 @@ GET /service/synconhub/product/instantBooking/8a5e11157351b2df01735562622a0000
                 "cntyName": "Shanghai",
                 "stateName": "Shanghai",
                 "stateCode": "SH",
-                "ctryName": "China",
-                "ctryCode": "CN",
+                "ctryRegionName": "China",
+                "ctryRegionCode": "CN",
                 "cityFullNameEn": "Shanghai",
                 "cityFullNameCn": "上海"
             }
@@ -536,8 +536,8 @@ GET /service/synconhub/product/instantBooking/8a5e11157351b2df01735562622a0000
                 "cntyName": null,
                 "stateName": "Hamburg",
                 "stateCode": "HH",
-                "ctryName": "Germany",
-                "ctryCode": "DE",
+                "ctryRegionName": "Germany",
+                "ctryRegionCode": "DE",
                 "cityFullNameEn": "Hamburg",
                 "cityFullNameCn": "汉堡"
             }
@@ -550,8 +550,8 @@ GET /service/synconhub/product/instantBooking/8a5e11157351b2df01735562622a0000
                 "cntyName": "Shanghai",
                 "stateName": "Shanghai",
                 "stateCode": "SH",
-                "ctryName": "China",
-                "ctryCode": "CN",
+                "ctryRegionName": "China",
+                "ctryRegionCode": "CN",
                 "cityFullNameEn": "Shanghai",
                 "cityFullNameCn": "上海"
             },
@@ -562,8 +562,8 @@ GET /service/synconhub/product/instantBooking/8a5e11157351b2df01735562622a0000
                 "cntyName": null,
                 "stateName": "Hamburg",
                 "stateCode": "HH",
-                "ctryName": "Germany",
-                "ctryCode": "DE",
+                "ctryRegionName": "Germany",
+                "ctryRegionCode": "DE",
                 "cityFullNameEn": "Hamburg",
                 "cityFullNameCn": "汉堡"
             },
@@ -674,7 +674,7 @@ GET /service/synconhub/product/instantBooking/8a5e11157351b2df01735562622a0000
 
 ```javascript
 {
-    "code": "20000",
+    "code": 20000,
     "message": "cannot identify the user, please contact support for help"
 }
 ```
