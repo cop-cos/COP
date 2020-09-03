@@ -15,49 +15,49 @@ Customer can place booking throught this interface.  The interface will generate
 
 ### 2. Request parameters
 
-| Name                 |   Type    | Required |        Description        |                 **Remarks**                  |
-| :------------------- | :-------: | :------: | :-----------------------: | :------------------------------------------: |
-| productId            |  string   |   yes    |        product id         |                                              |
-| containerInfos       | object [] |   yes    |      container info       |                                              |
-| \|---containerType   |  string   |   yes    |                           |      **optional value:** 20GP,40GP,40HQ      |
-| \|---quantity        |  integer  |   yes    |                           |                  **min**: 1                  |
-| blQuantity           |  integer  |    no    |        bl quantity        |          **default**: 1, **min**: 1          |
-| couponsInfo          |  object   |    no    |      coupon use info      |                                              |
-| \|---amount          |  integer  |   yes    |                           |                  **min**: 1                  |
-| \|---couponId        |  string   |   yes    |                           |                                              |
-| includeInsurance     |  boolean  |    no    | whether include insurance |              **default**: false              |
-| shipperInfo          |  object   |    no    |       shipper info        |                                              |
-| \|---name            |  string   |   yes    |                           | **length**: [1, 70], **English characters**  |
-| \|---addressLine1    |  string   |   yes    | country / province / city | **length**: [1, 35], **English characters**  |
-| \|---addressLine2    |  string   |   yes    |        street name        | **length**: [1, 35], **English characters**  |
-| \|---phone           |  string   |   yes    |                           |             **length**: [1, 22]              |
-| \|---email           |  string   |    no    |                           |             **length**: [1, 400]             |
-| consigneeInfo        |  object   |    no    |      consignee info       |                                              |
-| \|---name            |  string   |   yes    |                           | **length**: [1, 70], **English characters**  |
-| \|---addressLine1    |  string   |   yes    | country / province / city | **length**: [1, 35], **English characters**  |
-| \|---addressLine2    |  string   |   yes    |        street name        | **length**: [1, 35], **English characters**  |
-| \|---phone           |  string   |   yes    |                           |             **length**: [1, 22]              |
-| \|---email           |  string   |    no    |                           |             **length**: [1, 400]             |
-| notifyPartyInfo      |  object   |    no    |     notify party info     |                                              |
-| \|---name            |  string   |   yes    |                           | **length**: [1, 70], **English characters**  |
-| \|---addressLine1    |  string   |   yes    | country / province / city | **length**: [1, 35], **English characters**  |
-| \|---addressLine2    |  string   |   yes    |        street name        | **length**: [1, 35], **English characters**  |
-| \|---phone           |  string   |   yes    |                           |             **length**: [1, 22]              |
-| \|---email           |  string   |    no    |                           |             **length**: [1, 400]             |
-| emergencyContactInfo |  object   |   yes    |                           |                                              |
-| \|---name            |  string   |    no    |                           | **length**: [1, 70], **English characters**  |
-| \|---email           |  string   |   yes    |                           |             **length**: [1, 400]             |
-| \|---mobile          |  string   |    no    |                           |             **length**: [1, 15]              |
-| \|---phone           |  string   |    no    |                           |             **length**: [1, 22]              |
-| \|---address         |  string   |    no    |                           | **length**: [1, 245], **English characters** |
-| cargoInfo            |  object   |   yes    |        cargo info         |                                              |
-| \|---desc            |  string   |   yes    |        cargo name         | **length**: [1, 60], **English characters**  |
-| \|---packageType     |  string   |   yes    |                           |                                              |
-| \|---quantity        |    int    |   yes    |                           |                                              |
-| \|---weight          |  decimal  |   yes    |                           |                 **unit**: KG                 |
-| \|---volume          |  decimal  |   yes    |                           |           **unit**: m<sup>3</sup>            |
-| \|---remarks         |  string   |    no    |                           |            **English characters**            |
-| remarks              |  string   |    no    |                           | **length**: [0, 240], **English characters** |
+| Name                 |   Type    | Required |            Description             |                 **Remarks**                  |
+| :------------------- | :-------: | :------: | :--------------------------------: | :------------------------------------------: |
+| productId            |  string   |   yes    |             product id             |                                              |
+| containerInfos       | object [] |   yes    |           container info           |                                              |
+| \|---containerType   |  string   |   yes    |                                    |      **optional value:** 20GP,40GP,40HQ      |
+| \|---quantity        |  integer  |   yes    |                                    |                  **min**: 1                  |
+| blQuantity           |  integer  |    no    |            bl quantity             |          **default**: 1, **min**: 1          |
+| couponsInfo          |  object   |    no    |          coupon use info           |                                              |
+| \|---amount          |  integer  |   yes    |                                    |                  **min**: 1                  |
+| \|---couponId        |  string   |   yes    |                                    |                                              |
+| includeInsurance     |  boolean  |    no    |     whether include insurance      |              **default**: false              |
+| shipperInfo          |  object   |    no    |            shipper info            |                                              |
+| \|---name            |  string   |   yes    |                                    | **length**: [1, 70], **English characters**  |
+| \|---addressLine1    |  string   |   yes    | country / region / province / city | **length**: [1, 35], **English characters**  |
+| \|---addressLine2    |  string   |   yes    |            street name             | **length**: [1, 35], **English characters**  |
+| \|---phone           |  string   |   yes    |                                    |             **length**: [1, 22]              |
+| \|---email           |  string   |    no    |                                    |             **length**: [1, 400]             |
+| consigneeInfo        |  object   |    no    |           consignee info           |                                              |
+| \|---name            |  string   |   yes    |                                    | **length**: [1, 70], **English characters**  |
+| \|---addressLine1    |  string   |   yes    | country / region / province / city | **length**: [1, 35], **English characters**  |
+| \|---addressLine2    |  string   |   yes    |            street name             | **length**: [1, 35], **English characters**  |
+| \|---phone           |  string   |   yes    |                                    |             **length**: [1, 22]              |
+| \|---email           |  string   |    no    |                                    |             **length**: [1, 400]             |
+| notifyPartyInfo      |  object   |    no    |         notify party info          |                                              |
+| \|---name            |  string   |   yes    |                                    | **length**: [1, 70], **English characters**  |
+| \|---addressLine1    |  string   |   yes    | country /region / province / city  | **length**: [1, 35], **English characters**  |
+| \|---addressLine2    |  string   |   yes    |            street name             | **length**: [1, 35], **English characters**  |
+| \|---phone           |  string   |   yes    |                                    |             **length**: [1, 22]              |
+| \|---email           |  string   |    no    |                                    |             **length**: [1, 400]             |
+| emergencyContactInfo |  object   |   yes    |                                    |                                              |
+| \|---name            |  string   |    no    |                                    | **length**: [1, 70], **English characters**  |
+| \|---email           |  string   |   yes    |                                    |             **length**: [1, 400]             |
+| \|---mobile          |  string   |    no    |                                    |             **length**: [1, 15]              |
+| \|---phone           |  string   |    no    |                                    |             **length**: [1, 22]              |
+| \|---address         |  string   |    no    |                                    | **length**: [1, 245], **English characters** |
+| cargoInfo            |  object   |   yes    |             cargo info             |                                              |
+| \|---desc            |  string   |   yes    |             cargo name             | **length**: [1, 60], **English characters**  |
+| \|---packageType     |  string   |   yes    |                                    |                                              |
+| \|---quantity        |    int    |   yes    |                                    |                                              |
+| \|---weight          |  decimal  |   yes    |                                    |                 **unit**: KG                 |
+| \|---volume          |  decimal  |   yes    |                                    |           **unit**: m<sup>3</sup>            |
+| \|---remarks         |  string   |    no    |                                    |            **English characters**            |
+| remarks              |  string   |    no    |                                    | **length**: [0, 240], **English characters** |
 
 
 ### 3. Request sample
@@ -128,9 +128,12 @@ Customer can place booking throught this interface.  The interface will generate
 ### 5. Response sample
 
 ```javascript
-{
-  "orderNo": "E00144631",
-  "brNo": "6889904090"
+{ "code": 0,
+    "message": "",
+    "data": {
+	  "orderNo": "E00144631",
+	  "brNo": "6889904090"
+    }
 }
 ```
 
@@ -138,7 +141,7 @@ Customer can place booking throught this interface.  The interface will generate
 
 ```javascript
 {
-    "code": "20003",
+    "code": 20003,
     "message": "the inventory is not enough"
 }
 ```
@@ -254,7 +257,7 @@ Query brief information of eligible orders based on conditions
 
 ```javascript
 {
-    "code": "20000",
+    "code": 20000,
     "message": "cannot identify the user, please contact support for help"
 }
 ```
@@ -335,7 +338,7 @@ GET /service/synconhub/order/detail/E00144631
 
 ```javascript
 {
-    "code": "20006",
+    "code": 20006,
     "message": "The order does not exist"
 }
 ```
