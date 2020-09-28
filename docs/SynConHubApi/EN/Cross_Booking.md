@@ -495,6 +495,7 @@ Please refer to the [General Error Codes](../SynConHubApiErrorCodeList.md) .
 ```java
 {
   "inventoryId": "8a5e110e7494c338017494d22fc00009", // the inventory Id of the contract No.
+  "contractNumber":"ATE20001",
   "cargoNature": "GC",
   "channelCode":"GENERAL",
   "bookingContainers":[
