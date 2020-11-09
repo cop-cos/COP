@@ -231,6 +231,7 @@ Detail:[Global Codes](https://github.com/cop-cos/COP/blob/master/GlobalCodes.md)
 |      |         | TRUCK-车队接口标准套件-集卡GPS实时位置 |[说明 doc](https://github.com/cop-cos/COP/blob/master/docs/dts/truckGetRealtimePosition.md)| **账号级别**，每天至多1000次，每月至多30000次|
 |      |         | TRUCK-车队接口标准套件-集卡GPS历史轨迹 |[说明 doc](https://github.com/cop-cos/COP/blob/master/docs/dts/truckGetTrailerTrack.md)| **账号级别**，每天至多1000次，每月至多30000次|
 |      |         | TRUCK-车队接口标准套件-海运订单数据 |[说明 doc](https://github.com/cop-cos/COP/blob/master/docs/dts/truckOrderInfo.md)| **账号级别**，每天至多1000次，每月至多30000次|
+|      |         | TRUCK-单证是否派车 |[说明 doc](https://github.com/cop-cos/COP/blob/master/docs/dts/truckWorkOrderStatus.md)| **账号级别**，每天至多1000次，每月至多30000次|
 
 
 # 0x08 Agreements #
