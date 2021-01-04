@@ -108,8 +108,8 @@ Please refer to the [General Error Codes](../SynConHubApiErrorCodeList.md) .
 | Name           |  Type   | **Required** |             Description              |                         **Remarks**                          |
 | :------------- | :-----: | :----------: | :----------------------------------: | :----------------------------------------------------------: |
 | contractNumber | String  |     yes      |           contract number            |                                                              |
-| dateFrom       | ISODate |     yes      | effective date range of the contract | ISO format in GMT by default, like: '2020-07-20T08:00:00.000Z' |
-| dateTo         | ISODate |      no      | effective date range of the contract | ISO format in GMT by default, like: '2020-07-31T12:00:00.000Z' |
+| fromDate       | ISODate |     yes      | effective date range of the contract | ISO format in GMT by default, like: '2020-07-20T08:00:00.000Z' |
+| toDate         | ISODate |      no      | effective date range of the contract | ISO format in GMT by default, like: '2020-07-31T12:00:00.000Z' |
 | service        | String  |      no      |             service code             |                                                              |
 | polId          | String  |      no      |             pol port id              |                                                              |
 | page           | Integer |      no      |             page number              |                  **default:** 1,**min:** 1                   |
@@ -120,8 +120,8 @@ Please refer to the [General Error Codes](../SynConHubApiErrorCodeList.md) .
 ```java
 {
     "contractNumber": "ATE20001",
-    "dateFrom": "2020-07-20T00:00:00.000Z",
-    "dateTo": "2020-08-20T00:00:00.000Z",
+    "fromDate": "2020-07-20T00:00:00.000Z",
+    "toDate": "2020-08-20T00:00:00.000Z",
     "service": "SEA",
     "podId": "349645770723388",
     "page": 1,
