@@ -1,0 +1,26 @@
+{
+    "name": "cop-cos/guzzle-sdk",
+    "version": "0.2.1",
+    "description": "COSCOShipping COP SDK - PHP version",
+    "type": "library",
+    "keywords": [
+        "COP","SDK"
+    ],
+    "homepage": "https://github.com/cop-cos/COP/",
+    "license": "Apache-2.0",
+    "require": {
+        "php": ">=7.2",
+        "ext-openssl": "*"
+        
+    },
+    "require-dev": {
+        "guzzlehttp/guzzle": "^7.2"
+    },
+    "autoload": {
+        "psr-4": { "COP\\Client\\" : "src/" }
+    },
+    "bin": [
+    ],
+    "suggest": {
+    }
+}
