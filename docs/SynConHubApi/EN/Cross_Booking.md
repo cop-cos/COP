@@ -449,7 +449,7 @@ Please refer to the [General Error Codes](../SynConHubApiErrorCodeList.md) .
 
 {
     "code": 20043,
-    "message": "Cross Booking库存无效"
+    "message": "Cross Booking inventory invalid"
 }
 ```
 
@@ -582,7 +582,10 @@ Please refer to the [General Error Codes](../SynConHubApiErrorCodeList.md) .
                         "transportMode": "Feeder"
                     }
                 ],
-  
+  				"cutOffLocalDate": "2020-09-16 00:00",
+                "estimatedTransitTimeInDays": 21,
+                "etaAtFnd": "2020-10-07 22:00",
+                "etdAtPor": "2020-09-16 11:00",
                 "serviceCode": "PMX",
                 "vesselName": "OOCL AMERICA",
                 "direction": "N",
@@ -678,17 +681,17 @@ Please refer to the [General Error Codes](../SynConHubApiErrorCodeList.md) .
 
 {
     "code": 20044,
-    "message": "Cross Booking船期信息有误"
+    "message": "Cross Booking wrong shipping date information"
 }
 
 {
     "code": 20045,
-    "message": "Cross Booking库存不足"
+    "message": "Cross Booking insufficient stock"
 }
 
 {
-    "code": 20045,
-    "message": "Cross Booking 找不到货类箱型"
+    "code": 20046,
+    "message": "Cross Booking cargo container not found"
 }
 ```
 
@@ -783,17 +786,17 @@ Please refer to the [General Error Codes](../SynConHubApiErrorCodeList.md) .
 
 {
 	"code": 20040, 
-	"message": "查询参数的page必须大于0"
+	"message": "The page size must be greater than 0"
 }
 
 {
 	"code": 20041, 
-	"message": "查询参数的size必须大于0且小于30"
+	"message": "The page size should be between 0 and 30."
 }
 
 {
 	"code": 20042, 
-	"message": "参数校验错误"
+	"message": "Parameter verification error"
 }
 ```
 
