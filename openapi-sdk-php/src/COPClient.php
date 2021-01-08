@@ -11,7 +11,6 @@
 
 namespace COP\Client;
 
-use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Middleware;
 use Psr\Http\Message\UriInterface;
 use Psr\Http\Message\RequestInterface;
@@ -102,16 +101,39 @@ class COPClient
     public function getCopBaseUri() {
         return $this->copBaseUri;
     }
-    public function register(HandlerStack $stack) {
+    protected ?\GuzzleHttp\HandlerStack $stack = NULL;
+    /**
+     * Unbind original HandlerStack.
+     */
+    protected function removeHandlerStack() {
+        if(isset($this->stack) && $this->stack !== '' && $this->stack !== NULL ) {
+            $this->stack->remove("cop.request.inteceptor001");
+            $this->stack->remove("cop.request.inteceptor002");
+            $this->stack->remove("cop.response.inteceptor001");
+        }
+        return $this;
+    }
+    public function getHttpHandlerStack():\GuzzleHttp\HandlerStack {
+        return $this->stack;
+    }
+    /**
+     * Sets \GuzzleHttp\HandlerStack $stack
+     * @param \GuzzleHttp\HandlerStack $stack
+     * @return $this
+     */
+    public function withHttpHandlerStack(\GuzzleHttp\HandlerStack $stack) {
+        $this->removeHandlerStack();
         $stack->push(Middleware::mapRequest(function (RequestInterface $request) {
-            //Checking HTTP Version
-            if($request->getProtocolVersion()!==self::HTTP_VERSION) {
-                throw new \UnexpectedValueException("Unsupported HTTP version:".$request->getProtocolVersion().". Only HTTP/1.1 supported.");
-            }
 
             if (!self::isCOPApiUrl($request->getUri())) {
                 return $request;
             }
+
+            //Checking HTTP Version
+            if($request->getProtocolVersion()!==self::HTTP_VERSION) {
+                throw new \UnexpectedValueException("Unsupported HTTP version:".$request->getProtocolVersion().". Only HTTP/1.1 supported.");
+            }
+            
             if (self::isUserAgentOverwritable($request)) {
                 $request = $request->withHeader('User-Agent', self::getUserAgent());
             }
@@ -119,12 +141,15 @@ class COPClient
                 $request = $request->withBody(new \GuzzleHttp\Psr7\CachingStream($request->getBody()));
             }
             return $request;
-        }));
+        }),"cop.request.inteceptor001");
 
         $stack->push(Middleware::mapRequest(function (RequestInterface $request) {
             return $this->credentials->sign($request);
-        }));
+        }),"cop.request.inteceptor002");
+
+        
         $stack->push(Middleware::mapResponse(function (ResponseInterface $response) {
+
             $code = $response->getStatusCode();
             if ($code >= 200 && $code < 300) {
                 if (!$response->getBody()->isSeekable() && \class_exists("\\GuzzleHttp\\Psr7\\CachingStream")) {
@@ -132,7 +157,9 @@ class COPClient
                 }
             }
             return $response;
-        }));
+        }),"cop.response.inteceptor001");
+        $this->stack = $stack;
+        return $this;
     }
     /**
      * Create a new builder
@@ -198,5 +225,22 @@ class COPClient
             return $userAgent === \GuzzleHttp\default_user_agent();
         }
         return false;
+    }
+    protected ?\GuzzleHttp\Client $httpClient = NULL;
+    /**
+     * Allocate a \GuzzleHttp\Client instance.
+     * @return \GuzzleHttp\Client
+     */
+    public function getGuzzleHttpClient(array $config = []): \GuzzleHttp\Client
+    {
+        if (!isset($config['handler'])) {
+            $config['handler'] = $this->stack;
+        } elseif (!\is_callable($config['handler'])) {
+            throw new \InvalidArgumentException('handler must be a callable');
+        }
+        if($this->httpClient === NULL) {
+            $this->httpClient= new \GuzzleHttp\Client($config);
+        }
+        return $this->httpClient;
     }
 }

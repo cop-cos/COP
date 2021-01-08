@@ -22,5 +22,11 @@
     "bin": [
     ],
     "suggest": {
-    }
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/cop-cos/COP/openapi-sdk-php"
+        }
+    ],
 }

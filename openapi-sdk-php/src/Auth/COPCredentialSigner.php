@@ -122,9 +122,8 @@ class COPCredentialSigner implements Signer
         $guidMd5 = md5($guid . uniqid(md5(microtime(true)), true));
         
         //$guidMd5="939c5596e01d452b0daef30c5d08bf0e";
-
         $date = date(DATE_RFC7231, $this->getTimestamp());
-        //$date = "Tue, 05 Jan 2021 00:21:02 GMT";
+        
         $digest = "SHA-256=" . base64_encode(hash('sha256', $body, true));
         
         $buf=self::$X_DATE.': '.$date."\n".self::$X_DIGEST.': '.$digest."\n".self::$X_CONTENT_MD5.': '.$guidMd5."\n".$requestLine;
