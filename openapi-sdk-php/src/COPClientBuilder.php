@@ -89,12 +89,22 @@ class COPClientBuilder
         return $this;
     }
 
+    protected \GuzzleHttp\HandlerStack $stack;
+    /**
+     * Sets \GuzzleHttp\HandlerStack $stack
+     * @param \GuzzleHttp\HandlerStack $stack
+     * @return $this
+     */
+    public function withHttpHandlerStack(\GuzzleHttp\HandlerStack $stack) {
+        $this->stack = $stack;
+        return $this;
+    }
     /**
      * Build COPClient
      *
      * @return COPClient
      */
-    public function build($copBaseUri='')
+    public function build(string $copBaseUri='')
     {
         if (!isset($this->credentials)) {
             throw new \InvalidArgumentException('COP API credential is unset.');
@@ -102,10 +112,14 @@ class COPClientBuilder
         if (!isset($this->validator)) {
             $this->validator = new COPNoopValidator();
         }
-        $client = (new COPClient($this->credentials, $this->validator));
+        $client = new COPClient($this->credentials, $this->validator);
         if($copBaseUri!=='') {
             $client = $client->withCopBaseUri($copBaseUri);
         }
+        if($this->stack !== NULL) {
+            $client = $client->withHttpHandlerStack($this->stack);
+        }
+        
         return $client;
     }
 }
