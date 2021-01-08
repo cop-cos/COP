@@ -479,7 +479,7 @@ Please refer to the [General Error Codes](../SynConHubApiErrorCodeList.md) .
 | cargoNature    | String |      no      | cargo nature, e.g.: GC, RF, DG, AW |      **default**: GC                  |
 | channelCode    | String |      no      |                 |    **default**: GENERAL                    |
 | bookingContainers        | Object  |      yes      |  booking container type and quantity   |                                     |
-| scheduleData          | Object  |      yes      |   schedule info   |                                     |
+| scheduleData          | Object  |      yes      |   schedule info   | Please copy the scheduled date information from the  Cross Booking Schedule Query Interface return result |
 | bookingParties          | Object  |      yes      |   booking parties info   |                                     |
 | shipperInfo          | Object  |      no      |   shipper info   |                                     |
 | consigneeInfo          | Object  |      no      |   consignee info   |                                     |
@@ -504,6 +504,7 @@ Please refer to the [General Error Codes](../SynConHubApiErrorCodeList.md) .
         "quantity":1
     }
   ],
+  // The scheduleData field information is for reference only, please select and copy it from the  Cross Booking Schedule Query Interface result as the value
   "scheduleData": {
                 "origin": {
                     "id": "738872886232873",
