@@ -30,18 +30,21 @@ Customer can place booking throught this interface.  The interface will generate
 | \|---name            |  string   |   yes    |                                    | **length**: [1, 70], **English characters**  |
 | \|---addressLine1    |  string   |   yes    | country / region / province / city | **length**: [1, 35], **English characters**  |
 | \|---addressLine2    |  string   |   yes    |            street name             | **length**: [1, 35], **English characters**  |
+| \|---addressText |  string   |   no   |      additional address | **length**: [1, 1200], **English characters** |
 | \|---phone           |  string   |   yes    |                                    |             **length**: [1, 22]              |
 | \|---email           |  string   |    no    |                                    |             **length**: [1, 400]             |
 | consigneeInfo        |  object   |    no    |           consignee info           |                                              |
 | \|---name            |  string   |   yes    |                                    | **length**: [1, 70], **English characters**  |
 | \|---addressLine1    |  string   |   yes    | country / region / province / city | **length**: [1, 35], **English characters**  |
 | \|---addressLine2    |  string   |   yes    |            street name             | **length**: [1, 35], **English characters**  |
+| \|---addressText |  string   |   no   |      additional address | **length**: [1, 1200], **English characters** |
 | \|---phone           |  string   |   yes    |                                    |             **length**: [1, 22]              |
 | \|---email           |  string   |    no    |                                    |             **length**: [1, 400]             |
 | notifyPartyInfo      |  object   |    no    |         notify party info          |                                              |
 | \|---name            |  string   |   yes    |                                    | **length**: [1, 70], **English characters**  |
 | \|---addressLine1    |  string   |   yes    | country /region / province / city  | **length**: [1, 35], **English characters**  |
 | \|---addressLine2    |  string   |   yes    |            street name             | **length**: [1, 35], **English characters**  |
+| \|---addressText |  string   |   no   |      additional address | **length**: [1, 1200], **English characters** |
 | \|---phone           |  string   |   yes    |                                    |             **length**: [1, 22]              |
 | \|---email           |  string   |    no    |                                    |             **length**: [1, 400]             |
 | emergencyContactInfo |  object   |   yes    |                                    |                                              |
@@ -145,6 +148,10 @@ Customer can place booking throught this interface.  The interface will generate
     "message": "the inventory is not enough"
 }
 ```
+
+### 7. Error Code Specification
+
+Please refer to the [General Error Codes](../SynConHubApiErrorCodeList.md) .
 
 
 
@@ -262,6 +269,10 @@ Query brief information of eligible orders based on conditions
 }
 ```
 
+### 7. Error Code Specification
+
+Please refer to the [General Error Codes](../SynConHubApiErrorCodeList.md) .
+
 
 
 ## Order Details Query Interface
@@ -342,3 +353,8 @@ GET /service/synconhub/order/detail/E00144631
     "message": "The order does not exist"
 }
 ```
+
+### 7. Error Code Specification
+
+Please refer to the [General Error Codes](../SynConHubApiErrorCodeList.md) .
+
