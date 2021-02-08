@@ -2,6 +2,22 @@
 
 [toc]
 
+## Http Header
+
+HTTP header information description
+
+| HTTP Header             | Type   | Required | Description             | Remarks |
+| ----------------------- | ------ | -------- | ----------------------- | ------- |
+| X-Consumer-Forwarder-ID | String | no       | Forwarder company sapId |         |
+
+- X-Consumer-Forwarder-ID
+
+  ```
+  # If you want to submit an order/booking for your subsidiary,add this header to the request.The value is sapid of the subsidiary
+  
+  X-Consumer-Forwarder-ID: 1234567890
+  ```
+
 
 
 ## Port Information Query Interface

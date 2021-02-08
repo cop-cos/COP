@@ -2,6 +2,25 @@
 
 [toc]
 
+## Http Header
+
+HTTP header information description
+
+| HTTP Header             | Type   | Required | Description             | Remarks |
+| ----------------------- | ------ | -------- | ----------------------- | ------- |
+| X-Consumer-Forwarder-ID | String | no       | Forwarder company sapId |         |
+
+- X-Consumer-Forwarder-ID
+
+  ```
+  # If you want to submit an order/booking for your subsidiary,add this header to the request.The value is sapid of the subsidiary
+  
+  X-Consumer-Forwarder-ID: 1234567890
+  ```
+
+  
+
+
 ## Booking Interface
 
 Customer can place booking throught this interface.  The interface will generate the order with the charge details of the product and related discounts. While customer can apply the coupons to deduct the ocean freight of the Product as well. The avaible counpons infomation can be obtain through the Sport Rate Detail interface. Please note that the minimum amount of the ocean freight for one single container after deduction shall be 1 US dollar. No change in coupon amount. For the details of the Booking Rules, please refer to the Syncon Hub online.
