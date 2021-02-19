@@ -11,7 +11,6 @@
     "require": {
         "php": ">=7.2",
         "ext-openssl": "*"
-        
     },
     "require-dev": {
         "guzzlehttp/guzzle": "^7.2"
@@ -28,5 +27,5 @@
             "type": "vcs",
             "url": "https://github.com/cop-cos/COP/openapi-sdk-php"
         }
-    ],
+    ]
 }
