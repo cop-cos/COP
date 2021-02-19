@@ -2,6 +2,24 @@
 
 [toc]
 
+## Http Header
+
+HTTP header information description
+
+| HTTP Header             | Type   | Required | Description             | Remarks |
+| ----------------------- | ------ | -------- | ----------------------- | ------- |
+| X-Consumer-Forwarder-ID | String | no       | Forwarder company sapId |         |
+
+- X-Consumer-Forwarder-ID
+
+  ```
+  # If you want to submit an order/booking for your subsidiary,add this header to the request.The value is sapid of the subsidiary
+  
+  X-Consumer-Forwarder-ID: 1234567890
+  ```
+
+
+
 ## City Information Query Interface
 
 Fuzzy query of the city information maintained by the platform based on the keywords of the city name. The returned city id can be used as the origin / destination location id for the Spot Rate query interface.

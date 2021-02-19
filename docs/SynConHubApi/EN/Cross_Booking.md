@@ -2,6 +2,22 @@
 
 [toc]
 
+## Http Header
+
+HTTP header information description
+
+| HTTP Header             | Type   | Required | Description             | Remarks |
+| ----------------------- | ------ | -------- | ----------------------- | ------- |
+| X-Consumer-Forwarder-ID | String | no       | Forwarder company sapId |         |
+
+- X-Consumer-Forwarder-ID
+
+  ```
+  # If you want to submit an order/booking for your subsidiary,add this header to the request.The value is sapid of the subsidiary
+  
+  X-Consumer-Forwarder-ID: 1234567890
+  ```
+
 
 
 ## Port Information Query Interface
@@ -10,7 +26,7 @@ Fuzzy query of the port information maintained by the platform based on the keyw
 
 ### 1. Information
 
-* **Path**: /service/synconhub/common/port/search
+* **Path**: `/service/synconhub/common/port/search`
 * **Method**: POST
 
 ### 2. Request parameters
@@ -100,7 +116,7 @@ Please refer to the [General Error Codes](../SynConHubApiErrorCodeList.md) .
 
 ### 1. Information
 
-* **Path**: /service/synconhub/crossBooking/inventory/search
+* **Path**:` /service/synconhub/crossBooking/inventory/search`
 * **Method**: POST
 
 ### 2. Request parameters
@@ -123,7 +139,7 @@ Please refer to the [General Error Codes](../SynConHubApiErrorCodeList.md) .
     "fromDate": "2020-07-20T00:00:00.000Z",
     "toDate": "2020-08-20T00:00:00.000Z",
     "service": "SEA",
-    "podId": "349645770723388",
+    "polId": "349645770723388",
     "page": 1,
     "size": 20
 }
@@ -209,7 +225,7 @@ Please refer to the [General Error Codes](../SynConHubApiErrorCodeList.md) .
 
 ### 1. Information
 
-* **Path**: /service/synconhub/crossBooking/schedule
+* **Path**: `/service/synconhub/crossBooking/schedule`
 * **Method**: POST
 
 ### 2. Request parameters
@@ -232,8 +248,7 @@ Please refer to the [General Error Codes](../SynConHubApiErrorCodeList.md) .
   "page": 1,
   "size": 20,
   "destinationCityId": "738872886233842",
-  "originCityId": "738872886232873",
-  "weekNo":"202037"
+  "originCityId": "738872886232873"
 }
 ```
 ### 4. Response parameters
@@ -449,7 +464,7 @@ Please refer to the [General Error Codes](../SynConHubApiErrorCodeList.md) .
 
 {
     "code": 20043,
-    "message": "Cross Booking库存无效"
+    "message": "Cross Booking inventory invalid"
 }
 ```
 
@@ -467,7 +482,7 @@ Please refer to the [General Error Codes](../SynConHubApiErrorCodeList.md) .
 
 ### 1. Information
 
-* **Path**: /service/synconhub/crossBooking/shipment/new
+* **Path**: `/service/synconhub/crossBooking/shipment/new`
 * **Method**: POST
 
 ### 2. Request parameters
@@ -479,16 +494,56 @@ Please refer to the [General Error Codes](../SynConHubApiErrorCodeList.md) .
 | cargoNature    | String |      no      | cargo nature, e.g.: GC, RF, DG, AW |      **default**: GC                  |
 | channelCode    | String |      no      |                 |    **default**: GENERAL                    |
 | bookingContainers        | Object  |      yes      |  booking container type and quantity   |                                     |
-| scheduleData          | Object  |      yes      |   schedule info   | Please copy the scheduled date information from the  Cross Booking Schedule Query Interface return result |
+| \|---name            |  string   |   yes    |                                    | **length**: [1, 70], **English characters**  |
+| \|---addressLine1    |  string   |   no   | country / region / province / city | **addressline1 / addressline2 and addressText must be filled in one,length**: [1, 35], **English characters** |
+| \|---addressLine2    |  string   |   no   |            street name             | **addressline1 / addressline2 and addressText must be filled in one,length**: [1, 35], **English characters** |
+| \|---addressText |  string   |   no   |      additional address | **addressline1 / addressline2 and addressText must be filled in one,length**: [1, 1200], **English characters** |
+| \|---phone           |  string   |   yes    |                                    |             **length**: [1, 22]              |
+| \|---email           |  string   |    no    |                                    |             **length**: [1, 400]             |
 | bookingParties          | Object  |      yes      |   booking parties info   |                                     |
+| \|---name            |  string   |   yes    |                                    | **length**: [1, 70], **English characters**  |
+| \|---addressLine1    |  string   |      no      | country / region / province / city | **addressline1 / addressline2 and addressText must be filled in one,length**: [1, 35], **English characters** |
+| \|---addressLine2    |  string   |   no   |            street name             | **addressline1 / addressline2 and addressText must be filled in one,length**: [1, 35], **English characters** |
+| \|---addressText |  string   |   no   |      additional address | **addressline1 / addressline2 and addressText must be filled in one,length**: [1, 1200], **English characters** |
+| \|---phone           |  string   |   yes    |                                    |             **length**: [1, 22]              |
+| \|---email           |  string   |    no    |                                    |             **length**: [1, 400]             |
 | shipperInfo          | Object  |      no      |   shipper info   |                                     |
+| \|---name            |  string   |   yes    |                                    | **length**: [1, 70], **English characters**  |
+| \|---addressLine1    |  string   |   no   | country / region / province / city | **addressline1 / addressline2 and addressText must be filled in one,length**: [1, 35], **English characters** |
+| \|---addressLine2    |  string   |   no   |            street name             | **addressline1 / addressline2 and addressText must be filled in one,length**: [1, 35], **English characters** |
+| \|---addressText |  string   |   no   |      additional address | **addressline1 / addressline2 and addressText must be filled in one,length**: [1, 1200], **English characters** |
+| \|---phone           |  string   |   yes    |                                    |             **length**: [1, 22]              |
+| \|---email           |  string   |    no    |                                    |             **length**: [1, 400]             |
 | consigneeInfo          | Object  |      no      |   consignee info   |                                     |
+| \|---name            |  string   |   yes    |                                    | **length**: [1, 70], **English characters**  |
+| \|---addressLine1    |  string   |   no   | country / region / province / city | **addressline1 / addressline2 and addressText must be filled in one,length**: [1, 35], **English characters** |
+| \|---addressLine2    |  string   |   no   |            street name             | **addressline1 / addressline2 and addressText must be filled in one,length**: [1, 35], **English characters** |
+| \|---addressText |  string   |   no   |      additional address | **addressline1 / addressline2 and addressText must be filled in one,length**: [1, 1200], **English characters** |
+| \|---phone           |  string   |   yes    |                                    |             **length**: [1, 22]              |
+| \|---email           |  string   |    no    |                                    |             **length**: [1, 400]             |
 | notifyPartyInfo          | Object  |      no      |   notify party info   |                                     |
+| \|---name            |  string   |   yes    |                                    | **length**: [1, 70], **English characters**  |
+| \|---addressLine1    |  string   |   no   | country / region / province / city | **addressline1 / addressline2 and addressText must be filled in one,length**: [1, 35], **English characters** |
+| \|---addressLine2    |  string   |   no   |            street name             | **addressline1 / addressline2 and addressText must be filled in one,length**: [1, 35], **English characters** |
+| \|---addressText |  string   |   no   |      additional address | **addressline1 / addressline2 and addressText must be filled in one,length**: [1, 1200], **English characters** |
+| \|---phone           |  string   |   yes    |                                    |             **length**: [1, 22]              |
+| \|---email           |  string   |    no    |                                    |             **length**: [1, 400]             |
 | emergencyContactInfo          | Object  |      yes      |   emergency contact info   |                                     |
+| \|---name            |  string   |   no   |                                    | **length**: [0, 60], **English characters** |
+| \|---address   |  string   |   no   |       | **length**: [0, 245], **English characters** |
+| \|---mobile      |  string   |   no   |                                    |             **length**: [0, 15]             |
+| \|---phone  |  string   |   no   |                                    |             **length**: [0, 22]             |
+| \|---email           |  string   |    yes    |                                    |             **length**: [1, 35]             |
+| scheduleData          | Object  |      yes      |   schedule info   | Please copy the scheduled date information from the  Cross Booking Schedule Query Interface return result |
 | cargoInfo          | Object  |      yes      |   cargo info   |                                     |
+| \|---desc            |  string   |   yes    |             cargo name             | **length**: [1, 60], **English characters**  |
+| \|---packageType     |  string   |   yes    |                                    |                                              |
+| \|---quantity        |    int    |   yes    |                                    |                                              |
+| \|---weight          |  decimal  |   yes    |                                    |                 **unit**: KG                 |
+| \|---volume          |  decimal  |   yes    |                                    |           **unit**: m<sup>3</sup>            |
+| \|---remarks         |  string   |    no    |                                    |            **length**: [0,1000]**,English characters**            |
+| referenceNo | String | no | additional reference number |  |
 | remarks          | String  |      no      |      |                                     |
-| page           | Integer |      no      |   page number   |      **default:** 1,**min:** 1      |
-| size           | Integer |      no      |    page size    | **default:** 20, **range:** [1, 50] |
 
 ### 3. Request sample
 
@@ -582,7 +637,10 @@ Please refer to the [General Error Codes](../SynConHubApiErrorCodeList.md) .
                         "transportMode": "Feeder"
                     }
                 ],
-  
+  				"cutOffLocalDate": "2020-09-16 00:00",
+                "estimatedTransitTimeInDays": 21,
+                "etaAtFnd": "2020-10-07 22:00",
+                "etdAtPor": "2020-09-16 11:00",
                 "serviceCode": "PMX",
                 "vesselName": "OOCL AMERICA",
                 "direction": "N",
@@ -590,48 +648,36 @@ Please refer to the [General Error Codes](../SynConHubApiErrorCodeList.md) .
                 "signature": "2c9fbad696f7a0c4ffcaef2325621c75" // the signature of the scheduled data, which is to identify the schedule data is from the official provider.
             },
   "bookingParties":  {
-            "name":"OOCL",
+            "name":"TEST",
             "addressLine1":"CN",
             "addressLine2":"Room 507, Huale building, Shennan E",
-            "carrierCustomerCode":"6421568001",
             "phone":"4564654234",
-            "fax":"1123123123",
-            "identityNo":"",
             "email":""
         },
   "shipperInfo": {
             "name":"shipper",
             "addressLine1":"Shenzhen",
             "addressLine2":"ZHUHAIXIANGZHOU",
-            "carrierCustomerCode":"",
             "phone":"+86112223311",
-            "fax":"",
-            "identityNo":"",
             "email":""
         },
   "consigneeInfo":  {
             "name":"consignee",
             "addressLine1":"SHANGHAI",
             "addressLine2":"SHANGHAIPUDONG",
-            "carrierCustomerCode":"",
             "phone":"+86112223311",
-            "fax":"",
-            "identityNo":"",
             "email":""
         },
   "notifyPartyInfo":{
             "name":"notifyParty",
             "addressLine1":"SHANGHAI",
             "addressLine2":"SHANGHAIPUDONG",
-            "carrierCustomerCode":"",
             "phone":"+86112223311",
-            "fax":"",
-            "identityNo":"",
             "email":""
         },
   "emergencyContactInfo":{
         "name":"",
-        "email":"test@OOCL.COM",
+        "email":"test@test.COM",
         "mobile":"",
         "phone":"",
         "address":""
@@ -678,17 +724,17 @@ Please refer to the [General Error Codes](../SynConHubApiErrorCodeList.md) .
 
 {
     "code": 20044,
-    "message": "Cross Booking船期信息有误"
+    "message": "Cross Booking wrong shipping date information"
 }
 
 {
     "code": 20045,
-    "message": "Cross Booking库存不足"
+    "message": "Cross Booking insufficient stock"
 }
 
 {
-    "code": 20045,
-    "message": "Cross Booking 找不到货类箱型"
+    "code": 20046,
+    "message": "Cross Booking cargo container not found"
 }
 ```
 
@@ -703,14 +749,14 @@ Please refer to the [General Error Codes](../SynConHubApiErrorCodeList.md) .
 
 ### 1. Information
 
-* **Path**: /service/synconhub/crossBooking/shipment/search
+* **Path**: `/service/synconhub/crossBooking/shipment/search`
 * **Method**: POST
 
 ### 2. Request parameters
 
 | Name           |  Type   | **Required** |   Description   |             **Remarks**             |
 | :------------- | :-----: | :----------: | :-------------: | :---------------------------------: |
-| bookingStatus    | String |     no      |         status        |                                     |
+| bookingStatus    | String |     no      |         status        | booking status, e.g.: NEW, CONFIRMED, CANCELLED |
 | brNo    | String |      no      |       booking request number     |                                     |
 | bookingTimeFrom        | ISODate  |      no      |   booking date range   | ISO format in GMT by default, like: '2020-07-20T08:00:00.000Z' |
 | bookingTimeTo          | ISODate  |      no      | booking date range | ISO format in GMT by default, like: '2020-07-20T08:00:00.000Z' |
@@ -756,7 +802,7 @@ Please refer to the [General Error Codes](../SynConHubApiErrorCodeList.md) .
             {
                 "brNo": "4880701100",
                 "bookingStatus": "NEW",
-                "contractNo": "jarvan-test",
+                "contractNo": "ATE20001",
                 "scheduleData": "{\"cutOffLocalDate\":\"2020-09-16 00:00\",\"destination\":{\"cityFullNameCn\":\"卡拉奇\",\"cityFullNameEn\":\"Karachi\",\"cityName\":\"Karachi\",\"id\":\"738872886233842\",\"stateName\":\"Sindh\",\"unlocode\":\"PKKAR\"},\"direction\":\"W\",\"estimatedTransitTimeInDays\":21,\"etaAtFnd\":\"2020-10-07 22:00\",\"etdAtPor\":\"2020-09-16 11:00\",\"fndFacilityCode\":\"KHI03\",\"legs\":[{\"direction\":\"W\",\"externalVoyageNumber\":\"126W\",\"internalVoyageNumber\":\"126\",\"legSequence\":1,\"pod\":{\"eta\":\"2020-10-07 22:00\",\"etd\":\"2020-10-08 22:00\",\"facilityCode\":\"KHI03\",\"port\":{\"id\":\"349645770723431\",\"portCode\":\"KHI\",\"portFullNameCn\":\"Karachi\",\"portFullNameEn\":\"Karachi\",\"portName\":\"Karachi\"},\"portId\":\"349645770723431\"},\"pol\":{\"eta\":\"2020-09-15 13:00\",\"etd\":\"2020-09-16 11:00\",\"facilityCode\":\"SHA04\",\"port\":{\"id\":\"349657045012458\",\"portCode\":\"SHA\",\"portFullNameCn\":\"上海\",\"portFullNameEn\":\"Shanghai\",\"portName\":\"Shanghai\"},\"portId\":\"349657045012458\"},\"service\":{\"serviceCode\":\"PMX\"},\"transportMode\":\"Feeder\",\"vessel\":{\"vesselCode\":\"SRL\",\"vesselName\":\"GREENWICH BRIDGE\"},\"voyageCode\":\"126\"}],\"origin\":{\"cityFullNameCn\":\"上海\",\"cityFullNameEn\":\"Shanghai\",\"cityName\":\"Shanghai\",\"cntyName\":\"Shanghai\",\"id\":\"738872886232873\",\"stateCode\":\"SH\",\"stateName\":\"Shanghai\",\"unlocode\":\"CNSHA\"},\"porFacilityCode\":\"SHA04\",\"serviceCode\":\"PMX\",\"vesselName\":\"GREENWICH BRIDGE\",\"voyageNo\":\"126\"}",
                 "weekNo": "202037"
             }
@@ -783,17 +829,17 @@ Please refer to the [General Error Codes](../SynConHubApiErrorCodeList.md) .
 
 {
 	"code": 20040, 
-	"message": "查询参数的page必须大于0"
+	"message": "The page size must be greater than 0"
 }
 
 {
 	"code": 20041, 
-	"message": "查询参数的size必须大于0且小于30"
+	"message": "The page size should be between 0 and 30."
 }
 
 {
 	"code": 20042, 
-	"message": "参数校验错误"
+	"message": "Parameter verification error"
 }
 ```
 
@@ -808,7 +854,7 @@ Please refer to the [General Error Codes](../SynConHubApiErrorCodeList.md) .
 
 ### 1. Information
 
-* **Path**: /service/synconhub/crossBooking/shipment/{brNo}
+* **Path**:` /service/synconhub/crossBooking/shipment/{brNo}`
 * **Method**: GET
 
 ### 2. Request parameters
@@ -819,7 +865,7 @@ Please refer to the [General Error Codes](../SynConHubApiErrorCodeList.md) .
 
 ### 3. Request sample
 ```javascript
-GET /service/synconhub/order/detail/E00144631
+GET `/service/synconhub/order/detail/E00144631`
 ```
 
 ### 4. Response parameters
@@ -836,7 +882,7 @@ GET /service/synconhub/order/detail/E00144631
     "code": 0,
     "message": "",
     "data": {
-        "contractNo": "jarvan-test",
+        "contractNo": "ATE20001",
         "brNo": "4880701060",
         "remarks": "ASD",
         "cargoNature": "GC",
@@ -975,7 +1021,7 @@ GET /service/synconhub/order/detail/E00144631
         },
         "emergencyContactInfo": {
             "name": null,
-            "email": "ZHANGJA20@OOCL.COM",
+            "email": "TEST@TEST.COM",
             "mobile": null,
             "phone": null,
             "address": null
