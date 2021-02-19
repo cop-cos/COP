@@ -1,5 +1,6 @@
+  
 {
-    "name": "cop-cos/guzzle-sdk",
+    "name": "cop-cos/cop-guzzle-sdk",
     "version": "0.2.1",
     "description": "COSCOShipping COP SDK - PHP version",
     "type": "library",
@@ -25,7 +26,7 @@
     "repositories": [
         {
             "type": "vcs",
-            "url": "https://github.com/cop-cos/COP/openapi-sdk-php"
+            "url": "https://github.com/cop-cos/openapi-sdk-php"
         }
     ]
 }
