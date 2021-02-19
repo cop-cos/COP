@@ -2,6 +2,25 @@
 
 [toc]
 
+## Http Header
+
+HTTP header information description
+
+| HTTP Header             | Type   | Required | Description             | Remarks |
+| ----------------------- | ------ | -------- | ----------------------- | ------- |
+| X-Consumer-Forwarder-ID | String | no       | Forwarder company sapId |         |
+
+- X-Consumer-Forwarder-ID
+
+  ```
+  # If you want to submit an order/booking for your subsidiary,add this header to the request.The value is sapid of the subsidiary
+  
+  X-Consumer-Forwarder-ID: 1234567890
+  ```
+
+  
+
+
 ## Booking Interface
 
 Customer can place booking throught this interface.  The interface will generate the order with the charge details of the product and related discounts. While customer can apply the coupons to deduct the ocean freight of the Product as well. The avaible counpons infomation can be obtain through the Sport Rate Detail interface. Please note that the minimum amount of the ocean freight for one single container after deduction shall be 1 US dollar. No change in coupon amount. For the details of the Booking Rules, please refer to the Syncon Hub online.
@@ -30,18 +49,21 @@ Customer can place booking throught this interface.  The interface will generate
 | \|---name            |  string   |   yes    |                                    | **length**: [1, 70], **English characters**  |
 | \|---addressLine1    |  string   |   yes    | country / region / province / city | **length**: [1, 35], **English characters**  |
 | \|---addressLine2    |  string   |   yes    |            street name             | **length**: [1, 35], **English characters**  |
+| \|---addressText |  string   |   no   |      additional address | **length**: [1, 1200], **English characters** |
 | \|---phone           |  string   |   yes    |                                    |             **length**: [1, 22]              |
 | \|---email           |  string   |    no    |                                    |             **length**: [1, 400]             |
 | consigneeInfo        |  object   |    no    |           consignee info           |                                              |
 | \|---name            |  string   |   yes    |                                    | **length**: [1, 70], **English characters**  |
 | \|---addressLine1    |  string   |   yes    | country / region / province / city | **length**: [1, 35], **English characters**  |
 | \|---addressLine2    |  string   |   yes    |            street name             | **length**: [1, 35], **English characters**  |
+| \|---addressText |  string   |   no   |      additional address | **length**: [1, 1200], **English characters** |
 | \|---phone           |  string   |   yes    |                                    |             **length**: [1, 22]              |
 | \|---email           |  string   |    no    |                                    |             **length**: [1, 400]             |
 | notifyPartyInfo      |  object   |    no    |         notify party info          |                                              |
 | \|---name            |  string   |   yes    |                                    | **length**: [1, 70], **English characters**  |
 | \|---addressLine1    |  string   |   yes    | country /region / province / city  | **length**: [1, 35], **English characters**  |
 | \|---addressLine2    |  string   |   yes    |            street name             | **length**: [1, 35], **English characters**  |
+| \|---addressText |  string   |   no   |      additional address | **length**: [1, 1200], **English characters** |
 | \|---phone           |  string   |   yes    |                                    |             **length**: [1, 22]              |
 | \|---email           |  string   |    no    |                                    |             **length**: [1, 400]             |
 | emergencyContactInfo |  object   |   yes    |                                    |                                              |
@@ -145,6 +167,10 @@ Customer can place booking throught this interface.  The interface will generate
     "message": "the inventory is not enough"
 }
 ```
+
+### 7. Error Code Specification
+
+Please refer to the [General Error Codes](../SynConHubApiErrorCodeList.md) .
 
 
 
@@ -262,6 +288,10 @@ Query brief information of eligible orders based on conditions
 }
 ```
 
+### 7. Error Code Specification
+
+Please refer to the [General Error Codes](../SynConHubApiErrorCodeList.md) .
+
 
 
 ## Order Details Query Interface
@@ -342,3 +372,8 @@ GET /service/synconhub/order/detail/E00144631
     "message": "The order does not exist"
 }
 ```
+
+### 7. Error Code Specification
+
+Please refer to the [General Error Codes](../SynConHubApiErrorCodeList.md) .
+
