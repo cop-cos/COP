@@ -207,6 +207,8 @@ hmac username="$YOUR_ApiKey", algorithm="hmac-sha1", headers="X-Coscon-Date X-Co
     });
 ```
 
+### PHP Sample
+[PHP SDK reference](https://github.com/cop-cos/openapi-sdk-php)
 
 
 # 0x06 全局代码 #
