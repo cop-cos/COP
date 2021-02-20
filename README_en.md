@@ -208,6 +208,8 @@ Same as Http Header['X-Coscon-Content-Md5']
     });
 ```
 
+### PHP Sample
+[PHP SDK reference](https://github.com/cop-cos/openapi-sdk-php)
 
 
 # 0x06 Global Codes #
