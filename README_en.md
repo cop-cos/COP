@@ -57,7 +57,7 @@ TBD.
 
 Send your application form email to：[COP Administration Team](mailto:MicroService_Mgmt@coscon.com)
 
-Email Subject: COP developer residency application-<Your Company Name>
+Email Subject: COP developer residency application - ${Your Company Name}
 
 |Item|Description|
 |------------|:-----------------|
