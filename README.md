@@ -104,7 +104,7 @@ keytool -import -trustcacerts -alias cop -keystore "%JAVA_HOME%/JRE/LIB/SECURITY
 |---------------|----------|----------|
 |X-Coscon-Date|String|Yes|
 |X-Coscon-Content-Md5|String|Yes|
-|X-Coscon-Digest|String|Conditional|
+|X-Coscon-Digest|String|Yes|
 |X-Coscon-Authorization|String|Yes|
 |X-Coscon-Hmac|String|Yes|
 
