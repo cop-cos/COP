@@ -491,15 +491,11 @@ Please refer to the [General Error Codes](../SynConHubApiErrorCodeList.md) .
 | :------------- | :-----: | :----------: | :-------------: | :---------------------------------: |
 | contractNumber | String |     yes      | contract number |                                     |
 | inventoryId    | String |     yes      | the inventory Id of the contract No. |                                     |
-| cargoNature    | String |      no      | cargo nature, e.g.: GC, RF, DG, AW |      **default**: GC                  |
+| cargoNature    | String |      no      | cargo nature, e.g.: GC, RF, DG, AW. Currently only GC is supported |      **default**: GC                  |
 | channelCode    | String |      no      |                 |    **default**: GENERAL                    |
 | bookingContainers        | Object  |      yes      |  booking container type and quantity   |                                     |
-| \|---name            |  string   |   yes    |                                    | **length**: [1, 70], **English characters**  |
-| \|---addressLine1    |  string   |   no   | country / region / province / city | **addressline1 / addressline2 and addressText must be filled in one,length**: [1, 35], **English characters** |
-| \|---addressLine2    |  string   |   no   |            street name             | **addressline1 / addressline2 and addressText must be filled in one,length**: [1, 35], **English characters** |
-| \|---addressText |  string   |   no   |      additional address | **addressline1 / addressline2 and addressText must be filled in one,length**: [1, 1200], **English characters** |
-| \|---phone           |  string   |   yes    |                                    |             **length**: [1, 22]              |
-| \|---email           |  string   |    no    |                                    |             **length**: [1, 400]             |
+| \|---cntrType    |  string   |   yes    |                                    | **optional value:** 20GP,40GP,40HQ,45HQ |
+| \|---quantity | Integer |   yes   |  | **min**: 1 |
 | bookingParties          | Object  |      yes      |   booking parties info   |                                     |
 | \|---name            |  string   |   yes    |                                    | **length**: [1, 70], **English characters**  |
 | \|---addressLine1    |  string   |      no      | country / region / province / city | **addressline1 / addressline2 and addressText must be filled in one,length**: [1, 35], **English characters** |

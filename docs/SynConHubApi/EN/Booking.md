@@ -2,6 +2,14 @@
 
 [toc]
 
+
+## Update Logs
+
+v1.2.0 (2021-04-28)
+
+1. **`U`** Updated the booking interface support booking with intermodal services. [Details](#Booking Interface).
+
+
 ## Http Header
 
 HTTP header information description
@@ -37,9 +45,12 @@ Customer can place booking throught this interface.  The interface will generate
 | Name                 |   Type    | Required |            Description             |                 **Remarks**                  |
 | :------------------- | :-------: | :------: | :--------------------------------: | :------------------------------------------: |
 | productId            |  string   |   yes    |             product id             |                                              |
+| loadingServiceNo | String | no | intermodalServiceNo from intermodal service query results | |
+| dischargeServiceNo | String | no | intermodalServiceNo from intermodal service query results | |
 | containerInfos       | object [] |   yes    |           container info           |                                              |
 | \|---containerType   |  string   |   yes    |                                    |      **optional value:** 20GP,40GP,40HQ      |
 | \|---quantity        |  integer  |   yes    |                                    |                  **min**: 1                  |
+| \|---estimateWeight        |  decimal  |   no    | estimate cargo weight per case |                  **unit**: TON                  |
 | blQuantity           |  integer  |    no    |            bl quantity             |          **default**: 1, **min**: 1          |
 | couponsInfo          |  object   |    no    |          coupon use info           |                                              |
 | \|---amount          |  integer  |   yes    |                                    |                  **min**: 1                  |
@@ -87,10 +98,13 @@ Customer can place booking throught this interface.  The interface will generate
 ```javascript
 {
     "productId": "8a5e11157351b2df01735562622a0000",
+    "loadingServiceNo":"8a5e112478e8ac470178e90d79cc0025",
+    "dischargeServiceNo":"8a5e112478e8ac470178e8bbe0d90001",
     "containerInfos": [
         {
             "containerType": "20GP",
-            "quantity": 1
+            "quantity": 1,
+            "estimateWeight": 22
         }
     ],
     "blQuantity": 1,
@@ -186,15 +200,15 @@ Query brief information of eligible orders based on conditions
 
 ### 2. Request parameters
 
-|      Name      |  Type   | Required |      Description       |            **Remarks**            |
-| :------------: | :-----: | :------: | :--------------------: | :-------------------------------: |
-|      brNo      | string  |    no    | booking request number |                                   |
-|    orderNo     | string  |    no    |        order no        |                                   |
-|  orderStatus   | string  |    no    |      order status      |             CONFIRMED             |
-|      page      | integer |   yes    |       page size        |   **default:**1，**minimum:**1    |
-|      size      | integer |   yes    |      record size       | **default:**20, **range:**[1, 50] |
-| updateDateFrom | ISODate |    no    | Order update time from |                                   |
-|  updateDateTo  | ISODate |    no    |  Order update time to  |                                   |
+|      Name      |  Type   | Required |      Description       |              **Remarks**               |
+| :------------: | :-----: | :------: | :--------------------: | :------------------------------------: |
+|      brNo      | string  |    no    | booking request number |                                        |
+|    orderNo     | string  |    no    |        order no        |                                        |
+|  orderStatus   | string  |    no    |      order status      | **optional value:** CONFIRMED,CANCELED |
+|      page      | integer |   yes    |       page size        |      **default:**1，**minimum:**1      |
+|      size      | integer |   yes    |      record size       |   **default:**20, **range:**[1, 50]    |
+| updateDateFrom | ISODate |    no    | Order update time from |                                        |
+|  updateDateTo  | ISODate |    no    |  Order update time to  |                                        |
 
 ### 3. Request sample
 
@@ -303,7 +317,7 @@ Query order details by order number
 - **Path**: /service/synconhub/order/detail/{orderNo}
 - **Method**: GET
 
-### 2. **Path parameters**
+### 2. Path parameters
 
 |  Name   |  Type  | Required | Description  |
 | :-----: | :----: | :------: | :----------: |
@@ -355,11 +369,11 @@ GET /service/synconhub/order/detail/E00144631
         "bookingContainers": [
             {
                 "bookingNo": "6889903730", // booking number
-                "status": "Confirmed",
+                "status": "Confirmed", // status values : ['New','Confirmed','Cancelled']
                 "cntrType": "20GP", // container type
                 "count": 1
             }
-        ]  
+        ]
     }
 }
 ```
