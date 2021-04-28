@@ -2,6 +2,17 @@
 
 [toc]
 
+## Update Logs
+
+v1.2.0 (2021-04-28)
+
+1. **`A `**  Added the API Intermodal Service Query to search product supported transfer services.  [Details](#Intermodal Service Query Interface).
+2. **`U`** Updated the spot rate detail query support search product detail with intermodal services. [Details](#Spot Rate Details Query Interface).
+3. **`U`** Updated the surcharge query support search product surcharge with intermodal services. [Details](#Surcharge Query Interface).
+
+
+
+
 ## Http Header
 
 HTTP header information description
@@ -39,7 +50,7 @@ Fuzzy query of the city information maintained by the platform based on the keyw
 
 ### 3. Request sample
 
-```java
+```json
 {
     "keywords": "shenzhen",
     "page": 1,
@@ -118,7 +129,7 @@ Fuzzy query of the city information maintained by the platform based on the keyw
 
 ### 3. Request sample
 
-```java
+```json
 {
   "startDate": "2020-06-01T00:00:00.000Z",
   "endDate": "2020-07-30T00:00:00.000Z",
@@ -401,6 +412,240 @@ Fuzzy query of the city information maintained by the platform based on the keyw
 }
 ```
 
+## Intermodal Service Query Interface
+
+
+### 1.Informations
+
+* **Path**: /service/synconhub/common/intermodalService/{productId}
+* **Method**: GET
+
+### 2. Path parameters
+
+|   Name    | **Type** | Required | Description |
+| :-------: | :------: | :------: | :---------: |
+| productId |  string  |   yes    | product id  |
+
+### 3. Request sample
+
+```HTTP
+GET /service/synconhub/common/intermodalService/8a5e11157351b2df01735562622a0000
+```
+
+### 4. Response parameters
+
+| Name    | Description    |
+| ------- | -------------- |
+| code    | status code    |
+| message | detail message |
+| data    | response data  |
+
+### 5. Response sample
+
+```json
+{
+    "code": 0,
+    "message": "",
+    "data": {
+        "loadingServices": [    // loading port list
+            {
+                "transshipmentModel": "TRUCK+RAIL", // Transport Way eg:['FEEDER','RAIL','TRUCK','BARGE','TRUCK+RAIL']
+                "cityUUID": "738872886232847", 
+                "cityFullName": "青岛",
+                "cityFullNameEn": "Qingdao",
+                "ctryCode": "CN",
+                "facilityCode": null,
+                "facilityName": null,
+                "bound": "O", // bound type,loading->O , discharge->I
+                "transportTerms": "CY", // Traffic Mode 
+                "bargeDay": 3,
+                "transitDay": 4,
+                "containerInfoDTOList": [ // Supported cntr type and weight config
+                    {
+                        "cntrSizeType": "20GP",
+                        "cntrPrice": 100,
+                        "currencyType": "USD",
+                        "minWeight": null,
+                        "maxWeight": null,
+                        "weightUnit": null
+                    },
+                    {
+                        "cntrSizeType": "40GP",
+                        "cntrPrice": 300,
+                        "currencyType": "USD",
+                        "minWeight": null,
+                        "maxWeight": null,
+                        "weightUnit": null
+                    },
+                    {
+                        "cntrSizeType": "40HQ",
+                        "cntrPrice": 300,
+                        "currencyType": "USD",
+                        "minWeight": null,
+                        "maxWeight": null,
+                        "weightUnit": null
+                    }
+                ],
+                "intermodalServiceNo": "8a5e112478d41b380178d951babe0032" // intermodal ServiceNo
+            },
+            {
+                "transshipmentModel": "RAIL",
+                "cityUUID": "738872886232873",
+                "cityFullName": "上海",
+                "cityFullNameEn": "Shanghai",
+                "ctryCode": "CN",
+                "facilityCode": "NGB05",
+                "facilityName": "Ningbo Yuandong Terminals Limited",
+                "bound": "O",
+                "transportTerms": "CY",
+                "bargeDay": 2,
+                "transitDay": 3,
+                "containerInfoDTOList": [
+                    {
+                        "cntrSizeType": "20GP",
+                        "cntrPrice": 100,
+                        "currencyType": "USD",
+                        "minWeight": null,
+                        "maxWeight": null,
+                        "weightUnit": null
+                    },
+                    {
+                        "cntrSizeType": "40GP",
+                        "cntrPrice": 200,
+                        "currencyType": "USD",
+                        "minWeight": null,
+                        "maxWeight": null,
+                        "weightUnit": null
+                    },
+                    {
+                        "cntrSizeType": "40HQ",
+                        "cntrPrice": 200,
+                        "currencyType": "USD",
+                        "minWeight": null,
+                        "maxWeight": null,
+                        "weightUnit": null
+                    }
+                ],
+                "intermodalServiceNo": "8a5e112478d41b380178d946dac1001c"
+            },
+            {
+                "transshipmentModel": "TRUCK",
+                "cityUUID": "738872886232847",
+                "cityFullName": "青岛",
+                "cityFullNameEn": "Qingdao",
+                "ctryCode": "CN",
+                "facilityCode": null,
+                "facilityName": null,
+                "bound": "O",
+                "transportTerms": "CY",
+                "bargeDay": 2,
+                "transitDay": 4,
+                "containerInfoDTOList": [ 
+                    // If cargo weight information is configured,The same cntr type will have multiple data
+                    {
+                        "cntrSizeType": "20GP",
+                        "cntrPrice": 100,
+                        "currencyType": "USD",
+                        "minWeight": 0,  // min cargo weight
+                        "maxWeight": 20, // max cargo weight
+                        "weightUnit": "TON" // weight unit eg: "TON"
+                        // If the weight of the cargo is between 0-20 tons, the loading service fee is 100 USD
+                    },
+                    {
+                        "cntrSizeType": "20GP",
+                        "cntrPrice": 150,
+                        "currencyType": "USD",
+                        "minWeight": 20,
+                        "maxWeight": 40,
+                        "weightUnit": "TON"
+                        // If the weight of the cargo is between 20-40 tons, the loading service fee is 150 USD
+                    },
+                    {
+                        "cntrSizeType": "20GP",
+                        "cntrPrice": 200,
+                        "currencyType": "USD",
+                        "minWeight": 40,
+                        "maxWeight": null,
+                        "weightUnit": "TON"
+                        // If the weight of the cargo is more than 40 tons, the loading service fee is 100 USD
+                    },
+                    {
+                        "cntrSizeType": "40GP",
+                        "cntrPrice": 300,
+                        "currencyType": "USD",
+                        "minWeight": null,
+                        "maxWeight": null,
+                        "weightUnit": "TON"
+                    },
+                    {
+                        "cntrSizeType": "40HQ",
+                        "cntrPrice": 300,
+                        "currencyType": "USD",
+                        "minWeight": null,
+                        "maxWeight": null,
+                        "weightUnit": "TON"
+                    }
+                ],
+                "intermodalServiceNo": "8a5e112478d41b380178d9516714002b"
+            }
+        ],
+        "dischargeServices": [  // discharge port list
+            {
+                "transshipmentModel": "BARGE",
+                "cityUUID": "738874496843873",
+                "cityFullName": "Gwadar",
+                "cityFullNameEn": "Gwadar",
+                "ctryCode": "PK",
+                "facilityCode": null,
+                "facilityName": null,
+                "bound": "I",
+                "transportTerms": "FOR",
+                "bargeDay": 19,
+                "transitDay": 5,
+                "containerInfoDTOList": [
+                    {
+                        "cntrSizeType": "20GP",
+                        "cntrPrice": 300,
+                        "currencyType": "USD",
+                        "minWeight": null,
+                        "maxWeight": null,
+                        "weightUnit": null
+                    },
+                    {
+                        "cntrSizeType": "40GP",
+                        "cntrPrice": 400,
+                        "currencyType": "USD",
+                        "minWeight": null,
+                        "maxWeight": null,
+                        "weightUnit": null
+                    },
+                    {
+                        "cntrSizeType": "40HQ",
+                        "cntrPrice": 400,
+                        "currencyType": "USD",
+                        "minWeight": null,
+                        "maxWeight": null,
+                        "weightUnit": null
+                    }
+                ],
+                "intermodalServiceNo": "8a5e112478d41b380178d94e5a4e0026"
+            }
+        ]
+    }
+}
+```
+
+
+
+### 6. Error sample
+
+```json
+{
+    "code": 20002,
+    "message": "The product cannot be found"
+}
+```
+
 
 
 ## Spot Rate Details Query Interface
@@ -417,13 +662,31 @@ Fuzzy query of the city information maintained by the platform based on the keyw
 | :-------: | :------: | :------: | :---------: |
 | productId |  string  |   yes    | product id  |
 
-### 3. Request sample
+### 3. Query parameters
 
-```java
+|        Name        | **Type** | Required |                         Description                          |
+| :----------------: | :------: | :------: | :----------------------------------------------------------: |
+|  loadingServiceNo  |  String  |    no    | intermodalServiceNo from intermodal service query results. Get the spot rate details with loading service |
+| dischargeServiceNo |  String  |    no    | intermodalServiceNo from intermodal service query results. Get the spot rate details with discharge service |
+
+
+### 4. Request sample
+
+```http
 GET /service/synconhub/product/instantBooking/8a5e11157351b2df01735562622a0000
 ```
 
-### 4. Response parameters
+```http
+GET /service/synconhub/product/instantBooking/8a5e11157351b2df01735562622a0000?loadingServiceNo=8a5e112478d41b380178d4551a33000a
+```
+
+```http
+GET /service/synconhub/product/instantBooking/8a5e11157351b2df01735562622a0000?loadingServiceNo=8a5e112478d41b380178d4551a33000a&dischargeServiceNo=8a5e112478c4eed60178c51cca9f0001
+```
+
+
+
+### 5. Response parameters
 
 | Name    | Description         |
 | ------- | ------------------- |
@@ -431,9 +694,9 @@ GET /service/synconhub/product/instantBooking/8a5e11157351b2df01735562622a0000
 | message | detail message      |
 | data    | product detail info |
 
-### 5. Response sample
+### 6. Response sample
 
-```javascript
+```json
 {
     "code": 0,
     "message": "",
@@ -688,7 +951,7 @@ GET /service/synconhub/product/instantBooking/8a5e11157351b2df01735562622a0000
 }
 ```
 
-### 6. Error sample
+### 7. Error sample
 
 ```javascript
 {
@@ -715,13 +978,30 @@ Get the surcharge details of a specific product.
 | :-------: | :------: | :------: | :---------: |
 | productId |  String  |   yes    | product id  |
 
-### 3. Request sample
+### 3. Query parameters
 
-```java
+|        Name        | **Type** | Required |                         Description                          |
+| :----------------: | :------: | :------: | :----------------------------------------------------------: |
+|  loadingServiceNo  |  String  |    no    | intermodal Service No from intermodal service query results. Get the surcharge details of a specific product with loading service |
+| dischargeServiceNo |  String  |    no    | intermodal Service No from intermodal service query results. Get the surcharge details of a specific product with discharge service |
+
+### 4. Request sample
+
+```http
 GET /service/synconhub/common/extraChargeFee/8a80cb817321ad030173221c880101d2
 ```
 
-### 4. Response parameters
+```http
+GET /service/synconhub/common/extraChargeFee/8a80cb817321ad030173221c880101d2?loadingServiceNo=8a5e11127467f02501747218e25c0001
+```
+
+```http
+GET /service/synconhub/common/extraChargeFee/8a80cb817321ad030173221c880101d2?loadingServiceNo=8a5e11127467f02501747218e25c0001&dischargeServiceNo=8a5e11247866fbec0178681acd3a0008
+```
+
+
+
+### 5. Response parameters
 
 | Name    | Description    |
 | ------- | -------------- |
@@ -729,9 +1009,9 @@ GET /service/synconhub/common/extraChargeFee/8a80cb817321ad030173221c880101d2
 | message | detail message |
 | data    | response data  |
 
-### 5. Response sample
+### 6. Response sample
 
-```javascript
+```json
 {
     "code": 0,
     "message": "",
@@ -770,12 +1050,26 @@ GET /service/synconhub/common/extraChargeFee/8a80cb817321ad030173221c880101d2
 }
 ```
 
-### 6. Error sample
+### 7. Error sample
 
 ```javascript
 {
     "code": 20001,
     "message": "cannot proceed the request, please retry later or contact support for help"
+}
+```
+
+```json
+{
+    "code": 20059,
+    "message": "Wrong bound type of intermodal service"
+}
+```
+
+```json
+{
+    "code": 20060,
+    "message": "The intermodal service does not exist"
 }
 ```
 

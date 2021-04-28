@@ -48,6 +48,24 @@
  - 20045: "Cross Booking insufficient stock"
  - 20046: "Cross Booking cargo container not found"
  - 20047: "This cargo nature type is not supported at the moment, please contact customer service"
+ - 20048:"Failed to get enterprise information"
+ - 20049:''Order query only supports data query within two months"
+ - 20051:"Sorry for system busy, please try again later"
+ - 20053:"CrossBooking schedule information LTD is wrong"
+ - 20054: "Address cannot be empty"
+ - 20055: "Sub-company carrier customer code out of scope."
+ - 20056: "The TEU purchase limit for the week in which the product is sold is insufficient"
+ - 20057: "CrossBooking contract number does not exist"
+ - 20058: "CrossBooking start week cannot be earlier than the current four weeks"
+ - 20059: "API booking cannot purchase FMC products"
+ - 20060: "Permission denied"
+ - 20061: "CosPlus | product booking must fill in all shipping related party information"
+ - 20062: "Wrong import and export type of intermodal service"
+ - 20063: "The intermodal service does not exist"
+ - 20064: "Can't find the city"
+ - 20066: "Some container types do not support intermodal service"
+ - 20067: "The intermodal service fee is charged by weight, and the estimated cargo weight of the box type is required"
+ - 20068: "The estimated weight of the container is not in the optional range, please re-order"
 
 
 
@@ -55,97 +73,68 @@
 # SynconHub API 错误提示代码
 
  - 20000: "无法识别用户，请联系客服"
-
  - 20001: "系统不能处理该请求，请重试或联系客服"
-
  - 20002: "无法找到该产品"
-
  - 20003: "该产品剩余库存不足"
-
  - 20004: "不在上下架时间范围"
-
  - 20005: "无效的箱型"
-
  - 20006: "订单不存在"
-
  - 20007: "无法找到该产品的库存"
-
  - 20008: "特惠方案库存不足"
-
  - 20009: "无法找到该订单的优惠劵"
-
  - 20010: "可用优惠劵数量小于该订单的优惠劵数量"
-
  - 20011: "特惠方案库存数量不足或优惠价钱变动,请重新下单"
-
  - 20012: "非法参数，特惠方案校验失败"
-
  - 20013: "保价服务不存在或者已失效，请重新下单"
-
  - 20014: "部分费用不允许转换币种"
-
  - 20015: "不允许首付款支付"
-
  - 20016: "Instance Booking所有费用必须线上支付"
-
  - 20017: "订单费用不允许转换币种"
-
  - 20018: "只允许中国大陆的客户购买Instance Booking"
-
  - 20019: "订单产品类型有误"
-
  - 20020: "一些费用仅支持人民币或美金"
-
  - 20021: "公司所在国家/地区与POR或FND所在的国家/地区不同，不允许购买"
-
  - 20022: "首付款比例必须大于0"
-
  - 20023: "不满足最小首付款百分比范围"
-
  - 20024: "不满足最大首付款百分比范围"
-
  - 20025: "订单缺少一些必要的费用项"
-
  - 20026: "订单的产品的类型只能是I或者P"
-
  - 20027: "订单部分费用项的支付方式有误"
-
  - 20028: "部分费用项缺少到预付属性"
-
  - 20029: "线上到付暂时不支持部分支付"
-
  - 20030: "存在无效的费用项，请重新下单"
-
  - 20031: "优惠券超量使用"
-
  - 20032: "系统费用项预到付配置出错, 请联系客服跟进"
-
  - 20033: "由于系统配置, 部分费用项不允许使用美金支付或不允许切换预到付, 请联系客服跟进"
-
  - 20034: "尊敬的用户，该产品已下架，请与客服联系"
-
  - 20035: "线上支付不能同时包含预付和到付，请联系客服跟进"
-
  - 20036: "单证数量不能少于1"
-
  - 20037: "暂时无法购买该产品，请与客服联系"
-
  - 20038: "产品信息有误，请与客服联系"
-
  - 20039: "暂不支持该支付方式，请与客服联系"
-
  - 20040: "查询参数的page必须大于0"
-
  - 20041: "查询参数的size必须大于0且小于30"
-
  - 20042: "参数校验错误"
-
  - 20043: "Cross Booking库存无效"
-
  - 20044: "Cross Booking船期信息有误"
-
  - 20045: "Cross Booking库存不足"
-
  - 20046: "Cross Booking 找不到货类箱型"
-
  - 20047: "暂不支持该货品类型，请与客服联系" 
+ - 20048:"企业信息错误"
+ - 20049:''订单查询只支持两个月内数据查询"
+ - 20051:"对不起,系统繁忙,请稍后再试!"
+ - 20053:"CrossBooking船期信息LTD有误"
+ - 20054: "地址不能为空"
+ - 20055: "Sub-company carrier customer code out of scope."
+ - 20056: "产品所在周 TEU 购买限额不足"
+ - 20057: "CrossBooking合约号不存在"
+ - 20058: "CrossBooking起始周不能早于当前周四周"
+ - 20059: "API下单不能购买FMC产品"
+ - 20060: "权限不足"
+ - 20061: "CosPlus | 产品订舱必须要填写所有的船运相关方信息"
+ - 20062: "转运服务进出口类型错误"
+ - 20063: "不存在该转运服务"
+ - 20064: "找不到该城市"
+ - 20066: "部分箱型不支持转运服务"
+ - 20067: "内陆转运费是按重计费，需提供箱型的预估货重"
+ - 20068: "箱型的预估货重不在可选范围内，请重新下单"
