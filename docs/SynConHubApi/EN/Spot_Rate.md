@@ -50,7 +50,7 @@ Fuzzy query of the city information maintained by the platform based on the keyw
 
 ### 3. Request sample
 
-```json
+```javascript
 {
     "keywords": "shenzhen",
     "page": 1,
@@ -129,12 +129,12 @@ Fuzzy query of the city information maintained by the platform based on the keyw
 
 ### 3. Request sample
 
-```json
+```javascript
 {
   "startDate": "2020-06-01T00:00:00.000Z",
   "endDate": "2020-07-30T00:00:00.000Z",
-  "fndCityId": 738872886233842,
-  "porCityId": 738872886232873,
+  "fndCityId": "738872886233842",
+  "porCityId": "738872886232873",
   "page": 1,
   "size": 20
 }
@@ -442,7 +442,7 @@ GET /service/synconhub/common/intermodalService/8a5e11157351b2df01735562622a0000
 
 ### 5. Response sample
 
-```json
+```javascript
 {
     "code": 0,
     "message": "",
@@ -639,7 +639,7 @@ GET /service/synconhub/common/intermodalService/8a5e11157351b2df01735562622a0000
 
 ### 6. Error sample
 
-```json
+```javascript
 {
     "code": 20002,
     "message": "The product cannot be found"
@@ -696,7 +696,7 @@ GET /service/synconhub/product/instantBooking/8a5e11157351b2df01735562622a0000?l
 
 ### 6. Response sample
 
-```json
+```javascript
 {
     "code": 0,
     "message": "",
@@ -1011,7 +1011,7 @@ GET /service/synconhub/common/extraChargeFee/8a80cb817321ad030173221c880101d2?lo
 
 ### 6. Response sample
 
-```json
+```javascript
 {
     "code": 0,
     "message": "",
@@ -1059,14 +1059,14 @@ GET /service/synconhub/common/extraChargeFee/8a80cb817321ad030173221c880101d2?lo
 }
 ```
 
-```json
+```javascript
 {
     "code": 20059,
     "message": "Wrong bound type of intermodal service"
 }
 ```
 
-```json
+```javascript
 {
     "code": 20060,
     "message": "The intermodal service does not exist"
