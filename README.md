@@ -111,6 +111,12 @@ keytool -import -trustcacerts -alias cop -keystore "%JAVA_HOME%/JRE/LIB/SECURITY
 * X-Coscon-Date
 ```
 格式：EEE, dd MMM yyyy HH:mm:ss z
+时区：以GMT/UTC 时区的当前时间，可参考如下代码：
+```
+```java
+        date = DateFormatUtils.format(new Date(), X_DATE_FORMATTER, TimeZone.getTimeZone("GMT"), Locale.US);
+```
+```
 精度：和标准时间偏差不能超过2分钟。
 例如：Tue, 23 Oct 2018 12:58:39 GMT
 ```
@@ -124,14 +130,17 @@ keytool -import -trustcacerts -alias cop -keystore "%JAVA_HOME%/JRE/LIB/SECURITY
 SHA-256=ndf/mH+sjQ0ZeQhOveXOi9hVzQZtGjTphDInXMa8Jkw=
 ```
 * X-Coscon-Authorization
-```
+```php
 hmac username="$YOUR_ApiKey", algorithm="hmac-sha1", headers="X-Coscon-Date X-Coscon-Digest X-Coscon-Content-Md5 request-line",signature="$Signature"
+```
+```
 - $YOUR_ApiKey： COP平台颁发的ApiKey
 - $Signature: 以COP平台颁发的secretKey对文本"X-Coscon-Date: $X-Coscon-Date\nX-Coscon-Digest: $X-Coscon-Digest\nX-Coscon-Content-Md5: $X-Coscon-Content-Md5\n$requestLine"进行HmacSHA1摘要后并Base64编码；
 - - $X-Coscon-Date:同Http Header['X-Coscon-Date']取值
 - - $X-Coscon-Digest:同Http Header['X-Coscon-Digest']取值
 - - $X-Coscon-Content-Md5:同Http Header['X-Coscon-Content-Md5']取值
-- - $requestLine:参https://www.w3.org/Protocols/rfc2616/rfc2616-sec5.html 之#5.1 Request-Line
+- - $requestLine:参https://www.w3.org/Protocols/rfc2616/rfc2616-sec5.html 之#5.1 Request-Line ，其中Request-URI部分参考(see section 3.2.1 - https://www.w3.org/Protocols/rfc2616/rfc2616-sec3.html#sec3.2.1 , abs_path)
+        GET /service/info/tracking/6103622780 HTTP/1.1
 ```
 * X-Coscon-Hmac
 ```
