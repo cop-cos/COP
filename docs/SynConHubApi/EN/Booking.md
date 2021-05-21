@@ -9,6 +9,9 @@ v1.2.0 (2021-04-28)
 
 1. **`U`** Updated the booking interface support booking with intermodal services. [Details](#Booking Interface).
 
+v1.2.1(2021-05-21)
+1. **`A`**The carrierCustomerCode field is added to the shipperInfo node and consigneeInfo node of the booking interface for booking cosplus products. 
+
 
 ## Http Header
 
@@ -63,6 +66,7 @@ Customer can place booking throught this interface.  The interface will generate
 | \|---addressText |  string   |   no   |      additional address | **length**: [1, 1200], **English characters** |
 | \|---phone           |  string   |   yes    |                                    |             **length**: [1, 22]              |
 | \|---email           |  string   |    no    |                                    |             **length**: [1, 400]             |
+| \|---carrierCustomerCode | string | no | carrier customer code |  |
 | consigneeInfo        |  object   |    no    |           consignee info           |                                              |
 | \|---name            |  string   |   yes    |                                    | **length**: [1, 70], **English characters**  |
 | \|---addressLine1    |  string   |   yes    | country / region / province / city | **length**: [1, 35], **English characters**  |
@@ -70,6 +74,7 @@ Customer can place booking throught this interface.  The interface will generate
 | \|---addressText |  string   |   no   |      additional address | **length**: [1, 1200], **English characters** |
 | \|---phone           |  string   |   yes    |                                    |             **length**: [1, 22]              |
 | \|---email           |  string   |    no    |                                    |             **length**: [1, 400]             |
+| \|---carrierCustomerCode | string | no | carrier customer code |  |
 | notifyPartyInfo      |  object   |    no    |         notify party info          |                                              |
 | \|---name            |  string   |   yes    |                                    | **length**: [1, 70], **English characters**  |
 | \|---addressLine1    |  string   |   yes    | country /region / province / city  | **length**: [1, 35], **English characters**  |
@@ -118,14 +123,20 @@ Customer can place booking throught this interface.  The interface will generate
         "addressLine1": "CN",
         "addressLine2": "ren min lu",
         "phone": "12345678910",
-        "email": "test@test.com"
+        "email": "test@test.com",
+        //if we are going to book cosplus product,we must pass sapid of bond here
+        //For NVO customer the carrierCustomerCode is FMC sapId,For other customer the carrierCustomerCode is company sapId
+        "carrierCustomerCode": "1234567890"  
     },
     "consigneeInfo": {
         "name": "consignee name",
         "addressLine1": "CN",
         "addressLine2": "jian she lu",
         "phone": "12345678910",
-        "email": "test@test.com"
+        "email": "test@test.com",
+        //if we are going to book cosplus product,we must pass sapid of bond here
+        //For NVO customer the carrierCustomerCode is FMC sapId,For other customer the carrierCustomerCode is company sapId
+        "carrierCustomerCode": "1234567890"
     },
     "notifyPartyInfo": {
         "name": "notify party name",
@@ -372,6 +383,34 @@ GET /service/synconhub/order/detail/E00144631
                 "status": "Confirmed", // status values : ['New','Confirmed','Cancelled']
                 "cntrType": "20GP", // container type
                 "count": 1
+            }
+        ],
+       "transferServices": [
+            {
+                "cityId": "738872886233881",
+                "cityName": "Singapore",
+                "ctryCode": "SG",
+                "cityFullNameEn": "Singapore",
+                "cityFullNameCn": "新加坡",
+                "transferType": "DISCHARGE",
+                "transportMode": "RAIL",
+                "transportTerms": "CY",
+                "transitTime": 2,
+                "facilityCode": null,
+                "facilityName": null
+            },
+            {
+                "cityId": "738872886232879",
+                "cityName": "Ningbo",
+                "ctryCode": "CN",
+                "cityFullNameEn": "Ningbo",
+                "cityFullNameCn": "宁波",
+                "transferType": "LOADING",
+                "transportMode": "RAIL",
+                "transportTerms": "CY",
+                "transitTime": 2,
+                "facilityCode": null,
+                "facilityName": null
             }
         ]
     }
