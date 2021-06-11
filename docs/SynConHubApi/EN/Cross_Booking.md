@@ -2,6 +2,12 @@
 
 [toc]
 
+## Update Logs
+
+v1.2.1 (2021-06-10)
+
+1. **`A`** Added fields for the Cross booking Inventory interface response(vesselName,voyageNo,direction) . [Details](#Cross Booking Inventory Query Interface).
+
 ## Http Header
 
 HTTP header information description
@@ -187,9 +193,47 @@ Please refer to the [General Error Codes](../SynConHubApiErrorCodeList.md) .
                 		}
             		}
                 ], 
+                "vesselName": null,
+                "voyageNo": null,
+                "direction": null,
                 "used": 10,
                 "available": 20,
                 "total": 30
+            }，
+            {
+                "weekNo": "202033",
+                "contactNumber": "ATE20001",
+                "inventoryId": "8a5e112479ea76590179ea83c6e00000",
+                "services": [
+                    "SEA"
+                ],
+                "pols": [
+                    {
+                        "id": "349645770723389",
+                        "portName": "Shekou",
+                        "portCode": "SHK",
+                        "portFullNameEn": "Shekou",
+                        "portFullNameCn": "蛇口",
+                        "city": {
+                            "id": "738872886233044",
+                            "unlocode": "CNSHE",
+                            "cityName": "Shekou",
+                            "cntyName": "Shenzhen",
+                            "stateName": "Guangdong",
+                            "stateCode": "GD",
+                            "cityFullNameEn": "Shekou",
+                            "cityFullNameCn": "蛇口",
+                            "ctryRegionName": "China",
+                            "ctryRegionCode": "CN"
+                        }
+                    }
+                ],
+                "vesselName": VANTAGE,
+                "voyageNo": 033,
+                "direction": W,
+                "used": 0,
+                "available": 100,
+                "total": 100
             }
         ],
         "number": 1,
