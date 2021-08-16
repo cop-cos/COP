@@ -8,6 +8,10 @@ v1.2.1 (2021-06-10)
 
 1. **`A`** Added fields for the Cross booking Inventory interface response(vesselName,voyageNo,direction) . [Details](#Cross Booking Inventory Query Interface).
 
+v1.3.0 (2021-08-14)
+
+1. **`A `**  Added general error codes description.  [Details](#General Error Codes).
+
 ## Http Header
 
 HTTP header information description
@@ -114,7 +118,7 @@ Fuzzy query of the port information maintained by the platform based on the keyw
 
 ### 7. Error Code Specification
 
-Please refer to the [General Error Codes](../SynConHubApiErrorCodeList.md) .
+Please refer to the [General Error Codes](#General Error Codes) .
 
 
 
@@ -259,7 +263,7 @@ Please refer to the [General Error Codes](../SynConHubApiErrorCodeList.md) .
 
 ### 7. Error Code Specification
 
-Please refer to the [General Error Codes](../SynConHubApiErrorCodeList.md) .
+Please refer to the [General Error Codes](#General Error Codes) .
 
 
 
@@ -515,7 +519,7 @@ Please refer to the [General Error Codes](../SynConHubApiErrorCodeList.md) .
 
 ### 7. Error Code Specification
 
-Please refer to the [General Error Codes](../SynConHubApiErrorCodeList.md) .
+Please refer to the [General Error Codes](#General Error Codes) .
 
 
 
@@ -781,7 +785,7 @@ Please refer to the [General Error Codes](../SynConHubApiErrorCodeList.md) .
 
 ### 7. Error Code Specification
 
-Please refer to the [General Error Codes](../SynConHubApiErrorCodeList.md) .
+Please refer to the [General Error Codes](#General Error Codes) .
 
 
 
@@ -844,7 +848,8 @@ Please refer to the [General Error Codes](../SynConHubApiErrorCodeList.md) .
                 "bookingStatus": "NEW",
                 "contractNo": "ATE20001",
                 "scheduleData": "{\"cutOffLocalDate\":\"2020-09-16 00:00\",\"destination\":{\"cityFullNameCn\":\"卡拉奇\",\"cityFullNameEn\":\"Karachi\",\"cityName\":\"Karachi\",\"id\":\"738872886233842\",\"stateName\":\"Sindh\",\"unlocode\":\"PKKAR\"},\"direction\":\"W\",\"estimatedTransitTimeInDays\":21,\"etaAtFnd\":\"2020-10-07 22:00\",\"etdAtPor\":\"2020-09-16 11:00\",\"fndFacilityCode\":\"KHI03\",\"legs\":[{\"direction\":\"W\",\"externalVoyageNumber\":\"126W\",\"internalVoyageNumber\":\"126\",\"legSequence\":1,\"pod\":{\"eta\":\"2020-10-07 22:00\",\"etd\":\"2020-10-08 22:00\",\"facilityCode\":\"KHI03\",\"port\":{\"id\":\"349645770723431\",\"portCode\":\"KHI\",\"portFullNameCn\":\"Karachi\",\"portFullNameEn\":\"Karachi\",\"portName\":\"Karachi\"},\"portId\":\"349645770723431\"},\"pol\":{\"eta\":\"2020-09-15 13:00\",\"etd\":\"2020-09-16 11:00\",\"facilityCode\":\"SHA04\",\"port\":{\"id\":\"349657045012458\",\"portCode\":\"SHA\",\"portFullNameCn\":\"上海\",\"portFullNameEn\":\"Shanghai\",\"portName\":\"Shanghai\"},\"portId\":\"349657045012458\"},\"service\":{\"serviceCode\":\"PMX\"},\"transportMode\":\"Feeder\",\"vessel\":{\"vesselCode\":\"SRL\",\"vesselName\":\"GREENWICH BRIDGE\"},\"voyageCode\":\"126\"}],\"origin\":{\"cityFullNameCn\":\"上海\",\"cityFullNameEn\":\"Shanghai\",\"cityName\":\"Shanghai\",\"cntyName\":\"Shanghai\",\"id\":\"738872886232873\",\"stateCode\":\"SH\",\"stateName\":\"Shanghai\",\"unlocode\":\"CNSHA\"},\"porFacilityCode\":\"SHA04\",\"serviceCode\":\"PMX\",\"vesselName\":\"GREENWICH BRIDGE\",\"voyageNo\":\"126\"}",
-                "weekNo": "202037"
+                "weekNo": "202037",
+                "createTime": "2020-09-29T08:12:06.759Z"
             }
         ],
         "number": 1,
@@ -886,7 +891,7 @@ Please refer to the [General Error Codes](../SynConHubApiErrorCodeList.md) .
 
 ### 7. Error Code Specification
 
-Please refer to the [General Error Codes](../SynConHubApiErrorCodeList.md) .
+Please refer to the [General Error Codes](#General Error Codes) .
 
 
 
@@ -1082,5 +1087,76 @@ GET `/service/synconhub/order/detail/E00144631`
 
 ### 7. Error Code Specification
 
-Please refer to the [General Error Codes](../SynConHubApiErrorCodeList.md) .
+Please refer to the [General Error Codes](#General Error Codes) .
 
+
+## General Error Codes
+ - 20000: "cannot identify the user, please contact support for help"
+ - 20001: "The system cannot process the request,please try again or contact support for help"
+ - 20002: "The product cannot be found"
+ - 20003: "Inventory not enough"
+ - 20004: "Out of time"
+ - 20005: "Invalid box type"
+ - 20006: "Order does not exist"
+ - 20007: "Inventory of this product could not be found"
+ - 20008: "Promotion inventory in short supply"
+ - 20009: "Coupon for this order could not be found"
+ - 20010: "The number of coupons available is smaller than the number of coupons available for the order"
+ - 20011: "Discount plan inventory shortage or price change, please place a new order"
+ - 20012: "Invalid parameter, promotion plan verification failed"
+ - 20013: "Insured service does not exist or has expired, please re-order"
+ - 20014: "Some charges not allowed to change currency"
+ - 20015: "Down payment is not allowed"
+ - 20016: "All charges of Instance Booking have to be paid online"
+ - 20017: "No currency conversion is allowed for the order fee"
+ - 20018: "Only customers in Mainland China are allowed to purchase Instance Booking"
+ - 20019: "Wrong order product type"
+ - 20020: "Some fees only support CNY or USD"
+ - 20021: "Company country/region is different from country/region of POR or FND, purchase is not allowed"
+ - 20022: "The down payment ratio must be greater than 0"
+ - 20023: "Does not meet the minimum down payment percentage range"
+ - 20024: "Does not meet the maximum down payment percentage range"
+ - 20025: "The order is missing some necessary cost items"
+ - 20026: "The product type of the order can only be I or P"
+ - 20027: "The payment method for part of the order is wrong"
+ - 20028: "Some cost items are missing to prepaid attributes"
+ - 20029: "Online collect payment not support partial payment for now"
+ - 20030: "There are invalid charges, please place a new order"
+ - 20031: "Coupon overuse"
+ - 20032: "System charge item pre-paid configuration error, please contact customer service for processing"
+ - 20033: "Due to the system configuration, some fees are not allowed to be paid in USD or to switch to pre-paid, please contact the customer service for processing"
+ - 20034: "Dear user, this product is no longer available, please contact customer service"
+ - 20035: "Online payment cannot include both prepaid and collect-paid, please contact customer service for processing"
+ - 20036: "The quantity of BL should be greater that 1"
+ - 20037: "Unable to purchase this product for now, please contact customer service for processing"
+ - 20038: "Incorrect product information, please contact customer service for processing"
+ - 20039: "This payment method is not currently supported, please contact customer service for processing"
+ - 20040: "The page size must be greater than 0"
+ - 20041: "The page size should be between 0 and 30."
+ - 20042: "Parameter verification error"
+ - 20043: "Cross Booking invalid inventory"
+ - 20044: "Cross Booking wrong shipping date information"
+ - 20045: "Cross Booking insufficient stock"
+ - 20046: "Cross Booking cargo container not found"
+ - 20047: "This cargo nature type is not supported at the moment, please contact customer service"
+ - 20048:"Failed to get enterprise information"
+ - 20049:''Order query only supports data query within two months"
+ - 20051:"Sorry for system busy, please try again later"
+ - 20053:"CrossBooking schedule information LTD is wrong"
+ - 20054: "Address cannot be empty"
+ - 20055: "Sub-company carrier customer code out of scope."
+ - 20056: "The TEU purchase limit for the week in which the product is sold is insufficient"
+ - 20057: "CrossBooking contract number does not exist"
+ - 20058: "CrossBooking start week cannot be earlier than the current four weeks"
+ - 20059: "API booking cannot purchase FMC products"
+ - 20060: "Permission denied"
+ - 20061: "CosPlus | product booking must fill in all shipping related party information"
+ - 20062: "Wrong import and export type of intermodal service"
+ - 20063: "The intermodal service does not exist"
+ - 20064: "Can't find the city"
+ - 20066: "Some container types do not support intermodal service"
+ - 20067: "The intermodal service fee is charged by weight, and the estimated cargo weight of the box type is required"
+ - 20068: "The estimated weight of the container is not in the optional range, please re-order"
+ - 20070:"CosPlus | Shipper or consignee of shipping related party filled in the product booking is illegal."
+ - 20072:"API cannot purchase this type of product"
+ - 20073:"Charge Type:xxx,ChargeName:xxx cannot be set to Collect"
