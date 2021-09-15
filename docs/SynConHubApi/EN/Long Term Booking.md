@@ -312,7 +312,7 @@ Query brief information of eligible orders based on conditions
 |    orderNo     | string  |    no    |          order no           |                                        |
 |  orderStatus   | string  |    no    |        order status         | **optional value:** CONFIRMED,CANCELED |
 |      page      | integer |   yes    |          page size          |      **default:**1，**minimum:**1      |
-|      size      | integer |   yes    |         record size         |   **default:**20, **range:**[1, 50]    |
+|      size      | integer |   yes    |         record size         |   **default:**20, **range:**[1, 30]    |
 | updateDateFrom | ISODate |    no    | Order update time from(GMT) |                                        |
 |  updateDateTo  | ISODate |    no    |  Order update time to(GMT)  |                                        |
 
@@ -602,4 +602,13 @@ Please refer to the [General Error Codes](#General Error Codes) .
  - 20075: "The long-term product is off-shelf"
  - 20076: "Insufficient amount of available containers"
  - 20077: "It is not the time allowed for booking"
- - 20078:"Ocean charge cannot do prepaid-collect switch"
+ - 20078: "Ocean charge cannot do prepaid-collect switch"
+ - 20079: "The reefer value-added service does not exist or has expired"
+ - 20080: "The reefer value-added service type is incorrect"
+ - 20081: "The value of a single box of goods is more than US $500,000, please buy offline, the online process is not supported"
+ - 20082: "When MED are selected for reefer value-added services, the cargoValue is required"
+ - 20083: "You cannot choose more than one cold box value-added service other than IOT"
+ - 20084: "cargoInfo.reeferGenSetType cannot be empty"
+ - 20085: "cargoInfo.reeferTemperatureType and cargoInfo.reeferTemperatureValue  cannot be empty"
+ - 20086: "Ventilation Settings cannot be added when the reefer temperature is less than 0 C or 32 F"
+ - 20087: "Ventilation setting must be added when the reefer temperature is ≥0°C or ≥32°F"

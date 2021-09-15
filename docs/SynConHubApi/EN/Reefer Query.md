@@ -1,15 +1,15 @@
-# COSCO Syncon Hub API Specification for Long Term Query
+# COSCO Syncon Hub API Specification for Reefer Spot Rate
 
 [toc]
 
 ## Update Logs
 
-v2.0.0 (2021-08-07)
+v1.0.0 (2021-08-30)
 
-1. **`A `**  Added the API Long Term query interface. 
-2. **`A `**  Added the API Long term Intermodal service query interface. 
-3. **`A `**  Added the API long term detail query interface. 
-4. **`A `**  Added the API long term surcharge query interface. 
+1. **`A `**  Added the API Reefer spot Rate interface. 
+2. **`A `**  Added the API Reefer spot Rate details query interface. 
+3. **`A `**  Added the API Reefer Intermodal Service Query Interface. 
+4. **`A `**  Added the API Reefer Surcharge Query Interface. 
 
 
 
@@ -32,33 +32,36 @@ HTTP header information description
 
 
 
-## Long Term Query Interface
+## Spot Rate Query Interface
 
 ### 1. Informations
 
-* **Path**: /service/synconhub/product/longTerm/search
+* **Path**: /service/synconhub/product/reefer/search
 * **Method**: POST
 
 ### 2. Request parameters
 
-| Name      |  Type   | Required |                Description                |            **Remarks**            |
-| :-------- | :-----: | :------: | :---------------------------------------: | :-------------------------------: |
-| startDate | ISODate |   yes    | the start date of sailing date scope(GMT) |                                   |
-| endDate   | ISODate |    no    |  the end date of Sailing date scope(GMT)  |                                   |
-| porCityId | string  |   yes    |                por city id                |                                   |
-| fndCityId | string  |   yes    |                fnd city id                |                                   |
-| page      | integer |   yes    |                 page size                 |   **default:**1，**minimum:**1    |
-| size      | integer |   yes    |                record size                | **default:**20，**range:**[1, 50] |
+| Name          |  Type   | Required |                Description                |            **Remarks**            |
+| :------------ | :-----: | :------: | :---------------------------------------: | :-------------------------------: |
+| cargoCategory | string  |   yes    |               REEFER / NOR                |     REEFER / NOR (non-reefer)     |
+| startDate     | ISODate |   yes    | the start date of sailing date scope(GMT) |                                   |
+| endDate       | ISODate |    no    |    the end of Sailing date scope(GMT)     |                                   |
+| porCityId     | string  |   yes    |                por city id                |                                   |
+| fndCityId     | string  |   yes    |                fnd city id                |                                   |
+| page          | integer |   yes    |                 page size                 |   **default:**1，**minimum:**1    |
+| size          | integer |   yes    |                record size                | **default:**20，**range:**[1, 50] |
 
 ### 3. Request sample
 
 ```javascript
 {
-    "startDate": "2021-08-04T00:00:00.000Z",
-    "porCityId":"738872886232873",
-    "fndCityId":"738872886259201",
-    "page":1,
-    "size":30
+  "cargoCategory": "REEFER", // "cargoCategory": "NOR"
+  "startDate": "2021-06-01T00:00:00.000Z",
+  "endDate": "2021-07-30T00:00:00.000Z",
+  "fndCityId": "738872886233842",
+  "porCityId": "738872886232873",
+  "page": 1,
+  "size": 20
 }
 ```
 
@@ -68,7 +71,7 @@ HTTP header information description
 | ------- | ------------------------------------------------------------ |
 | code    | status code                                                  |
 | message | detail message                                               |
-| data    | pagination to return product information that meets the query conditions. (sorted by weekNo by default) |
+| data    | pagination to return product information that meets the query conditions. (sorted by ETD by default) |
 
 ### 5. Response sample
 
@@ -80,10 +83,14 @@ HTTP header information description
         "content": [
             {
                 "id": "8a80cb817321ad030173221c880101d2",
-                "weekNo": "202131",
+                "cargoCategory": "REEFER",
+        		"cargoType": "FROZEN",
                 "tradeLaneCode": "AEU",
                 "serviceCode": "AEM5",
                 "tradeArea": "ETD",
+                "vesselName": "COSCO YANTIAN",
+                "voyageNo": "020",
+                "direction": "W",
                 "porFacilityCode": null,
                 "porFacilityName": null,
                 "porFacilityNameCn": null,
@@ -92,8 +99,11 @@ HTTP header information description
                 "fndFacilityCode": null,
                 "haulageType": "CY-CY",
                 "isFmcProduct": false,
-                "effectiveEndDate": "2021-08-06T23:59:59.000Z",
-                "effectiveStartDate": "2021-07-31T00:00:00.000Z",
+                "estimatedTransitTimeInDays": 30,
+                "effectiveStartDate": "2021-07-05T00:00:00.000Z", 
+                "effectiveEndDate": "2021-12-23T23:59:59.000Z",
+                "eta": "2021-09-07 00:00",
+                "etd": "2021-08-04 00:00",
                 "inventory": 717,
                 "polTsMode": null, // pol transit mode
                 "podTsMode": null, // pod transit mode
@@ -231,10 +241,14 @@ HTTP header information description
                                 "serviceCode": "AEM5",
                                 "serviceId": null
                             },
-                            "vessel": null,
+                            "vessel": {
+                                "vesselName": "COSCO YANTIAN",
+                                "vesselId": null,
+                                "vesselCode": null
+                            },
                             "voyageCode": null,
-                            "internalVoyageNumber": null,
-                            "externalVoyageNumber": null,
+                            "internalVoyageNumber": "020",
+                            "externalVoyageNumber": "020W",
                             "pol": {
                                 "port": {
                                     "id": "349645770723389",
@@ -244,7 +258,7 @@ HTTP header information description
                                     "portFullNameCn": "蛇口",
                                     "city": null
                                 },
-                                "etd": null,
+                                "etd": "2021-08-04 00:00",
                                 "atd": null,
                                 "eta": null,
                                 "ata": null,
@@ -261,42 +275,56 @@ HTTP header information description
                                 },
                                 "etd": null,
                                 "atd": null,
-                                "eta": null,
+                                "eta": "2021-09-07 00:00",
                                 "ata": null,
                                 "facilityCode": null
                             },
                             "legSequence": 0,
-                            "direction": null,
+                            "direction": "W",
                             "transportMode": null
                         }
                     ],
                     "cutOffLocalDate": null,
-                    "etaAtFnd": null,
-                    "etdAtPor": null,
-                    "serviceCode": "AEM5"
+                    "estimatedTransitTimeInDays": 30,
+                    "etaAtFnd": "2021-09-07 00:00",
+                    "etdAtPor": "2021-08-04 00:00",
+                    "serviceCode": "AEM5",
+                    "vesselName": "COSCO YANTIAN",
+                    "direction": "W",
+                    "voyageNo": "020"
                 },
                 "routeProductPricingList": [
                     {
-                        "cntrType": "20GP",
+                        "cntrType": "20RF",
                         "price": 2.00,
-                        "currency": "USD",
-                        "paymentTerms": "P"
-                    }
-                ],
-                "companyDiscountsInfoDTO": [
-                    {
-                        "channelCntr": "20GP",
-                        "amount": 0.5,
-                        "currencyType": "USD"
-                    }
-                ],
-                "collectExtraCharges": [
-                    {
-                        "cntrType": "20GP",
-                        "price": 9,
+                        "tradePrice": 0.50, //tradePrice = price - promotions - discounts
                         "currency": "USD"
                     }
-                ]
+                ],
+                //  If ocean charge switch to collect payment, would need add collect payment charge
+                "collectExtraCharges": [
+                    {
+                        "cntrType": "20RF",
+                        "price": 20,
+                        "currency": "USD"
+                    },
+                    {
+                        "cntrType": "40RQ",
+                        "price": 40,
+                        "currency": "USD"
+                    }
+                ],
+                "promotions": {
+                    "detail": [
+                        {
+                            "promotionType": "OFF",
+                            "remnantInventory": 40,
+                            "summary": "订单下箱型20RF、40RQ每UNIT立减1USD。",
+                            "priority": 1
+                        }
+                    ]
+                },
+                "companyDiscountsInfoDTO": []
             }
         ],
         "number": 1,
@@ -319,12 +347,12 @@ HTTP header information description
 }
 ```
 
-## Long Term Intermodal Service Query Interface
+## Intermodal Service Query Interface
 
 
 ### 1.Informations
 
-* **Path**: /service/synconhub/common/intermodalService/longTerm/{productId}
+* **Path**: /service/synconhub/common/intermodalService/reefer/{productId}
 * **Method**: GET
 
 ### 2. Path parameters
@@ -336,7 +364,7 @@ HTTP header information description
 ### 3. Request sample
 
 ```HTTP
-GET /service/synconhub/common/intermodalService/longTerm/8a5e11157351b2df01735562622a0000
+GET /service/synconhub/common/intermodalService/reefer/8a5e11157351b2df01735562622a0000
 ```
 
 ### 4. Response parameters
@@ -367,10 +395,10 @@ GET /service/synconhub/common/intermodalService/longTerm/8a5e11157351b2df0173556
                 "transportTerms": "CY", // Traffic Mode 
                 "bargeDay": 3,
                 "transitDay": 4,
-                "isFollowOceanFee": false,
+                "isFollowOceanFee": true, // payment terms follow ocean fee payment terms
                 "containerInfoDTOList": [ // Supported cntr type and weight config
                     {
-                        "cntrSizeType": "20GP",
+                        "cntrSizeType": "20RF",
                         "cntrPrice": 100,
                         "currencyType": "USD",
                         "paymentTerms": "P",
@@ -379,7 +407,16 @@ GET /service/synconhub/common/intermodalService/longTerm/8a5e11157351b2df0173556
                         "weightUnit": null
                     },
                     {
-                        "cntrSizeType": "40GP",
+                        "cntrSizeType": "20RF",
+                        "cntrPrice": 150,
+                        "currencyType": "USD",
+                        "paymentTerms": "C",
+                        "minWeight": null,
+                        "maxWeight": null,
+                        "weightUnit": null
+                    },
+                    {
+                        "cntrSizeType": "40RQ",
                         "cntrPrice": 300,
                         "currencyType": "USD",
                         "paymentTerms": "P",
@@ -388,10 +425,10 @@ GET /service/synconhub/common/intermodalService/longTerm/8a5e11157351b2df0173556
                         "weightUnit": null
                     },
                     {
-                        "cntrSizeType": "40HQ",
-                        "cntrPrice": 300,
+                        "cntrSizeType": "40RQ",
+                        "cntrPrice": 320,
                         "currencyType": "USD",
-                        "paymentTerms": "P",
+                        "paymentTerms": "C",
                         "minWeight": null,
                         "maxWeight": null,
                         "weightUnit": null
@@ -411,10 +448,10 @@ GET /service/synconhub/common/intermodalService/longTerm/8a5e11157351b2df0173556
                 "transportTerms": "CY",
                 "bargeDay": 2,
                 "transitDay": 3,
-                "isFollowOceanFee": false,
+                "isFollowOceanFee": false, // payment terms follow ocean fee payment terms
                 "containerInfoDTOList": [
                     {
-                        "cntrSizeType": "20GP",
+                        "cntrSizeType": "20RF",
                         "cntrPrice": 100,
                         "currencyType": "USD",
                         "paymentTerms": "P",
@@ -423,7 +460,7 @@ GET /service/synconhub/common/intermodalService/longTerm/8a5e11157351b2df0173556
                         "weightUnit": null
                     },
                     {
-                        "cntrSizeType": "40GP",
+                        "cntrSizeType": "40RQ",
                         "cntrPrice": 200,
                         "currencyType": "USD",
                         "paymentTerms": "P",
@@ -432,10 +469,19 @@ GET /service/synconhub/common/intermodalService/longTerm/8a5e11157351b2df0173556
                         "weightUnit": null
                     },
                     {
-                        "cntrSizeType": "40HQ",
-                        "cntrPrice": 200,
+                        "cntrSizeType": "40RQ",
+                        "cntrPrice": 225,
                         "currencyType": "USD",
-                        "paymentTerms": "P",
+                        "paymentTerms": "C",
+                        "minWeight": null,
+                        "maxWeight": null,
+                        "weightUnit": null
+                    },
+                                        {
+                        "cntrSizeType": "20RF",
+                        "cntrPrice": 125,
+                        "currencyType": "USD",
+                        "paymentTerms": "C",
                         "minWeight": null,
                         "maxWeight": null,
                         "weightUnit": null
@@ -455,11 +501,11 @@ GET /service/synconhub/common/intermodalService/longTerm/8a5e11157351b2df0173556
                 "transportTerms": "CY",
                 "bargeDay": 2,
                 "transitDay": 4,
-                "isFollowOceanFee": false,
+                "isFollowOceanFee": false, // payment terms follow ocean fee payment terms
                 "containerInfoDTOList": [ 
                     // If cargo weight information is configured,The same cntr type will have multiple data
                     {
-                        "cntrSizeType": "20GP",
+                        "cntrSizeType": "20RF",
                         "cntrPrice": 100,
                         "currencyType": "USD",
                         "paymentTerms": "P",
@@ -469,7 +515,7 @@ GET /service/synconhub/common/intermodalService/longTerm/8a5e11157351b2df0173556
                         // If the weight of the cargo is between 0-20 tons, the loading service fee is 100 USD
                     },
                     {
-                        "cntrSizeType": "20GP",
+                        "cntrSizeType": "20RF",
                         "cntrPrice": 150,
                         "currencyType": "USD",
                         "paymentTerms": "P",
@@ -479,7 +525,7 @@ GET /service/synconhub/common/intermodalService/longTerm/8a5e11157351b2df0173556
                         // If the weight of the cargo is between 20-40 tons, the loading service fee is 150 USD
                     },
                     {
-                        "cntrSizeType": "20GP",
+                        "cntrSizeType": "20RF",
                         "cntrPrice": 200,
                         "currencyType": "USD",
                         "paymentTerms": "P",
@@ -489,7 +535,7 @@ GET /service/synconhub/common/intermodalService/longTerm/8a5e11157351b2df0173556
                         // If the weight of the cargo is more than 40 tons, the loading service fee is 100 USD
                     },
                     {
-                        "cntrSizeType": "40GP",
+                        "cntrSizeType": "40RQ",
                         "cntrPrice": 300,
                         "currencyType": "USD",
                         "paymentTerms": "P",
@@ -498,7 +544,7 @@ GET /service/synconhub/common/intermodalService/longTerm/8a5e11157351b2df0173556
                         "weightUnit": "TON"
                     },
                     {
-                        "cntrSizeType": "40HQ",
+                        "cntrSizeType": "40RQ",
                         "cntrPrice": 300,
                         "currencyType": "USD",
                         "paymentTerms": "P",
@@ -523,10 +569,10 @@ GET /service/synconhub/common/intermodalService/longTerm/8a5e11157351b2df0173556
                 "transportTerms": "FOR",
                 "bargeDay": 19,
                 "transitDay": 5,
-                "isFollowOceanFee": false,
+                "isFollowOceanFee": false, // payment terms follow ocean fee payment terms
                 "containerInfoDTOList": [
                     {
-                        "cntrSizeType": "20GP",
+                        "cntrSizeType": "20RF",
                         "cntrPrice": 300,
                         "currencyType": "USD",
                         "paymentTerms": "P",
@@ -535,16 +581,7 @@ GET /service/synconhub/common/intermodalService/longTerm/8a5e11157351b2df0173556
                         "weightUnit": null
                     },
                     {
-                        "cntrSizeType": "40GP",
-                        "cntrPrice": 400,
-                        "currencyType": "USD",
-                        "paymentTerms": "P",
-                        "minWeight": null,
-                        "maxWeight": null,
-                        "weightUnit": null
-                    },
-                    {
-                        "cntrSizeType": "40HQ",
+                        "cntrSizeType": "40RQ",
                         "cntrPrice": 400,
                         "currencyType": "USD",
                         "paymentTerms": "P",
@@ -566,19 +603,33 @@ GET /service/synconhub/common/intermodalService/longTerm/8a5e11157351b2df0173556
 
 ```javascript
 {
-    "code": 20074,
+    "code": 20002,
     "message": "The product cannot be found"
+}
+```
+
+```javascript
+{
+    "code": 20059,
+    "message": "Wrong bound type of intermodal service"
+}
+```
+
+```javascript
+{
+    "code": 20060,
+    "message": "The intermodal service does not exist"
 }
 ```
 
 
 
-## Long Term Details Query Interface
+## Spot Rate Details Query Interface
 
 ### 1. Informations
 
 
-* **Path**: /service/synconhub/product/longTerm/{productId}
+* **Path**: /service/synconhub/product/reefer/{productId}
 * **Method**: GET
 
 ### 2. Path parameters
@@ -598,15 +649,15 @@ GET /service/synconhub/common/intermodalService/longTerm/8a5e11157351b2df0173556
 ### 4. Request sample
 
 ```http
-GET /service/synconhub/product/longTerm/8a5e11157351b2df01735562622a0000
+GET /service/synconhub/product/reefer/8a5e11157351b2df01735562622a0000
 ```
 
 ```http
-GET /service/synconhub/product/longTerm/8a5e11157351b2df01735562622a0000?loadingServiceNo=8a5e112478d41b380178d4551a33000a
+GET /service/synconhub/product/reefer/8a5e11157351b2df01735562622a0000?loadingServiceNo=8a5e112478d41b380178d4551a33000a
 ```
 
 ```http
-GET /service/synconhub/product/longTerm/8a5e11157351b2df01735562622a0000?loadingServiceNo=8a5e112478d41b380178d4551a33000a&dischargeServiceNo=8a5e112478c4eed60178c51cca9f0001
+GET /service/synconhub/product/reefer/8a5e11157351b2df01735562622a0000?loadingServiceNo=8a5e112478d41b380178d4551a33000a&dischargeServiceNo=8a5e112478c4eed60178c51cca9f0001
 ```
 
 
@@ -627,10 +678,14 @@ GET /service/synconhub/product/longTerm/8a5e11157351b2df01735562622a0000?loading
     "message": "",
     "data": {
         "id": "8a5e11157351b2df01735562622a0000",
-        "weekNo": "202131",
+        "cargoCategory": "REEFER",
+        "cargoType": "FROZEN",    
         "tradeLaneCode": "AEU",
         "serviceCode": "AEU2",
         "tradeArea": "ETD",
+        "vesselName": "APL VANDA",
+        "voyageNo": "022",
+        "direction": "W",
         "porFacilityCode": "SHA08",
         "porFacilityName": "Shanghai Shengdong (I), Yangshan",
         "porFacilityNameCn": null,
@@ -639,8 +694,11 @@ GET /service/synconhub/product/longTerm/8a5e11157351b2df01735562622a0000?loading
         "fndFacilityCode": "HAM02",
         "haulageType": "CY-CY",
         "isFmcProduct": false,
-        "effectiveStartDate": "2020-07-05T00:00:00.000Z",
-        "effectiveEndDate": "2020-12-23T23:59:59.000Z",
+        "estimatedTransitTimeInDays": 30,
+        "effectiveStartDate": "2021-07-05T00:00:00.000Z",
+        "effectiveEndDate": "2021-12-23T23:59:59.000Z",
+        "eta": "2021-09-16 00:00",
+        "etd": "2021-08-12 00:00",
         "inventory": 396,
         "polTsMode": null, // pol transit mode
         "podTsMode": null, // pod transit mode
@@ -778,10 +836,14 @@ GET /service/synconhub/product/longTerm/8a5e11157351b2df01735562622a0000?loading
                         "serviceCode": "AEU2",
                         "serviceId": null
                     },
-                    "vessel": null,
+                    "vessel": {
+                        "vesselName": "APL VANDA",
+                        "vesselId": null,
+                        "vesselCode": null
+                    },
                     "voyageCode": null,
-                    "internalVoyageNumber": null,
-                    "externalVoyageNumber": null,
+                    "internalVoyageNumber": "022",
+                    "externalVoyageNumber": "022W",
                     "pol": {
                         "port": {
                             "id": "349657045012458",
@@ -791,7 +853,7 @@ GET /service/synconhub/product/longTerm/8a5e11157351b2df01735562622a0000?loading
                             "portFullNameCn": "上海",
                             "city": null
                         },
-                        "etd": "2020-08-12 00:00",
+                        "etd": "2021-08-12 00:00",
                         "atd": null,
                         "eta": null,
                         "ata": null,
@@ -808,46 +870,62 @@ GET /service/synconhub/product/longTerm/8a5e11157351b2df01735562622a0000?loading
                         },
                         "etd": null,
                         "atd": null,
-                        "eta": "2020-09-16 00:00",
+                        "eta": "2021-09-16 00:00",
                         "ata": null,
                         "facilityCode": "HAM02"
                     },
                     "legSequence": 0,
-                    "direction": null,
+                    "direction": "W",
                     "transportMode": null
                 }
             ],
             "cutOffLocalDate": null,
-            "serviceCode": "AEU2"
+            "estimatedTransitTimeInDays": 30,
+            "etaAtFnd": "2021-09-16 00:00",
+            "etdAtPor": "2020-08-12 00:00",
+            "serviceCode": "AEU2",
+            "vesselName": "APL VANDA",
+            "direction": "W",
+            "voyageNo": "022"
         },
         "routeProductPricingList": [
-              {
-                 "cntrType": "20GP",
-                 "price": 2.00,
-                 "currency": "USD",
-                 "paymentTerms": "P"
-              }，
-              {
-                 "cntrType": "20GP",
-                 "price": 6.00,
-                 "currency": "USD",
-                 "paymentTerms": "C"
-               }
+          {
+            "cntrType": "20RF",
+            "price": 44.00,
+            "tradePrice": 44.00,
+            "currency": "USD"
+          },
+          {
+            "cntrType": "40RQ",
+            "price": 88.00,
+            "tradePrice": 88.00,
+            "currency": "USD"
+          }
         ],
-        "companyDiscountsInfoDTO": [
-            {
-                "channelCntr": "20GP",
-                "amount": 0.5,
-                "currencyType": "USD",
-            }
-        ],
+       //  If ocean charge switch to collect payment, would need add collect payment charge
         "collectExtraCharges": [
+          {
+            "cntrType": "40RQ",
+            "price": 50,
+            "currency": "USD"
+          },
+          {
+            "cntrType": "20RF",
+            "price": 50,
+            "currency": "USD"
+          }
+        ],          
+        "promotions": {
+           "detail": [
             {
-                "cntrType": "20GP",
-                "price": 9,
-                "currency": "USD"
+              "promotionType": "FULL_OFF",
+              "remnantInventory": 93,
+              "summary": "箱型20RF、40RQ，满3TEU，订单下箱型20RF、40RQ每TEU立减10USD。",
+              "priority": 1
             }
-        ]    
+          ]
+        },
+        "companyDiscountsInfoDTO": [],
         "couponInfos": [
             {
                 "couponId": "8a5e11227152917a017152b6049f0002",
@@ -861,6 +939,38 @@ GET /service/synconhub/product/longTerm/8a5e11157351b2df01735562622a0000?loading
                 "usageUnit": "UNIT"
             }
         ],
+        "reeferValueAddedServices": [	// There is a corresponding reefer value-added services while cargoCategory is REEFER
+          {
+            "cntrType": "20RF",
+            "type": "CA",
+            "price": 10,
+            "currency": "USD"
+          },
+          {
+            "cntrType": "20RF",
+            "type": "MED",  // medicine
+            "price": 13,
+            "currency": "USD"
+          },
+          {
+            "cntrType": "20RF",
+            "type": "CT",
+            "price": 23,
+            "currency": "USD"
+          },
+          {
+            "cntrType": "20RF",
+            "type": "IOT",
+            "price": 23,
+            "currency": "USD"
+          },
+          {
+            "cntrType": "20RF",
+            "type": "OTHERS",
+            "price": 23,
+            "currency": "USD"
+          }
+        ]
     }
 }
 ```
@@ -869,42 +979,21 @@ GET /service/synconhub/product/longTerm/8a5e11157351b2df01735562622a0000?loading
 
 ```javascript
 {
-    "code": 20001,
-    "message": "cannot proceed the request, please retry later or contact support for help"
-}
-```
-
-```javascript
-{
-    "code": 20062,
-    "message": "Wrong bound type of intermodal service"
-}
-```
-
-```javascript
-{
-    "code": 20063,
-    "message": "The intermodal service does not exist"
-}
-```
-
-```json
-{
-    "code": 20074,
-    "message": "The product cannot be found"
+    "code": 20000,
+    "message": "cannot identify the user, please contact support for help"
 }
 ```
 
 
 
-## Long Term Surcharge Query Interface
+## Surcharge Query Interface
 
 Get the surcharge details of a specific product.
 
 ### 1. Informations
 
 
-* **Path**: /service/synconhub/common/extraChargeFee/longTerm/${productId}
+* **Path**: /service/synconhub/common/extraChargeFee/reefer/${productId}
 * **Method**: GET
 
 ### 2. Path parameters
@@ -923,18 +1012,16 @@ Get the surcharge details of a specific product.
 ### 4. Request sample
 
 ```http
-GET /service/synconhub/common/extraChargeFee/longTerm/8a80cb817321ad030173221c880101d2
+GET /service/synconhub/common/extraChargeFee/reefer/8a80cb817321ad030173221c880101d2
 ```
 
 ```http
-GET /service/synconhub/common/extraChargeFee/longTerm/8a80cb817321ad030173221c880101d2?loadingServiceNo=8a5e11127467f02501747218e25c0001
+GET /service/synconhub/common/extraChargeFee/reefer/8a80cb817321ad030173221c880101d2?loadingServiceNo=8a5e11127467f02501747218e25c0001
 ```
 
 ```http
-GET /service/synconhub/common/extraChargeFee/longTerm/8a80cb817321ad030173221c880101d2?loadingServiceNo=8a5e11127467f02501747218e25c0001&dischargeServiceNo=8a5e11247866fbec0178681acd3a0008
+GET /service/synconhub/common/extraChargeFee/reefer/8a80cb817321ad030173221c880101d2?loadingServiceNo=8a5e11127467f02501747218e25c0001&dischargeServiceNo=8a5e11247866fbec0178681acd3a0008
 ```
-
-
 
 ### 5. Response parameters
 
@@ -963,8 +1050,8 @@ GET /service/synconhub/common/extraChargeFee/longTerm/8a80cb817321ad030173221c88
                             "price": 666,
                             "currency": "USD",
                             "paymentTerms": "P",
-                            "category": null, // charge category
-                            "isFollowOceanFee": false
+		                    "isFollowOceanFee": true, // payment terms follow ocean fee payment terms
+                            "category": null // charge category
                         }，
                         {
                             "chargeCode": "DOC",
@@ -974,14 +1061,14 @@ GET /service/synconhub/common/extraChargeFee/longTerm/8a80cb817321ad030173221c88
                             "price": 888,
                             "currency": "USD",
                             "paymentTerms": "C",
-                            "category": null, // charge category
-                        	"isFollowOceanFee": false
+		                    "isFollowOceanFee": true, // payment terms follow ocean fee payment terms
+                            "category": null // charge category
                         }    
                     ]
                 },
                 {
                     "chargeModel": "CNTR",
-                    "cntrSize": "20GP",
+                    "cntrSize": "20RF",
                     "chargeDetail": [
                         {
                             "chargeCode": "255",
@@ -991,8 +1078,8 @@ GET /service/synconhub/common/extraChargeFee/longTerm/8a80cb817321ad030173221c88
                             "price": 10,
                             "currency": "USD",
                             "paymentTerms": "P",
-                            "category": "EXTRA_CHARGE",
-                            "isFollowOceanFee": false
+		                    "isFollowOceanFee": false,
+                            "category": "EXTRA_CHARGE"
                         }
                     ]
                 }
@@ -1006,27 +1093,6 @@ GET /service/synconhub/common/extraChargeFee/longTerm/8a80cb817321ad030173221c88
 {
     "code": 20001,
     "message": "cannot proceed the request, please retry later or contact support for help"
-}
-```
-
-```javascript
-{
-    "code": 20062,
-    "message": "Wrong bound type of intermodal service"
-}
-```
-
-```javascript
-{
-    "code": 20063,
-    "message": "The intermodal service does not exist"
-}
-```
-
-```json
-{
-    "code": 20074,
-    "message": "The product cannot be found"
 }
 ```
 
@@ -1117,3 +1183,4 @@ GET /service/synconhub/common/extraChargeFee/longTerm/8a80cb817321ad030173221c88
  - 20085: "cargoInfo.reeferTemperatureType and cargoInfo.reeferTemperatureValue  cannot be empty"
  - 20086: "Ventilation Settings cannot be added when the reefer temperature is less than 0 C or 32 F"
  - 20087: "Ventilation setting must be added when the reefer temperature is ≥0°C or ≥32°F"
+
