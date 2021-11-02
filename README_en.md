@@ -5,9 +5,9 @@
 
 # 0x01 COP #
 
-**Cosco shipping lines Open-api Platform**：Currently COP is in **trial operation**!!! Free data service is available during the commissioning period.
+**Coscoshipping lines Open-api Platform**：Currently COP is in **trial operation**!!! Free data service is available during the commissioning period.
 
-COSCO Shipping's Open API is mainly based on container transportation business, extending to the upstream and downstream of the supply chain, front and back end, on the one hand, serving traditional transport customers, customizing information solutions for industry customers, deepening and customer information cooperation, and enhancing service viscosity On the other hand, through the establishment of a rich and comprehensive supply chain and e-commerce API system, and even allow third parties (independent developers, industry solutions providers, customers) based on our API system for customized development, to promote the logistics information platform ecological construction.
+COSCOShipping Lines Open API is mainly based on container transportation business, extending to the upstream and downstream of the supply chain, front and back end, on the one hand, serving traditional transport customers, customizing information solutions for industry customers, deepening and customer information cooperation, and enhancing service viscosity On the other hand, through the establishment of a rich and comprehensive supply chain and e-commerce API system, and even allow third parties (independent developers, industry solutions providers, customers) based on our API system for customized development, to promote the logistics information platform ecological construction.
 
 ## COP Customer Application ##
 In order to ensure the security and privacy of user data, COP's customer applications ("Application" or "Consumer") need to go through a certain business application and review process before they can be authorized to access to the COP platform. Each application will be assigned a set of apiKey and secretKey as the identification credentials for application, and developers must keep apiKey and secretKey. ApiKey and secretKey in the production formal environment will serve as **the only credentials** for cop customer applications.
