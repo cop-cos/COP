@@ -243,7 +243,7 @@ hmac username="$YOUR_ApiKey", algorithm="hmac-sha1", headers="X-Coscon-Date X-Co
 |      |         | TRUCK-车队接口标准套件-集卡GPS历史轨迹 |[说明 doc](https://github.com/cop-cos/COP/blob/master/docs/dts/truckGetTrailerTrack.md)| **账号级别**，每天至多1000次，每月至多30000次|
 |      |         | TRUCK-车队接口标准套件-海运订单数据 |[说明 doc](https://github.com/cop-cos/COP/blob/master/docs/dts/truckOrderInfo.md)| **账号级别**，每天至多1000次，每月至多30000次|
 |      |         | TRUCK-单证是否派车 |[说明 doc](https://github.com/cop-cos/COP/blob/master/docs/dts/truckWorkOrderStatus.md)| **账号级别**，每天至多1000次，每月至多30000次|
-
+|      |         | TRUCK-订单信息变更查询  |[说明 doc](https://github.com/cop-cos/COP/blob/master/docs/dts/waybillChangeList.md)| **账号级别**，每天至多1000次，每月至多30000次|
 
 # 0x08 协议和约定 #
 当您提出入驻申请，即认为您已经同意如下协议和约定：
