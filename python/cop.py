@@ -7,7 +7,6 @@ import base64
 import hashlib
 import ssl
 import json
-import jaydebeapi
 import logging
 
 logging.basicConfig(
