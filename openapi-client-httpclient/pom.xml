@@ -4,7 +4,7 @@
 
   <groupId>com.coscon</groupId>
   <artifactId>openapi-client-httpclient</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>1.0.1</version>
   <packaging>jar</packaging>
 
   <name>openapi-client-httpclient</name>
@@ -12,6 +12,10 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <commons_io_version>2.10.0</commons_io_version>
+    <commons_lang3_version>3.11</commons_lang3_version>
+    <openapi_client_pure_version>1.0.1</openapi_client_pure_version>
+    <httpclient_version>4.5.13</httpclient_version>
   </properties>
 
   <dependencies>
@@ -23,22 +27,23 @@
     <dependency>
     	<groupId>com.coscon</groupId>
     	<artifactId>openapi-client-pure</artifactId>
-    	<version>1.0.0-RELEASE</version>
-    </dependency>
-    <dependency>
-    	<groupId>org.apache.commons</groupId>
-    	<artifactId>commons-lang3</artifactId>
-    	<version>3.2.1</version>
+    	<version>${openapi_client_pure_version}</version>
     </dependency>
     <dependency>
     	<groupId>org.apache.httpcomponents</groupId>
     	<artifactId>httpclient</artifactId>
-    	<version>4.3.6</version>
+    	<version>${httpclient_version}</version>
     </dependency>
     <dependency>
     	<groupId>commons-io</groupId>
     	<artifactId>commons-io</artifactId>
-    	<version>2.5</version>
+    	<version>${commons_io_version}</version>
     </dependency>
+    <dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>${commons_lang3_version}</version>
+			<scope>provided</scope>
+		</dependency>
   </dependencies>
 </project>
