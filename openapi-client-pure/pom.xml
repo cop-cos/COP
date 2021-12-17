@@ -4,7 +4,7 @@
 
 	<groupId>com.coscon</groupId>
 	<artifactId>openapi-client-pure</artifactId>
-	<version>1.0.0-RELEASE</version>
+	<version>1.0.1</version>
 	<packaging>jar</packaging>
 
 	<name>openapi-client-pure</name>
@@ -12,6 +12,9 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<commons_lang3_version>3.11</commons_lang3_version>
+		<openapi_client_pure_version>1.0.1</openapi_client_pure_version>
+		<commons_codec_version>1.15</commons_codec_version>
 	</properties>
 
 	<dependencies>
@@ -24,13 +27,13 @@
 		<dependency>
 			<groupId>commons-codec</groupId>
 			<artifactId>commons-codec</artifactId>
-			<version>1.11</version>
+			<version>${commons_codec_version}</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
-			<version>3.3.2</version>
+			<version>${commons_lang3_version}</version>
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>
