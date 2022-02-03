@@ -66,6 +66,8 @@ Email Subject: COP developer residency application - ${Your Company Name}
 |Contact telephone |    |
 |Email address:|    |
 |Company name:|    |
+|Company country/region:|    |
+|Company street address:|    |
 |My Role:|1. Customer; 2. Agent; 3. Logisitic Partner; 4. Software service vendor; 5. Information Integration Vendor;|
 |Usage:|Describe **areas of cooperation**, such as SynconHub business, epanasia business, or other businesses such as cargo tracking/sailingschedule etc.|
 
