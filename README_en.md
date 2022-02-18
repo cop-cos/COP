@@ -95,7 +95,7 @@ keytool -import -trustcacerts -alias cop -keystore "%JAVA_HOME%/JRE/LIB/SECURITY
 
 ## Hmac Auth ##
 
-* The COP platform publishes a pair of **App Key** and **Secret Key** for each Application to identify Application. The COP platform assigns access to the API based on the application and business requirements.
+* The COP platform publishes a pair of **Api Key** and **Secret Key** for each Application to identify Application. The COP platform assigns access to the API based on the application and business requirements.
 
 
 * Hmac Auth system uses API Key, Secret Key, abstract and other technologies, for the user access to URI address and request message for service-side verification, high security, performance overhead slightly higher.
