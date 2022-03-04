@@ -42,7 +42,7 @@ Customer can place booking through this Interface.  The Interface will generate 
 
 ### 1. Information
 
-* **Path**: /service/synconhub/shipment/channel-l-cosco-shipping/booking
+* **Path**: /service/synconhub/shipment/channelLCoscoShipping/booking
 * **Method**: POST
 
 ### 2. Request parameters
@@ -286,7 +286,7 @@ Query brief information of eligible orders based on conditions
 ### 1. Information
 
 
-- **Path**: /service/synconhub/order/channel-l-cosco-shipping/search
+- **Path**: /service/synconhub/order/channelLCoscoShipping/search
 - **Method**: POST
 
 ### 2. Request parameters

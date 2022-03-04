@@ -38,7 +38,7 @@ HTTP header information description
 
 ### 1. Information
 
-* **Path**: /service/synconhub/product/channel-l-direct-customer/search
+* **Path**: /service/synconhub/product/channelLDirectCustomer/search
 * **Method**: POST
 
 ### 2. Request Parameters
@@ -691,7 +691,7 @@ Please refer to the [General Error Codes](#General Error Codes) .
 ### 1. Information
 
 
-* **Path**: /service/synconhub/product/channel-l-direct-customer/{productId}
+* **Path**: /service/synconhub/product/channelLDirectCustomer/{productId}
 * **Method**: GET
 
 ### 2. Path Parameters
@@ -1211,7 +1211,7 @@ Get POR/FND trailer doors of the product.
 
 ### 1.Information
 
-* **Path**: /service/synconhub/common/trailer-doors
+* **Path**: /service/synconhub/common/trailerDoors
 * **Method**: POST
 
 ### 2. Request Parameters
@@ -1320,7 +1320,7 @@ Get POR/FND trailer rates of the trailer door.
 
 ### 1.Information
 
-* **Path**: /service/synconhub/common/trailer-rates
+* **Path**: /service/synconhub/common/trailerRates
 * **Method**: POST
 
 ### 2. Query Parameters
