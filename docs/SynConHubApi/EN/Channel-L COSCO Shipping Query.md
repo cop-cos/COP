@@ -711,15 +711,15 @@ Please refer to the [General Error Codes](#General Error Codes) .
 ### 4. Request Sample
 
 ```http
-GET /service/synconhub/product/channel-l-cosco-shipping/8a5e11157351b2df01735562622a0000
+GET /service/synconhub/product/channelLCoscoShipping/8a5e11157351b2df01735562622a0000
 ```
 
 ```http
-GET /service/synconhub/product/channel-l-cosco-shipping/8a5e11157351b2df01735562622a0000?loadingServiceNo=8a5e112478d41b380178d4551a33000a
+GET /service/synconhub/product/channelLCoscoShipping/8a5e11157351b2df01735562622a0000?loadingServiceNo=8a5e112478d41b380178d4551a33000a
 ```
 
 ```http
-GET /service/synconhub/product/channel-l-cosco-shipping/8a5e11157351b2df01735562622a0000?loadingServiceNo=8a5e112478d41b380178d4551a33000a&dischargeServiceNo=8a5e112478c4eed60178c51cca9f0001
+GET /service/synconhub/product/channelLCoscoShipping/8a5e11157351b2df01735562622a0000?loadingServiceNo=8a5e112478d41b380178d4551a33000a&dischargeServiceNo=8a5e112478c4eed60178c51cca9f0001
 ```
 
 ### 5. Response Parameters
@@ -1362,7 +1362,7 @@ Get POR/FND trailer rates of the trailer door.
             "cntrType": "20GP",
             "currency": "CNY",
             "price": 3400.01,
-            "udd": "UDD1",
+            "udd": "UDD1",	// remark
             "paymentTerms": "P"
         },
         {
