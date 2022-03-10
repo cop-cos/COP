@@ -231,6 +231,7 @@ Detail:[Global Codes](https://github.com/cop-cos/COP/blob/master/GlobalCodes.md)
 |      |         | 签收单链接查询 |[说明 doc](https://github.com/cop-cos/COP/blob/master/docs/dts/cargoReceiptLink.md)| **账号级别**，每天至多1000次，每月至多30000次|
 |      |         | 运单下载 |[说明 doc](https://github.com/cop-cos/COP/blob/master/docs/dts/waybillDownload.md)| **账号级别**，每天至多1000次，每月至多30000次|
 |      |         | 订单信息查询 |[说明 doc](https://github.com/cop-cos/COP/blob/master/docs/dts/waybillInfo.md)| **账号级别**，每天至多1000次，每月至多30000次|
+|      |         | 订单信息变更查询 |[说明 doc](https://github.com/cop-cos/COP/blob/master/docs/dts/waybillChangeList.md)| **账号级别**，每天至多1000次，每月至多30000次|
 |      |         | TRUCK-车队接口标准套件-提箱校验码 |[说明 doc](https://github.com/cop-cos/COP/blob/master/docs/dts/pickupItemCheckCode.md)| **账号级别**，每天至多1000次，每月至多30000次|
 |      |         | TRUCK-车队接口标准套件-拖车动态接收 |[说明 doc](https://github.com/cop-cos/COP/blob/master/docs/dts/truckEventReceiveInfo.md)| **账号级别**，每天至多1000次，每月至多30000次|
 
