@@ -4,17 +4,23 @@
 
 ## Update Logs
 
+v2.1.0 (2022-03-10)
+
+1. **`A `**  Added the API - Trailer Doors Query Interface. [Details](#Trailer Doors Query Interface)
+2. **`A `**  Added the API - Trailer Rates Query Interface. [Details](#Trailer Rates Query Interface)
+2. **`U`**  Added POR and FND trailer areas for Spot Rate details query interface v2. [Details](#Spot Rate Details Query Interface v2)
+
 v2.0.0 (2021-08-07)
 
-1. **`A `**  Added the API spot Rate interface v2 . 
-2. **`A `**  Added the API spot Rate details query interface v2. 
-3. **`A `**  Added the API Intermodal Service Query Interface v2. 
-4. **`A `**  Added the API Surcharge Query Interface v2 . 
+1. **`A `**  Added the API Spot Rate interface v2. [Details](#Spot Rate Query Interface v2)
+2. **`A `**  Added the API Spot Rate details query interface v2. [Details](#Spot Rate Details Query Interface v2)
+3. **`A `**  Added the API Intermodal Service Query Interface v2. [Details](#Intermodal Service Query Interface v2)
+4. **`A `**  Added the API Surcharge Query Interface v2 . [Details](#Surcharge Query Interface v2)
 
 
 
 
-## Http Header
+## HTTP Header
 
 HTTP header information description
 
@@ -34,7 +40,7 @@ HTTP header information description
 
 ## Spot Rate Query Interface v2 
 
-### 1. Informations
+### 1. Information
 
 * **Path**: /service/synconhub/product/general/search
 * **Method**: POST
@@ -45,21 +51,21 @@ HTTP header information description
 | :-------- | :-----: | :------: | :---------------------------------------: | :-------------------------------: |
 | startDate | ISODate |   yes    | the start date of sailing date scope(GMT) |                                   |
 | endDate   | ISODate |    no    |    the end of Sailing date scope(GMT)     |                                   |
-| porCityId | string  |   yes    |                por city id                |                                   |
-| fndCityId | string  |   yes    |                fnd city id                |                                   |
-| page      | integer |   yes    |                 page size                 |   **default:**1，**minimum:**1    |
-| size      | integer |   yes    |                record size                | **default:**20，**range:**[1, 50] |
+| porCityId | String  |   yes    |                por city id                |                                   |
+| fndCityId | String  |   yes    |                fnd city id                |                                   |
+| page      | Integer |   yes    |                 page size                 |   **default:**1，**minimum:**1    |
+| size      | Integer |   yes    |                record size                | **default:**20，**range:**[1, 50] |
 
 ### 3. Request sample
 
 ```javascript
 {
-  "startDate": "2021-06-01T00:00:00.000Z",
-  "endDate": "2021-07-30T00:00:00.000Z",
-  "fndCityId": "738872886233842",
-  "porCityId": "738872886232873",
-  "page": 1,
-  "size": 20
+    "startDate": "2022-03-10T00:00:00.000Z",
+    "endDate": "2022-05-01T00:00:00.000Z",
+    "fndCityId": "738872886248637",
+    "porCityId": "738872886232879",
+    "page": 1,
+    "size": 20
 }
 ```
 
@@ -80,181 +86,174 @@ HTTP header information description
     "data": {
         "content": [
             {
-                "id": "8a80cb817321ad030173221c880101d2",
-                "tradeLaneCode": "AEU",
-                "serviceCode": "AEM5",
+                "id": "8aaa97667f6dbe37017f71d618e303d4",
+                "tradeLaneCode": "AEM",
+                "serviceCode": "AEM1",
                 "tradeArea": "ETD",
-                "vesselName": "COSCO YANTIAN",
-                "voyageNo": "020",
+                "vesselName": "COSCO SHIPPING ANDES",
+                "voyageNo": "023",
                 "direction": "W",
                 "porFacilityCode": null,
                 "porFacilityName": null,
                 "porFacilityNameCn": null,
-                "fndFacilityName": null,
+                "fndFacilityName": "Voltri Terminal Europa SpA",
                 "fndFacilityNameCn": null,
-                "fndFacilityCode": null,
+                "fndFacilityCode": "GOA01",
                 "haulageType": "CY-CY",
                 "isFmcProduct": false,
-                "estimatedTransitTimeInDays": 30,
-                "effectiveStartDate": "2021-07-05T00:00:00.000Z", 
-                "effectiveEndDate": "2021-12-23T23:59:59.000Z",
-                "eta": "2021-09-07 00:00",
-                "etd": "2021-08-04 00:00",
-                "inventory": 717,
+                "estimatedTransitTimeInDays": 29,
+                "effectiveStartDate": "2022-03-01T00:00:00.000Z",
+                "effectiveEndDate": "2022-04-30T23:59:59.000Z",
+                "eta": "2022-05-29 12:00",
+        		"etd": "2022-04-28 20:00",
+                "inventory": 935,
                 "polTsMode": null, // pol transit mode
                 "podTsMode": null, // pod transit mode
                 "porCity": { // por city info，for the specific structure, please refer to 'City information query interface'
-                    "id": "738872886233044",
-                    "unlocode": "CNSHE",
-                    "cityName": "Shekou",
-                    "cntyName": "Shenzhen",
-                    "stateName": "Guangdong",
-                    "stateCode": "GD",
+                    "id": "738872886232879",
+                    "unlocode": "CNNBO",
+                    "cityName": "Ningbo",
+                    "cntyName": "Ningbo",
+                    "stateName": "Zhejiang",
+                    "stateCode": "ZJ",
                     "ctryRegionName": "China",
                     "ctryRegionCode": "CN",
-                    "cityFullNameEn": "Shekou",
-                    "cityFullNameCn": "蛇口"
+                    "cityFullNameEn": "Ningbo",
+                    "cityFullNameCn": "宁波"
                 },
                 "fndCity": {
-                    "id": "738872886271836",
-                    "unlocode": "ZADUR",
-                    "cityName": "Durban",
-                    "cntyName": null,
-                    "stateName": "KwaZulu-Natal",
+                    "id": "738872886248637",
+                    "unlocode": "ITGOA",
+                    "cityName": "Genova",
+                    "cntyName": "Genova",
+                    "stateName": "Liguria",
                     "stateCode": null,
-                    "ctryRegionName": "South Africa",
-                    "ctryRegionCode": "ZA",
-                    "cityFullNameEn": "Durban",
-                    "cityFullNameCn": "德班"
+                    "ctryRegionName": "Italy",
+                    "ctryRegionCode": "IT",
+                    "cityFullNameEn": "Genova",
+                    "cityFullNameCn": "热那亚"
                 },
                 "polPort": {
-                    "id": "349645770723389",
-                    "portName": "Shekou", 
-                    "portCode": "SHK",
-                    "portFullNameEn": "Shekou",
-                    "portFullNameCn": "蛇口",
+                    "id": "349657045012458",
+                    "portName": "Shanghai",
+                    "portCode": "SHA",
+                    "portFullNameEn": "Shanghai",
+                    "portFullNameCn": "上海",
                     "city": {
-                        "id": "738872886233044",
-                        "unlocode": "CNSHE",
-                        "cityName": "Shekou",
-                        "cntyName": "Shenzhen",
-                        "stateName": "Guangdong",
-                        "stateCode": "GD",
+                        "id": "738872886232873",
+                        "unlocode": "CNSHA",
+                        "cityName": "Shanghai",
+                        "cntyName": "Shanghai",
+                        "stateName": "Shanghai",
+                        "stateCode": "SH",
+                        "cityFullNameEn": "Shanghai",
+                        "cityFullNameCn": "上海",
                         "ctryRegionName": "China",
-                        "ctryRegionCode": "CN",
-                        "cityFullNameEn": "Shekou",
-                        "cityFullNameCn": "蛇口"
+                        "ctryRegionCode": "CN"
                     }
                 },
                 "podPort": {
-                    "id": "349647918206992",
-                    "portName": "Durban",
-                    "portCode": "DUR",
-                    "portFullNameEn": "Durban",
-                    "portFullNameCn": "Durban",
+                    "id": "349647918207001",
+                    "portName": "Genoa",
+                    "portCode": "GOA",
+                    "portFullNameEn": "Genoa",
+                    "portFullNameCn": "Genoa",
                     "city": {
-                        "id": "738872886271836",
-                        "unlocode": "ZADUR",
-                        "cityName": "Durban",
-                        "cntyName": null,
-                        "stateName": "KwaZulu-Natal",
+                        "id": "738872886248637",
+                        "unlocode": "ITGOA",
+                        "cityName": "Genova",
+                        "cntyName": "Genova",
+                        "stateName": "Liguria",
                         "stateCode": null,
-                        "ctryRegionName": "South Africa",
-                        "ctryRegionCode": "ZA",
-                        "cityFullNameEn": "Durban",
-                        "cityFullNameCn": "德班"
+                        "ctryRegionName": "Italy",
+                        "ctryRegionCode": "IT",
+                        "cityFullNameEn": "Genova",
+                        "cityFullNameCn": "热那亚"
                     }
                 },
                 "firstPolPort": {
-                    "id": "349645770723389",
-                    "portName": "Shekou",
-                    "portCode": "SHK",
-                    "portFullNameEn": "Shekou",
-                    "portFullNameCn": "蛇口",
+                    "id": "349645770723373",
+                    "portName": "Ningbo",
+                    "portCode": "NGB",
+                    "portFullNameEn": "Ningbo",
+                    "portFullNameCn": "宁波",
                     "city": {
-                        "id": "738872886233044",
-                        "unlocode": "CNSHE",
-                        "cityName": "Shekou",
-                        "cntyName": "Shenzhen",
-                        "stateName": "Guangdong",
-                        "stateCode": "GD",
+                        "id": "738872886232879",
+                        "unlocode": "CNNBO",
+                        "cityName": "Ningbo",
+                        "cntyName": "Ningbo",
+                        "stateName": "Zhejiang",
+                        "stateCode": "ZJ",
                         "ctryRegionName": "China",
                         "ctryRegionCode": "CN",
-                        "cityFullNameEn": "Shekou",
-                        "cityFullNameCn": "蛇口"
+                        "cityFullNameEn": "Ningbo",
+                        "cityFullNameCn": "宁波"
                     }
                 },
                 "lastPodPort": {
-                    "id": "349647918206992",
-                    "portName": "Durban",
-                    "portCode": "DUR",
-                    "portFullNameEn": "Durban",
-                    "portFullNameCn": "Durban",
+                    "id": "349647918207001",
+                    "portName": "Genoa",
+                    "portCode": "GOA",
+                    "portFullNameEn": "Genoa",
+                    "portFullNameCn": "Genoa",
                     "city": {
-                        "id": "738872886271836",
-                        "unlocode": "ZADUR",
-                        "cityName": "Durban",
-                        "cntyName": null,
-                        "stateName": "KwaZulu-Natal",
+                        "id": "738872886248637",
+                        "unlocode": "ITGOA",
+                        "cityName": "Genova",
+                        "cntyName": "Genova",
+                        "stateName": "Liguria",
                         "stateCode": null,
-                        "ctryRegionName": "South Africa",
-                        "ctryRegionCode": "ZA",
-                        "cityFullNameEn": "Durban",
-                        "cityFullNameCn": "德班"
+                        "ctryRegionName": "Italy",
+                        "ctryRegionCode": "IT",
+                        "cityFullNameEn": "Genova",
+                        "cityFullNameCn": "热那亚"
                     }
                 },
-                "scheduleData": {
+                "scheduleData": { 
                     "origin": {
-                        "id": "738872886233044",
-                        "unlocode": "CNSHE",
-                        "cityName": "Shekou",
-                        "cntyName": "Shenzhen",
-                        "stateName": "Guangdong",
-                        "stateCode": "GD",
+                        "id": "738872886232879",
+                        "unlocode": "CNNBO",
+                        "cityName": "Ningbo",
+                        "cntyName": "Ningbo",
+                        "stateName": "Zhejiang",
+                        "stateCode": "ZJ",
                         "ctryRegionName": "China",
                         "ctryRegionCode": "CN",
-                        "cityFullNameEn": "Shekou",
-                        "cityFullNameCn": "蛇口"
+                        "cityFullNameEn": "Ningbo",
+                        "cityFullNameCn": "宁波"
                     },
                     "destination": {
-                        "id": "738872886271836",
-                        "unlocode": "ZADUR",
-                        "cityName": "Durban",
-                        "cntyName": null,
-                        "stateName": "KwaZulu-Natal",
+                        "id": "738872886248637",
+                        "unlocode": "ITGOA",
+                        "cityName": "Genova",
+                        "cntyName": "Genova",
+                        "stateName": "Liguria",
                         "stateCode": null,
-                        "ctryRegionName": "South Africa",
-                        "ctryRegionCode": "ZA",
-                        "cityFullNameEn": "Durban",
-                        "cityFullNameCn": "德班"
+                        "ctryRegionName": "Italy",
+                        "ctryRegionCode": "IT",
+                        "cityFullNameEn": "Genova",
+                        "cityFullNameCn": "热那亚"
                     },
-                    "porFacilityCode": null,
-                    "fndFacilityCode": null,
+                    "porFacilityCode": null, 
+                    "fndFacilityCode": "GOA01",
                     "legs": [
                         {
                             "carrier": null,
-                            "service": {
-                                "serviceCode": "AEM5",
-                                "serviceId": null
-                            },
-                            "vessel": {
-                                "vesselName": "COSCO YANTIAN",
-                                "vesselId": null,
-                                "vesselCode": null
-                            },
+                            "service": null,
+                            "vessel": null,
                             "voyageCode": null,
-                            "internalVoyageNumber": "020",
-                            "externalVoyageNumber": "020W",
+                            "internalVoyageNumber": null,
+                            "externalVoyageNumber": null,
                             "pol": {
                                 "port": {
-                                    "id": "349645770723389",
-                                    "portName": "Shekou",
-                                    "portCode": "SHK",
-                                    "portFullNameEn": "Shekou",
-                                    "portFullNameCn": "蛇口",
+                                    "id": "349645770723373",
+                                    "portName": "Ningbo",
+                                    "portCode": "NGB",
+                                    "portFullNameEn": "Ningbo",
+                                    "portFullNameCn": "宁波",
                                     "city": null
                                 },
-                                "etd": "2021-08-04 00:00",
+                                "etd": "2022-04-28 20:00",
                                 "atd": null,
                                 "eta": null,
                                 "ata": null,
@@ -262,32 +261,80 @@ HTTP header information description
                             },
                             "pod": {
                                 "port": {
-                                    "id": "349647918206992",
-                                    "portName": "Durban",
-                                    "portCode": "DUR",
-                                    "portFullNameEn": "Durban",
-                                    "portFullNameCn": "Durban",
+                                    "id": "349657045012458",
+                                    "portName": "Shanghai",
+                                    "portCode": "SHA",
+                                    "portFullNameEn": "Shanghai",
+                                    "portFullNameCn": "上海",
                                     "city": null
                                 },
                                 "etd": null,
                                 "atd": null,
-                                "eta": "2021-09-07 00:00",
+                                "eta": "2022-04-28 20:00",
                                 "ata": null,
                                 "facilityCode": null
                             },
                             "legSequence": 0,
+                            "direction": null,
+                            "transportMode": "FEEDER"
+                        },
+                        {
+                            "carrier": null,
+                            "service": {
+                                "serviceCode": "AEM1",
+                                "serviceId": null
+                            },
+                            "vessel": {
+                                "vesselName": "COSCO SHIPPING ANDES",
+                                "vesselId": null,
+                                "vesselCode": "CJE"
+                            },
+                            "voyageCode": "023",
+                            "internalVoyageNumber": "023",
+                            "externalVoyageNumber": "023W",
+                            "pol": {
+                                "port": {
+                                    "id": "349657045012458",
+                                    "portName": "Shanghai",
+                                    "portCode": "SHA",
+                                    "portFullNameEn": "Shanghai",
+                                    "portFullNameCn": "上海",
+                                    "city": null
+                                },
+                                "etd": "2022-04-28 20:00",
+                                "atd": null,
+                                "eta": "2022-04-27 20:00",
+                                "ata": null,
+                                "facilityCode": "SHA08"
+                            },
+                            "pod": {
+                                "port": {
+                                    "id": "349647918207001",
+                                    "portName": "Genoa",
+                                    "portCode": "GOA",
+                                    "portFullNameEn": "Genoa",
+                                    "portFullNameCn": "Genoa",
+                                    "city": null
+                                },
+                                "etd": "2022-05-31 12:00",
+                                "atd": null,
+                                "eta": "2022-05-29 12:00",
+                                "ata": null,
+                                "facilityCode": "GOA01"
+                            },
+                            "legSequence": 1,
                             "direction": "W",
-                            "transportMode": null
+                            "transportMode": "Vessel"
                         }
                     ],
-                    "cutOffLocalDate": null,
-                    "estimatedTransitTimeInDays": 30,
-                    "etaAtFnd": "2021-09-07 00:00",
-                    "etdAtPor": "2021-08-04 00:00",
-                    "serviceCode": "AEM5",
-                    "vesselName": "COSCO YANTIAN",
+                    "cutOffLocalDate": "2022-04-27 12:00",
+                    "estimatedTransitTimeInDays": 31,
+                    "etaAtFnd": "2022-05-29 12:00",
+                    "etdAtPor": "2022-04-28 20:00",
+                    "serviceCode": "AEM1",
+                    "vesselName": "COSCO SHIPPING ANDES",
                     "direction": "W",
-                    "voyageNo": "020"
+                    "voyageNo": "023"
                 },
                 "routeProductPricingList": [
                     {
@@ -354,10 +401,16 @@ HTTP header information description
 }
 ```
 
+### 7. Error Code Specification
+
+Please refer to the [General Error Codes](#General Error Codes) .
+
+
+
 ## Intermodal Service Query Interface v2 
 
 
-### 1.Informations
+### 1.Information
 
 * **Path**: /service/synconhub/common/intermodalService/general/{productId}
 * **Method**: GET
@@ -366,12 +419,12 @@ HTTP header information description
 
 |   Name    | **Type** | Required | Description |
 | :-------: | :------: | :------: | :---------: |
-| productId |  string  |   yes    | product id  |
+| productId |  String  |   yes    | product id  |
 
 ### 3. Request sample
 
 ```HTTP
-GET /service/synconhub/common/intermodalService/general/8a5e11157351b2df01735562622a0000
+GET /service/synconhub/common/intermodalService/general/8aaa97667f6dbe37017f71d618e303d4
 ```
 
 ### 4. Response parameters
@@ -575,7 +628,7 @@ GET /service/synconhub/common/intermodalService/general/8a5e11157351b2df01735562
                         "minWeight": 40,
                         "maxWeight": null,
                         "weightUnit": "TON"
-                        // If the weight of the cargo is more than 40 tons, the loading service fee is 100 USD
+                        // If the weight of the cargo is more than 40 tons, the loading service fee is 200 USD
                     },
                     {
                         "cntrSizeType": "40GP",
@@ -649,8 +702,6 @@ GET /service/synconhub/common/intermodalService/general/8a5e11157351b2df01735562
 }
 ```
 
-
-
 ### 6. Error sample
 
 ```javascript
@@ -674,11 +725,15 @@ GET /service/synconhub/common/intermodalService/general/8a5e11157351b2df01735562
 }
 ```
 
+### 7. Error Code Specification
+
+Please refer to the [General Error Codes](#General Error Codes) .
+
 
 
 ## Spot Rate Details Query Interface v2 
 
-### 1. Informations
+### 1. Information
 
 
 * **Path**: /service/synconhub/product/general/{productId}
@@ -688,31 +743,29 @@ GET /service/synconhub/common/intermodalService/general/8a5e11157351b2df01735562
 
 |   Name    | **Type** | Required | Description |
 | :-------: | :------: | :------: | :---------: |
-| productId |  string  |   yes    | product id  |
+| productId |  String  |   yes    | product id  |
 
 ### 3. Query parameters
 
 |        Name        | **Type** | Required |                         Description                          |
 | :----------------: | :------: | :------: | :----------------------------------------------------------: |
-|  loadingServiceNo  |  String  |    no    | intermodalServiceNo from intermodal service query results. Get the spot rate details with loading service |
-| dischargeServiceNo |  String  |    no    | intermodalServiceNo from intermodal service query results. Get the spot rate details with discharge service |
+|  loadingServiceNo  |  String  |    no    | Get from the result of intermodal service query interface. Get the spot rate details with loading service. |
+| dischargeServiceNo |  String  |    no    | Get from the result of intermodal service query interface. Get the spot rate details with discharge service. |
 
 
 ### 4. Request sample
 
 ```http
-GET /service/synconhub/product/general/8a5e11157351b2df01735562622a0000
+GET /service/synconhub/product/general/8aaa97667f6dbe37017f71d618e303d4
 ```
 
 ```http
-GET /service/synconhub/product/general/8a5e11157351b2df01735562622a0000?loadingServiceNo=8a5e112478d41b380178d4551a33000a
+GET /service/synconhub/product/general/8aaa97667f6dbe37017f71d618e303d4?loadingServiceNo=8a5e112478d41b380178d4551a33000a
 ```
 
 ```http
-GET /service/synconhub/product/general/8a5e11157351b2df01735562622a0000?loadingServiceNo=8a5e112478d41b380178d4551a33000a&dischargeServiceNo=8a5e112478c4eed60178c51cca9f0001
+GET /service/synconhub/product/general/8aaa97667f6dbe37017f71d618e303d4?loadingServiceNo=8a5e112478d41b380178d4551a33000a&dischargeServiceNo=8a5e112478c4eed60178c51cca9f0001
 ```
-
-
 
 ### 5. Response parameters
 
@@ -729,52 +782,52 @@ GET /service/synconhub/product/general/8a5e11157351b2df01735562622a0000?loadingS
     "code": 0,
     "message": "",
     "data": {
-        "id": "8a5e11157351b2df01735562622a0000",
-        "tradeLaneCode": "AEU",
-        "serviceCode": "AEU2",
+        "id": "8aaa97667f6dbe37017f71d618e303d4",
+        "tradeLaneCode": "AEM",
+        "serviceCode": "AEM1",
         "tradeArea": "ETD",
-        "vesselName": "APL VANDA",
-        "voyageNo": "022",
+        "vesselName": "COSCO SHIPPING ANDES",
+        "voyageNo": "023",
         "direction": "W",
-        "porFacilityCode": "SHA08",
-        "porFacilityName": "Shanghai Shengdong (I), Yangshan",
+        "porFacilityCode": null,
+        "porFacilityName": null,
         "porFacilityNameCn": null,
-        "fndFacilityName": "Eurogate Terminal",
+        "fndFacilityName": "Voltri Terminal Europa SpA",
         "fndFacilityNameCn": null,
-        "fndFacilityCode": "HAM02",
+        "fndFacilityCode": "GOA01",
         "haulageType": "CY-CY",
         "isFmcProduct": false,
-        "estimatedTransitTimeInDays": 30,
-        "effectiveStartDate": "2021-07-05T00:00:00.000Z",
-        "effectiveEndDate": "2021-12-23T23:59:59.000Z",
-        "eta": "2021-09-16 00:00",
-        "etd": "2021-08-12 00:00",
-        "inventory": 396,
+        "estimatedTransitTimeInDays": 31,
+        "effectiveStartDate": "2022-03-01T00:00:00.000Z",
+        "effectiveEndDate": "2022-04-30T23:59:59.000Z",
+        "eta": "2022-05-29 12:00",
+        "etd": "2022-04-28 20:00",
+        "inventory": 935,
         "polTsMode": null, // pol transit mode
         "podTsMode": null, // pod transit mode
         "porCity": {  // por city info，for the specific structure, please refer to 'City information query interface'
-            "id": "738872886232873",
-            "unlocode": "CNSHA",
-            "cityName": "Shanghai",
-            "cntyName": "Shanghai",
-            "stateName": "Shanghai",
-            "stateCode": "SH",
+            "id": "738872886232879",
+            "unlocode": "CNNBO",
+            "cityName": "Ningbo",
+            "cntyName": "Ningbo",
+            "stateName": "Zhejiang",
+            "stateCode": "ZJ",
+            "cityFullNameEn": "Ningbo",
+            "cityFullNameCn": "宁波",
             "ctryRegionName": "China",
-            "ctryRegionCode": "CN",
-            "cityFullNameEn": "Shanghai",
-            "cityFullNameCn": "上海"
+            "ctryRegionCode": "CN"
         },
         "fndCity": {
-            "id": "738872886254648",
-            "unlocode": "DEHAM",
-            "cityName": "Hamburg",
-            "cntyName": null,
-            "stateName": "Hamburg",
-            "stateCode": "HH",
-            "ctryRegionName": "Germany",
-            "ctryRegionCode": "DE",
-            "cityFullNameEn": "Hamburg",
-            "cityFullNameCn": "汉堡"
+            "id": "738872886248637",
+            "unlocode": "ITGOA",
+            "cityName": "Genova",
+            "cntyName": "Genova",
+            "stateName": "Liguria",
+            "stateCode": null,
+            "cityFullNameEn": "Genova",
+            "cityFullNameCn": "热那亚",
+            "ctryRegionName": "Italy",
+            "ctryRegionCode": "IT"
         },
         "polPort": {
             "id": "349657045012458",
@@ -789,111 +842,152 @@ GET /service/synconhub/product/general/8a5e11157351b2df01735562622a0000?loadingS
                 "cntyName": "Shanghai",
                 "stateName": "Shanghai",
                 "stateCode": "SH",
-                "ctryRegionName": "China",
-                "ctryRegionCode": "CN",
                 "cityFullNameEn": "Shanghai",
-                "cityFullNameCn": "上海"
+                "cityFullNameCn": "上海",
+                "ctryRegionName": "China",
+                "ctryRegionCode": "CN"
             }
         },
         "podPort": {
-            "id": "349645770723600",
-            "portName": "Hamburg",
-            "portCode": "HAM",
-            "portFullNameEn": "Hamburg",
-            "portFullNameCn": "Hamburg",
+            "id": "349647918207001",
+            "portName": "Genoa",
+            "portCode": "GOA",
+            "portFullNameEn": "Genoa",
+            "portFullNameCn": "Genoa",
             "city": {
-                "id": "738872886254648",
-                "unlocode": "DEHAM",
-                "cityName": "Hamburg",
-                "cntyName": null,
-                "stateName": "Hamburg",
-                "stateCode": "HH",
-                "ctryRegionName": "Germany",
-                "ctryRegionCode": "DE",
-                "cityFullNameEn": "Hamburg",
-                "cityFullNameCn": "汉堡"
+                "id": "738872886248637",
+                "unlocode": "ITGOA",
+                "cityName": "Genova",
+                "cntyName": "Genova",
+                "stateName": "Liguria",
+                "stateCode": null,
+                "ctryRegionName": "Italy",
+                "ctryRegionCode": "IT",
+                "cityFullNameEn": "Genova",
+                "cityFullNameCn": "热那亚"
             }
         },
         "firstPolPort": {
-            "id": "349657045012458",
-            "portName": "Shanghai",
-            "portCode": "SHA",
-            "portFullNameEn": "Shanghai",
-            "portFullNameCn": "上海",
+            "id": "349645770723373",
+            "portName": "Ningbo",
+            "portCode": "NGB",
+            "portFullNameEn": "Ningbo",
+            "portFullNameCn": "宁波",
             "city": {
-                "id": "738872886232873",
-                "unlocode": "CNSHA",
-                "cityName": "Shanghai",
-                "cntyName": "Shanghai",
-                "stateName": "Shanghai",
-                "stateCode": "SH",
+                "id": "738872886232879",
+                "unlocode": "CNNBO",
+                "cityName": "Ningbo",
+                "cntyName": "Ningbo",
+                "stateName": "Zhejiang",
+                "stateCode": "ZJ",
                 "ctryRegionName": "China",
                 "ctryRegionCode": "CN",
-                "cityFullNameEn": "Shanghai",
-                "cityFullNameCn": "上海"
+                "cityFullNameEn": "Ningbo",
+                "cityFullNameCn": "宁波"
             }
         },
         "lastPodPort": {
-            "id": "349645770723600",
-            "portName": "Hamburg",
-            "portCode": "HAM",
-            "portFullNameEn": "Hamburg",
-            "portFullNameCn": "Hamburg",
+            "id": "349647918207001",
+            "portName": "Genoa",
+            "portCode": "GOA",
+            "portFullNameEn": "Genoa",
+            "portFullNameCn": "Genoa",
             "city": {
-                "id": "738872886254648",
-                "unlocode": "DEHAM",
-                "cityName": "Hamburg",
-                "cntyName": null,
-                "stateName": "Hamburg",
-                "stateCode": "HH",
-                "ctryRegionName": "Germany",
-                "ctryRegionCode": "DE",
-                "cityFullNameEn": "Hamburg",
-                "cityFullNameCn": "汉堡"
+                "id": "738872886248637",
+                "unlocode": "ITGOA",
+                "cityName": "Genova",
+                "cntyName": "Genova",
+                "stateName": "Liguria",
+                "stateCode": null,
+                "ctryRegionName": "Italy",
+                "ctryRegionCode": "IT",
+                "cityFullNameEn": "Genova",
+                "cityFullNameCn": "热那亚"
             }
         },
         "scheduleData": { 
             "origin": {
-                "id": "738872886232873",
-                "unlocode": "CNSHA",
-                "cityName": "Shanghai",
-                "cntyName": "Shanghai",
-                "stateName": "Shanghai",
-                "stateCode": "SH",
+                "id": "738872886232879",
+                "unlocode": "CNNBO",
+                "cityName": "Ningbo",
+                "cntyName": "Ningbo",
+                "stateName": "Zhejiang",
+                "stateCode": "ZJ",
                 "ctryRegionName": "China",
                 "ctryRegionCode": "CN",
-                "cityFullNameEn": "Shanghai",
-                "cityFullNameCn": "上海"
+                "cityFullNameEn": "Ningbo",
+                "cityFullNameCn": "宁波"
             },
             "destination": {
-                "id": "738872886254648",
-                "unlocode": "DEHAM",
-                "cityName": "Hamburg",
-                "cntyName": null,
-                "stateName": "Hamburg",
-                "stateCode": "HH",
-                "ctryRegionName": "Germany",
-                "ctryRegionCode": "DE",
-                "cityFullNameEn": "Hamburg",
-                "cityFullNameCn": "汉堡"
+                "id": "738872886248637",
+                "unlocode": "ITGOA",
+                "cityName": "Genova",
+                "cntyName": "Genova",
+                "stateName": "Liguria",
+                "stateCode": null,
+                "ctryRegionName": "Italy",
+                "ctryRegionCode": "IT",
+                "cityFullNameEn": "Genova",
+                "cityFullNameCn": "热那亚"
             },
-            "porFacilityCode": "SHA08", 
-            "fndFacilityCode": "HAM02",
+            "porFacilityCode": null, 
+            "fndFacilityCode": "GOA01",
             "legs": [
                 {
                     "carrier": null,
+                    "service": null,
+                    "vessel": null,
+                    "voyageCode": null,
+                    "internalVoyageNumber": null,
+                    "externalVoyageNumber": null,
+                    "pol": {
+                        "port": {
+                            "id": "349645770723373",
+                            "portName": "Ningbo",
+                            "portCode": "NGB",
+                            "portFullNameEn": "Ningbo",
+                            "portFullNameCn": "宁波",
+                            "city": null
+                        },
+                        "etd": "2022-04-28 20:00",
+                        "atd": null,
+                        "eta": null,
+                        "ata": null,
+                        "facilityCode": null
+                    },
+                    "pod": {
+                        "port": {
+                            "id": "349657045012458",
+                            "portName": "Shanghai",
+                            "portCode": "SHA",
+                            "portFullNameEn": "Shanghai",
+                            "portFullNameCn": "上海",
+                            "city": null
+                        },
+                        "etd": null,
+                        "atd": null,
+                        "eta": "2022-04-28 20:00",
+                        "ata": null,
+                        "facilityCode": null
+                    },
+                    "legSequence": 0,
+                    "direction": null,
+                    "transportMode": "FEEDER"
+                },
+                {
+                    "carrier": null,
                     "service": {
-                        "serviceCode": "AEU2",
+                        "serviceCode": "AEM1",
                         "serviceId": null
                     },
                     "vessel": {
-                        "vesselName": "APL VANDA",
+                        "vesselName": "COSCO SHIPPING ANDES",
                         "vesselId": null,
-                        "vesselCode": null
+                        "vesselCode": "CJE"
                     },
-                    "voyageCode": null,
-                    "internalVoyageNumber": "022",
-                    "externalVoyageNumber": "022W",
+                    "voyageCode": "023",
+                    "internalVoyageNumber": "023",
+                    "externalVoyageNumber": "023W",
                     "pol": {
                         "port": {
                             "id": "349657045012458",
@@ -903,40 +997,40 @@ GET /service/synconhub/product/general/8a5e11157351b2df01735562622a0000?loadingS
                             "portFullNameCn": "上海",
                             "city": null
                         },
-                        "etd": "2021-08-12 00:00",
+                        "etd": "2022-04-28 20:00",
                         "atd": null,
-                        "eta": null,
+                        "eta": "2022-04-27 20:00",
                         "ata": null,
                         "facilityCode": "SHA08"
                     },
                     "pod": {
-                        "port": {
-                            "id": "349645770723600",
-                            "portName": "Hamburg",
-                            "portCode": "HAM",
-                            "portFullNameEn": "Hamburg",
-                            "portFullNameCn": "Hamburg",
+                    	"port": {
+                            "id": "349647918207001",
+                            "portName": "Genoa",
+                            "portCode": "GOA",
+                            "portFullNameEn": "Genoa",
+                            "portFullNameCn": "Genoa",
                             "city": null
-                        },
-                        "etd": null,
+                    	},
+                        "etd": "2022-05-31 12:00",
                         "atd": null,
-                        "eta": "2021-09-16 00:00",
+                        "eta": "2022-05-29 12:00",
                         "ata": null,
-                        "facilityCode": "HAM02"
+                        "facilityCode": "GOA01"
                     },
-                    "legSequence": 0,
+                    "legSequence": 1,
                     "direction": "W",
-                    "transportMode": null
+                    "transportMode": "Vessel"
                 }
             ],
-            "cutOffLocalDate": null,
-            "estimatedTransitTimeInDays": 30,
-            "etaAtFnd": "2021-09-16 00:00",
-            "etdAtPor": "2020-08-12 00:00",
-            "serviceCode": "AEU2",
-            "vesselName": "APL VANDA",
+            "cutOffLocalDate": "2022-04-27 12:00",
+            "estimatedTransitTimeInDays": 31,
+            "etaAtFnd": "2022-05-29 12:00",
+            "etdAtPor": "2022-04-28 20:00",
+            "serviceCode": "AEM1",
+            "vesselName": "COSCO SHIPPING ANDES",
             "direction": "W",
-            "voyageNo": "022"
+            "voyageNo": "023"
         },
         "routeProductPricingList": [
               {
@@ -950,21 +1044,21 @@ GET /service/synconhub/product/general/8a5e11157351b2df01735562622a0000?loadingS
        //  If ocean charge switch to collect payment, would need add collect payment charge
         "collectExtraCharges": [
              {
-                  "cntrType": "20GP",
-                  "price": 20,
-                  "currency": "USD"
+                 "cntrType": "20GP",
+                 "price": 20,
+                 "currency": "USD"
               },
               {
-                  "cntrType": "40HQ",
-                  "price": 40,
-                  "currency": "USD"
+                 "cntrType": "40GP",
+                 "price": 45,
+                 "currency": "USD"
               },
               {
-                  "cntrType": "40GP",
-                   "price": 45,
-                   "currency": "USD"
-               }
-                ],            
+                 "cntrType": "40HQ",
+                 "price": 40,
+                 "currency": "USD"
+              }
+        ],            
         "promotions": {
             "detail": [
                 {
@@ -995,6 +1089,26 @@ GET /service/synconhub/product/general/8a5e11157351b2df01735562622a0000?loadingS
                 "usageUnit": "UNIT"
             }
         ],
+        "porTrailerAreas": [
+            {
+                "doorAreaCode": "NGB03",  // POR facility code
+                "doorAreaName": "Ningbo Gangji Terminal Co.,Ltd"  // POR facility name
+            },
+            {
+                "doorAreaCode": "NGB05",
+                "doorAreaName": "Ningbo Yuandong Terminals Limited"
+            },
+            {
+                "doorAreaCode": "NGB07",
+                "doorAreaName": "Meishan-Island Int'l Container Tml"
+            }
+        ],
+        "fndTrailerAreas": [
+            {
+                "doorAreaCode": "GOA01",	// FND facility code
+                "doorAreaName": "Voltri Terminal Europa SpA"	// FND facility name
+            }
+        ]
     }
 }
 ```
@@ -1008,13 +1122,17 @@ GET /service/synconhub/product/general/8a5e11157351b2df01735562622a0000?loadingS
 }
 ```
 
+### 8. Error Code Specification
+
+Please refer to the [General Error Codes](#General Error Codes) .
+
 
 
 ## Surcharge Query Interface v2 
 
 Get the surcharge details of a specific product.
 
-### 1. Informations
+### 1. Information
 
 
 * **Path**: /service/synconhub/common/extraChargeFee/general/${productId}
@@ -1036,18 +1154,16 @@ Get the surcharge details of a specific product.
 ### 4. Request sample
 
 ```http
-GET /service/synconhub/common/extraChargeFee/general/8a80cb817321ad030173221c880101d2
+GET /service/synconhub/common/extraChargeFee/general/8aaa97667f6dbe37017f71d618e303d4
 ```
 
 ```http
-GET /service/synconhub/common/extraChargeFee/general/8a80cb817321ad030173221c880101d2?loadingServiceNo=8a5e11127467f02501747218e25c0001
+GET /service/synconhub/common/extraChargeFee/general/8aaa97667f6dbe37017f71d618e303d4?loadingServiceNo=8a5e11127467f02501747218e25c0001
 ```
 
 ```http
-GET /service/synconhub/common/extraChargeFee/general/8a80cb817321ad030173221c880101d2?loadingServiceNo=8a5e11127467f02501747218e25c0001&dischargeServiceNo=8a5e11247866fbec0178681acd3a0008
+GET /service/synconhub/common/extraChargeFee/general/8aaa97667f6dbe37017f71d618e303d4?loadingServiceNo=8a5e11127467f02501747218e25c0001&dischargeServiceNo=8a5e11247866fbec0178681acd3a0008
 ```
-
-
 
 ### 5. Response parameters
 
@@ -1064,52 +1180,51 @@ GET /service/synconhub/common/extraChargeFee/general/8a80cb817321ad030173221c880
     "code": 0,
     "message": "",
     "data": [
+        {
+            "chargeModel": "BL",
+            "cntrSize": null, // container type
+            "chargeDetail": [ // detail info
                 {
-                    "chargeModel": "BL",
-                    "cntrSize": null, // container type
-                    "chargeDetail": [ // detail info
-                        {
-                            "chargeCode": "DOC",
-                            "chargeName": "DOC",
-                            "chargeType": "DOC",
-                            "chargeTag": "POR",
-                            "price": 666,
-                            "currency": "USD",
-                            "paymentTerms": "P",
-		                    "isFollowOceanFee": true, // payment terms follow ocean fee payment terms
-                            "category": null // charge category
-                        }，
-                        {
-                            "chargeCode": "DOC",
-                            "chargeName": "DOC",
-                            "chargeType": "DOC",
-                            "chargeTag": "POR",
-                            "price": 888,
-                            "currency": "USD",
-                            "paymentTerms": "C",
-		                    "isFollowOceanFee": true, // payment terms follow ocean fee payment terms
-                            "category": null // charge category
-                        }    
-                    ]
-                },
-                {
-                    "chargeModel": "CNTR",
-                    "cntrSize": "20GP",
-                    "chargeDetail": [
-                        {
-                            "chargeCode": "255",
-                            "chargeName": "工本费",
-                            "chargeType": "CNTR_LOCAL",
-                            "chargeTag": "POR",
-                            "price": 10,
-                            "currency": "USD",
-                            "paymentTerms": "P",
-		                    "isFollowOceanFee": false,
-                            "category": "EXTRA_CHARGE"
-                        }
-                    ]
+                    "chargeCode": "DOC",
+                    "chargeName": "DOC",
+                    "chargeType": "DOC",
+                    "chargeTag": "POR",
+                    "price": 666,
+                    "currency": "USD",
+                    "paymentTerms": "P",
+                    "isFollowOceanFee": true, // payment terms follow ocean fee payment terms
+                    "category": null // charge category
+                }， {
+                    "chargeCode": "DOC",
+                    "chargeName": "DOC",
+                    "chargeType": "DOC",
+                    "chargeTag": "POR",
+                    "price": 888,
+                    "currency": "USD",
+                    "paymentTerms": "C",
+                    "isFollowOceanFee": true, // payment terms follow ocean fee payment terms
+                    "category": null // charge category
                 }
-    		]
+            ]
+        },
+        {
+            "chargeModel": "CNTR",
+            "cntrSize": "20GP",
+            "chargeDetail": [
+                {
+                    "chargeCode": "255",
+                    "chargeName": "工本费",
+                    "chargeType": "CNTR_LOCAL",
+                    "chargeTag": "POR",
+                    "price": 10,
+                    "currency": "USD",
+                    "paymentTerms": "P",
+                    "isFollowOceanFee": false,
+                    "category": "EXTRA_CHARGE"
+            	}
+            ]
+        }
+    ]
 }
 ```
 
@@ -1121,6 +1236,226 @@ GET /service/synconhub/common/extraChargeFee/general/8a80cb817321ad030173221c880
     "message": "cannot proceed the request, please retry later or contact support for help"
 }
 ```
+
+### 8. Error Code Specification
+
+Please refer to the [General Error Codes](#General Error Codes) .
+
+
+
+## Trailer Doors Query Interface
+
+Get POR/FND trailer doors of the product.
+
+> Note: The selection of trailer service will be affected by the intermodal service. After selecting the intermodal service, you need to query the spot rate details again with intermodal service number to get the new trailer areas.
+
+### 1.Information
+
+* **Path**: /service/synconhub/common/trailerDoors
+* **Method**: POST
+
+### 2. Request Parameters
+
+|     Name     | **Type** | Required |                         Description                          |                     Remarks                      |
+| :----------: | :------: | :------: | :----------------------------------------------------------: | :----------------------------------------------: |
+|  boundType   |  String  |   yes    |          bound type, POR trailer: O, FND trailer: I          |             **optional value**: O, I             |
+| doorAreaCode |  String  |   yes    | POR/FND trailer door area code, select from the porTrailerAreas/fndTrailerAreas property in the product details interface |                                                  |
+|   keywords   |  String  |    no    |                trailer door address keywords                 |                                                  |
+|     page     | Integer  |    no    |                         page number                          |          **default**: 1, **minimum**: 1          |
+|     size     | Integer  |    no    |                          page size                           | **default**: 30, **minimum**: 1, **maximum**: 30 |
+
+### 3. Request Sample
+
+* **POR Trailer Service Request Sample**
+
+```javascript
+{
+	"keywords": "余杭",
+	"boundType": "O",	// outbound
+	"doorAreaCode": "NGB05"	// POR trailer door area code: select from the porTrailerAreas property in the product details interface.
+}
+```
+
+* **FND Trailer Service Request Sample**
+
+```javascript
+{
+    "keywords": "Genova",
+	"boundType": "I",	// inbound
+	"doorAreaCode": "GOA01"	// FND trailer door area code: select from the fndTrailerAreas property in the product details interface.
+}
+```
+
+### 4. Response Parameters
+
+| Name    | Description    |
+| ------- | -------------- |
+| code    | status code    |
+| message | detail message |
+| data    | response data  |
+
+### 5. Response Sample
+
+* **POR Trailer Service Response Sample**
+
+```javascript
+{
+    "code": 0,
+    "message": "",
+    "data": {
+        "content": [
+            {
+                "doorId": "8aaa02cc7f07d638017f12b757f517c3",
+                "doorArea": "临平, 余杭, 杭州, 浙江, 中国"
+            },
+            {
+                "doorId": "8aaa02cc7f07d638017f12b757f517c4",
+                "doorArea": "南苑, 余杭, 杭州, 浙江, 中国"
+            }
+        ],
+        "number": 1,
+        "size": 30,
+        "totalPages": 1,
+        "totalElements": 2,
+        "first": true, // is first page
+        "last": true, // is last page
+        "empty": false
+    }
+}
+```
+
+* **FND Trailer Service Response Sample**
+
+```javascript
+{
+    "code": 0,
+    "message": "",
+    "data": {
+        "content": [
+            {
+                "doorId": "8a5e11357e2e9f80017e3a6b11fa002e",
+                "doorArea": "Genova, Genova, Liguria, Italy"
+            }
+        ],
+        "number": 1,
+        "size": 30,
+        "totalPages": 1,
+        "totalElements": 1,
+        "first": true, // is first page
+        "last": true, // is last page
+        "empty": false
+    }
+}
+```
+
+### 6. Error Code Specification
+
+Please refer to the [General Error Codes](#General Error Codes) .
+
+
+
+## Trailer Rates Query Interface
+
+Get POR/FND trailer rates of the trailer door.
+
+### 1.Information
+
+* **Path**: /service/synconhub/common/trailerRates
+* **Method**: POST
+
+### 2. Query Parameters
+
+|        Name        | **Type** | Required |                         Description                          |
+| :----------------: | :------: | :------: | :----------------------------------------------------------: |
+|     productId      |  String  |   yes    |                          product id                          |
+|       doorId       |  String  |   yes    | trailer door id, select from the result of the trailer doors query interface |
+|  loadingServiceNo  |  String  |    no    | intermodal Service No from intermodal service query results  |
+| dischargeServiceNo |  String  |    no    | intermodal Service No from intermodal service query results  |
+
+### 3. Request Sample
+
+```javascript
+{
+    "productId": "8aaa97667f6dbe37017f71d618e303d4",
+    "doorId": "8aaad5377f05a93f017f0869b9ef0019",
+    "loadingServiceNo": "8a5e11127467f02501747218e25c0001",
+    "dischargeServiceNo": "8a5e11247866fbec0178681acd3a0008"
+}
+```
+
+### 4. Response Parameters
+
+| Name    | Description    |
+| ------- | -------------- |
+| code    | status code    |
+| message | detail message |
+| data    | response data  |
+
+### 5. Response Sample
+
+```javascript
+{
+    "code": 0,
+    "message": "",
+    "data": [
+    	{
+            "cntrType": "20GP",
+            "currency": "CNY",
+            "price": 3400.01,
+            "udd": "UDD: udd1, Remark: test",	// remark
+            "paymentTerms": "P"
+        },
+        {
+            "cntrType": "40GP",
+            "currency": "CNY",
+            "price": 5400.02,
+            "udd": "UDD: udd1, Remark: test",
+            "paymentTerms": "P"
+        },
+        {
+            "cntrType": "40HQ",
+            "currency": "CNY",
+            "price": 5400.02,
+            "udd": "UDD: udd1, Remark: test",
+            "paymentTerms": "P",
+        },
+        {
+            "cntrType": "20GP",
+            "currency": "CNY",
+            "price": 3400.01,
+            "udd": "UDD: udd1, Remark: test",
+            "paymentTerms": "C"
+        },
+        {
+            "cntrType": "40GP",
+            "currency": "CNY",
+            "price": 5400.02,
+            "udd": "UDD: udd1, Remark: test",
+            "paymentTerms": "C"
+        },
+        {
+            "cntrType": "40HQ",
+            "currency": "CNY",
+            "price": 5400.02,
+            "udd": "UDD: udd1, Remark: test",
+            "paymentTerms": "C",
+        }
+    ]
+}
+```
+
+### 6. Error Sample
+
+```javascript
+{
+    "code": 20093,
+    "message": "The trailer door cannot be found"
+}
+```
+
+### 7. Error Code Specification
+
+Please refer to the [General Error Codes](#General Error Codes) .
 
 
 
@@ -1194,7 +1529,7 @@ GET /service/synconhub/common/extraChargeFee/general/8a80cb817321ad030173221c880
  - 20068: "The estimated weight of the container is not in the optional range, please re-order"
  - 20070: "CosPlus | Shipper or consignee of shipping related party filled in the product booking is illegal."
  - 20072: "API cannot purchase this type of product"
- - 20073: "Charge Type:xxx,ChargeName:xxx cannot be set to Collect"
+ - 20073: "Charge type :xxx, charge name: xxx cannot be set to collect"
  - 20074: "The long-term product does not exist"
  - 20075: "The long-term product is off-shelf"
  - 20076: "Insufficient amount of available containers"
@@ -1209,3 +1544,10 @@ GET /service/synconhub/common/extraChargeFee/general/8a80cb817321ad030173221c880
  - 20085: "cargoInfo.reeferTemperatureType and cargoInfo.reeferTemperatureValue  cannot be empty"
  - 20086: "Ventilation Settings cannot be added when the reefer temperature is less than 0 C or 32 F"
  - 20087: "Ventilation setting must be added when the reefer temperature is ≥0°C or ≥32°F"
+ - 20091: "Please select one trailer service at least for this product"
+ - 20092: "Current product does not support trailer service"
+ - 20093: "The trailer door cannot be found"
+ - 20094: "The trailer rate cannot be obtained"
+ - 20095: "Some container types do not support trailer service"
+ - 20097: "Error trailer door information"
+ - 20098: "The loading time of the trailer service must be greater than the current time"

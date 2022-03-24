@@ -1,24 +1,17 @@
-# COSCO Syncon Hub API Specification for Spot Rate
+# COSCO Syncon Hub API Specification for SME Query
 
 [toc]
 
 ## Update Logs
 
-v1.4.0 (2022-03-10)
+v1.0.0 (2022-03-14)
 
-1. **`A `**  Added the API - Trailer Doors Query Interface. [Details](#Trailer Doors Query Interface)
-2. **`A `**  Added the API - Trailer Rates Query Interface. [Details](#Trailer Rates Query Interface)
-3. **`U`**  Added POR and FND trailer areas for Spot Rate details query interface. [Details](#Spot Rate Details Query Interface)
-
-v1.3.0 (2021-08-14)
-
-1. **`A `**  Added general error codes description.  [Details](#General Error Codes)
-
-v1.2.0 (2021-04-28)
-
-1. **`A `**  Added the API Intermodal Service Query to search product supported transfer services.  [Details](#Intermodal Service Query Interface)
-2. **`U`** Updated the spot rate detail query support search product detail with intermodal services. [Details](#Spot Rate Details Query Interface)
-3. **`U`** Updated the surcharge query support search product surcharge with intermodal services. [Details](#Surcharge Query Interface)
+1. **`A `**  Added the API - Product Query Interface. [Details](#Product Query Interface)
+2. **`A `**  Added the API - Product Detail Query Interface. [Details](#Product Details Query Interface)
+3. **`A `**  Added the API - Intermodal Service Query Interface.  [Details](#Intermodal Service Query Interface)
+4. **`A `**  Added the API - Surcharge Query Interface.  [Details](#Surcharge Query Interface)
+5. **`A `**  Added the API - Trailer Doors Query Interface.  [Details](#Trailer Doors Query Interface)
+6. **`A `**  Added the API - Trailer Rates Query Interface.  [Details](#Trailer Rates Query Interface)
 
 
 
@@ -41,105 +34,23 @@ HTTP header information description
 
 
 
-## City Information Query Interface
-
-Fuzzy query of the city information maintained by the platform based on the keywords of the city name. The returned city id can be used as the origin / destination location id for the Spot Rate query interface.
+## Product Query Interface
 
 ### 1. Information
 
-* **Path**: /service/synconhub/common/city/search
+* **Path**: /service/synconhub/product/sme/search
 * **Method**: POST
 
 ### 2. Request parameters
 
-| Name     | **Type** | **Required** |    Description     |                  **Remarks**                  |
-| :------- | :------: | :----------: | :----------------: | :-------------------------------------------: |
-| keywords |  String  |     yes      | city name keywords |                                               |
-| page     | Integer  |      no      | page number        |       **default:**1，**minimum:**1          |
-| size     | Integer  |      no      | page size          | **default:**30，**minimum:**1，**maximum:**30 |
-
-### 3. Request sample
-
-```javascript
-{
-    "keywords": "shenzhen",
-    "page": 1,
-    "size": 30
-}
-```
-
-### 4. Response parameters
-
-| Name    | Description                                |
-| ------- | ------------------------------------------ |
-| code    | status code                                |
-| message | detail message                             |
-| data    | Paging query results (sorted by city name) |
-
-### 5. Response sample
-
-```javascript
-{
-    "code": 0,
-    "message": "",
-    "data": {
-        "content": [
-            {
-                "id": "738872886233057", // city id
-                "unlocode": "CNSZN", // port code
-                "cityName": "Shenzhen",
-                "cntyName": "Shenzhen", // county name
-                "stateName": "Guangdong",
-                "stateCode": "GD",
-                "ctryRegionName": "China", // country / region name
-                "ctryRegionCode": "CN", // country / region code
-                "cityFullNameEn": "Shenzhen",
-                "cityFullNameCn": "深圳"
-            }
-        ],
-        "number": 1,
-        "size": 30,
-        "totalPages": 1,
-        "totalElements": 1,
-        "first": true, // is first page
-        "last": true, // is last page
-        "empty": false
-    }
-}
-```
-
-### 6. Error sample
-
-```javascript
-{
-    "code": 20041,
-    "message": "the page size should be between 0 and 30."
-}
-```
-
-### 7. Error Code Specification
-
-Please refer to the [General Error Codes](#General Error Codes) .
-
-
-
-## Spot Rate Query Interface
-
-### 1. Information
-
-* **Path**: /service/synconhub/product/instantBooking/search
-* **Method**: POST
-
-### 2. Request parameters
-
-| Name      |  Type   | Required |             Description              |            **Remarks**            |
-| :-------- | :-----: | :------: | :----------------------------------: | :-------------------------------: |
-| startDate | ISODate |   yes    | the start date of sailing date scope |                                   |
-| endDate   | ISODate |    no    |    the end of Sailing date scope     |                                   |
-| porCityId | String  |   yes    |             por city id              |                                   |
-| fndCityId | String  |   yes    |             fnd city id              |                                   |
-| page      | Integer |   yes    |              page size               |   **default:**1，**minimum:**1    |
-| size      | Integer |   yes    |             record size              | **default:**20，**range:**[1, 50] |
+| Name      |  Type   | Required |                Description                |            **Remarks**            |
+| :-------- | :-----: | :------: | :---------------------------------------: | :-------------------------------: |
+| startDate | ISODate |   yes    | the start date of sailing date scope(GMT) |                                   |
+| endDate   | ISODate |    no    |    the end of Sailing date scope(GMT)     |                                   |
+| porCityId | String  |   yes    |                por city id                |                                   |
+| fndCityId | String  |   yes    |                fnd city id                |                                   |
+| page      | Integer |   yes    |                 page size                 |   **default:**1，**minimum:**1    |
+| size      | Integer |   yes    |                record size                | **default:**20，**range:**[1, 50] |
 
 ### 3. Request sample
 
@@ -169,7 +80,7 @@ Please refer to the [General Error Codes](#General Error Codes) .
     "code": 0,
     "message": "",
     "data": {
-    	"content": [
+        "content": [
             {
                 "id": "8aaa97667f6dbe37017f71d618e303d4",
                 "tradeLaneCode": "AEM",
@@ -190,7 +101,7 @@ Please refer to the [General Error Codes](#General Error Codes) .
                 "effectiveStartDate": "2022-03-01T00:00:00.000Z",
                 "effectiveEndDate": "2022-04-30T23:59:59.000Z",
                 "eta": "2022-05-29 12:00",
-                "etd": "2022-04-28 20:00",
+        		"etd": "2022-04-28 20:00",
                 "inventory": 935,
                 "polTsMode": null, // pol transit mode
                 "podTsMode": null, // pod transit mode
@@ -235,7 +146,7 @@ Please refer to the [General Error Codes](#General Error Codes) .
                         "cityFullNameCn": "上海",
                         "ctryRegionName": "China",
                         "ctryRegionCode": "CN"
-                	}
+                    }
                 },
                 "podPort": {
                     "id": "349647918207001",
@@ -294,7 +205,7 @@ Please refer to the [General Error Codes](#General Error Codes) .
                         "cityFullNameCn": "热那亚"
                     }
                 },
-                "scheduleData": {
+                "scheduleData": { 
                     "origin": {
                         "id": "738872886232879",
                         "unlocode": "CNNBO",
@@ -319,7 +230,7 @@ Please refer to the [General Error Codes](#General Error Codes) .
                         "cityFullNameEn": "Genova",
                         "cityFullNameCn": "热那亚"
                     },
-                    "porFacilityCode": null,
+                    "porFacilityCode": null, 
                     "fndFacilityCode": "GOA01",
                     "legs": [
                         {
@@ -426,7 +337,25 @@ Please refer to the [General Error Codes](#General Error Codes) .
                         "cntrType": "20GP",
                         "price": 2.00,
                         "tradePrice": 0.50, //tradePrice = price - promotions - discounts
-                        "currency": "USD",
+                        "currency": "USD"
+                    }
+                ],
+                //  If ocean charge switch to collect payment, would need add collect payment charge
+                "collectExtraCharges": [
+                    {
+                        "cntrType": "20GP",
+                        "price": 20,
+                        "currency": "USD"
+                    },
+                    {
+                        "cntrType": "40HQ",
+                        "price": 40,
+                        "currency": "USD"
+                    },
+                    {
+                        "cntrType": "40GP",
+                        "price": 45,
+                        "currency": "USD"
                     }
                 ],
                 "promotions": {
@@ -479,7 +408,7 @@ Please refer to the [General Error Codes](#General Error Codes) .
 
 ### 1.Information
 
-* **Path**: /service/synconhub/common/intermodalService/{productId}
+* **Path**: /service/synconhub/common/intermodalService/general/{productId}
 * **Method**: GET
 
 ### 2. Path parameters
@@ -491,7 +420,7 @@ Please refer to the [General Error Codes](#General Error Codes) .
 ### 3. Request sample
 
 ```HTTP
-GET /service/synconhub/common/intermodalService/8aaa97667f6dbe37017f71d618e303d4
+GET /service/synconhub/common/intermodalService/general/8aaa97667f6dbe37017f71d618e303d4
 ```
 
 ### 4. Response parameters
@@ -522,11 +451,22 @@ GET /service/synconhub/common/intermodalService/8aaa97667f6dbe37017f71d618e303d4
                 "transportTerms": "CY", // Traffic Mode 
                 "bargeDay": 3,
                 "transitDay": 4,
+                "isFollowOceanFee": true, // payment terms follow ocean fee payment terms
                 "containerInfoDTOList": [ // Supported cntr type and weight config
                     {
                         "cntrSizeType": "20GP",
                         "cntrPrice": 100,
                         "currencyType": "USD",
+                        "paymentTerms": "P",
+                        "minWeight": null,
+                        "maxWeight": null,
+                        "weightUnit": null
+                    },
+                    {
+                        "cntrSizeType": "20GP",
+                        "cntrPrice": 150,
+                        "currencyType": "USD",
+                        "paymentTerms": "C",
                         "minWeight": null,
                         "maxWeight": null,
                         "weightUnit": null
@@ -535,6 +475,16 @@ GET /service/synconhub/common/intermodalService/8aaa97667f6dbe37017f71d618e303d4
                         "cntrSizeType": "40GP",
                         "cntrPrice": 300,
                         "currencyType": "USD",
+                        "paymentTerms": "P",
+                        "minWeight": null,
+                        "maxWeight": null,
+                        "weightUnit": null
+                    },
+                    {
+                        "cntrSizeType": "40GP",
+                        "cntrPrice": 320,
+                        "currencyType": "USD",
+                        "paymentTerms": "C",
                         "minWeight": null,
                         "maxWeight": null,
                         "weightUnit": null
@@ -543,6 +493,16 @@ GET /service/synconhub/common/intermodalService/8aaa97667f6dbe37017f71d618e303d4
                         "cntrSizeType": "40HQ",
                         "cntrPrice": 300,
                         "currencyType": "USD",
+                        "paymentTerms": "P",
+                        "minWeight": null,
+                        "maxWeight": null,
+                        "weightUnit": null
+                    },
+                    {
+                        "cntrSizeType": "40HQ",
+                        "cntrPrice": 320,
+                        "currencyType": "USD",
+                        "paymentTerms": "C",
                         "minWeight": null,
                         "maxWeight": null,
                         "weightUnit": null
@@ -562,11 +522,13 @@ GET /service/synconhub/common/intermodalService/8aaa97667f6dbe37017f71d618e303d4
                 "transportTerms": "CY",
                 "bargeDay": 2,
                 "transitDay": 3,
+                "isFollowOceanFee": false, // payment terms follow ocean fee payment terms
                 "containerInfoDTOList": [
                     {
                         "cntrSizeType": "20GP",
                         "cntrPrice": 100,
                         "currencyType": "USD",
+                        "paymentTerms": "P",
                         "minWeight": null,
                         "maxWeight": null,
                         "weightUnit": null
@@ -575,6 +537,7 @@ GET /service/synconhub/common/intermodalService/8aaa97667f6dbe37017f71d618e303d4
                         "cntrSizeType": "40GP",
                         "cntrPrice": 200,
                         "currencyType": "USD",
+                        "paymentTerms": "P",
                         "minWeight": null,
                         "maxWeight": null,
                         "weightUnit": null
@@ -583,6 +546,34 @@ GET /service/synconhub/common/intermodalService/8aaa97667f6dbe37017f71d618e303d4
                         "cntrSizeType": "40HQ",
                         "cntrPrice": 200,
                         "currencyType": "USD",
+                        "paymentTerms": "P",
+                        "minWeight": null,
+                        "maxWeight": null,
+                        "weightUnit": null
+                    },
+                                        {
+                        "cntrSizeType": "20GP",
+                        "cntrPrice": 125,
+                        "currencyType": "USD",
+                        "paymentTerms": "C",
+                        "minWeight": null,
+                        "maxWeight": null,
+                        "weightUnit": null
+                    },
+                    {
+                        "cntrSizeType": "40GP",
+                        "cntrPrice": 230,
+                        "currencyType": "USD",
+                        "paymentTerms": "C",
+                        "minWeight": null,
+                        "maxWeight": null,
+                        "weightUnit": null
+                    },
+                    {
+                        "cntrSizeType": "40HQ",
+                        "cntrPrice": 230,
+                        "currencyType": "USD",
+                        "paymentTerms": "C",
                         "minWeight": null,
                         "maxWeight": null,
                         "weightUnit": null
@@ -602,12 +593,14 @@ GET /service/synconhub/common/intermodalService/8aaa97667f6dbe37017f71d618e303d4
                 "transportTerms": "CY",
                 "bargeDay": 2,
                 "transitDay": 4,
+                "isFollowOceanFee": false, // payment terms follow ocean fee payment terms
                 "containerInfoDTOList": [ 
                     // If cargo weight information is configured,The same cntr type will have multiple data
                     {
                         "cntrSizeType": "20GP",
                         "cntrPrice": 100,
                         "currencyType": "USD",
+                        "paymentTerms": "P",
                         "minWeight": 0,  // min cargo weight
                         "maxWeight": 20, // max cargo weight
                         "weightUnit": "TON" // weight unit eg: "TON"
@@ -617,6 +610,7 @@ GET /service/synconhub/common/intermodalService/8aaa97667f6dbe37017f71d618e303d4
                         "cntrSizeType": "20GP",
                         "cntrPrice": 150,
                         "currencyType": "USD",
+                        "paymentTerms": "P",
                         "minWeight": 20,
                         "maxWeight": 40,
                         "weightUnit": "TON"
@@ -626,6 +620,7 @@ GET /service/synconhub/common/intermodalService/8aaa97667f6dbe37017f71d618e303d4
                         "cntrSizeType": "20GP",
                         "cntrPrice": 200,
                         "currencyType": "USD",
+                        "paymentTerms": "P",
                         "minWeight": 40,
                         "maxWeight": null,
                         "weightUnit": "TON"
@@ -635,6 +630,7 @@ GET /service/synconhub/common/intermodalService/8aaa97667f6dbe37017f71d618e303d4
                         "cntrSizeType": "40GP",
                         "cntrPrice": 300,
                         "currencyType": "USD",
+                        "paymentTerms": "P",
                         "minWeight": null,
                         "maxWeight": null,
                         "weightUnit": "TON"
@@ -643,6 +639,7 @@ GET /service/synconhub/common/intermodalService/8aaa97667f6dbe37017f71d618e303d4
                         "cntrSizeType": "40HQ",
                         "cntrPrice": 300,
                         "currencyType": "USD",
+                        "paymentTerms": "P",
                         "minWeight": null,
                         "maxWeight": null,
                         "weightUnit": "TON"
@@ -664,11 +661,13 @@ GET /service/synconhub/common/intermodalService/8aaa97667f6dbe37017f71d618e303d4
                 "transportTerms": "FOR",
                 "bargeDay": 19,
                 "transitDay": 5,
+                "isFollowOceanFee": false, // payment terms follow ocean fee payment terms
                 "containerInfoDTOList": [
                     {
                         "cntrSizeType": "20GP",
                         "cntrPrice": 300,
                         "currencyType": "USD",
+                        "paymentTerms": "P",
                         "minWeight": null,
                         "maxWeight": null,
                         "weightUnit": null
@@ -677,6 +676,7 @@ GET /service/synconhub/common/intermodalService/8aaa97667f6dbe37017f71d618e303d4
                         "cntrSizeType": "40GP",
                         "cntrPrice": 400,
                         "currencyType": "USD",
+                        "paymentTerms": "P",
                         "minWeight": null,
                         "maxWeight": null,
                         "weightUnit": null
@@ -685,6 +685,7 @@ GET /service/synconhub/common/intermodalService/8aaa97667f6dbe37017f71d618e303d4
                         "cntrSizeType": "40HQ",
                         "cntrPrice": 400,
                         "currencyType": "USD",
+                        "paymentTerms": "P",
                         "minWeight": null,
                         "maxWeight": null,
                         "weightUnit": null
@@ -708,15 +709,15 @@ GET /service/synconhub/common/intermodalService/8aaa97667f6dbe37017f71d618e303d4
 
 ```javascript
 {
-    "code": 20060,
-    "message": "The intermodal service does not exist"
+    "code": 20059,
+    "message": "Wrong bound type of intermodal service"
 }
 ```
 
 ```javascript
 {
-    "code": 20059,
-    "message": "Wrong bound type of intermodal service"
+    "code": 20060,
+    "message": "The intermodal service does not exist"
 }
 ```
 
@@ -726,12 +727,12 @@ Please refer to the [General Error Codes](#General Error Codes) .
 
 
 
-## Spot Rate Details Query Interface
+## Product Details Query Interface
 
 ### 1. Information
 
 
-* **Path**: /service/synconhub/product/instantBooking/{productId}
+* **Path**: /service/synconhub/product/sme/{productId}
 * **Method**: GET
 
 ### 2. Path parameters
@@ -744,22 +745,22 @@ Please refer to the [General Error Codes](#General Error Codes) .
 
 |        Name        | **Type** | Required |                         Description                          |
 | :----------------: | :------: | :------: | :----------------------------------------------------------: |
-|  loadingServiceNo  |  String  |    no    | intermodalServiceNo from intermodal service query results. Get the spot rate details with loading service |
-| dischargeServiceNo |  String  |    no    | intermodalServiceNo from intermodal service query results. Get the spot rate details with discharge service |
+|  loadingServiceNo  |  String  |    no    | Get from the result of intermodal service query interface. Get the spot rate details with loading service. |
+| dischargeServiceNo |  String  |    no    | Get from the result of intermodal service query interface. Get the spot rate details with discharge service. |
 
 
 ### 4. Request sample
 
 ```http
-GET /service/synconhub/product/instantBooking/8aaa97667f6dbe37017f71d618e303d4
+GET /service/synconhub/product/sme/8aaa97667f6dbe37017f71d618e303d4
 ```
 
 ```http
-GET /service/synconhub/product/instantBooking/8aaa97667f6dbe37017f71d618e303d4?loadingServiceNo=8a5e112478d41b380178d4551a33000a
+GET /service/synconhub/product/sme/8aaa97667f6dbe37017f71d618e303d4?loadingServiceNo=8a5e112478d41b380178d4551a33000a
 ```
 
 ```http
-GET /service/synconhub/product/instantBooking/8aaa97667f6dbe37017f71d618e303d4?loadingServiceNo=8a5e112478d41b380178d4551a33000a&dischargeServiceNo=8a5e112478c4eed60178c51cca9f0001
+GET /service/synconhub/product/sme/8aaa97667f6dbe37017f71d618e303d4?loadingServiceNo=8a5e112478d41b380178d4551a33000a&dischargeServiceNo=8a5e112478c4eed60178c51cca9f0001
 ```
 
 ### 5. Response parameters
@@ -1028,13 +1029,32 @@ GET /service/synconhub/product/instantBooking/8aaa97667f6dbe37017f71d618e303d4?l
             "voyageNo": "023"
         },
         "routeProductPricingList": [
-            {
-                "cntrType": "20GP",
-                "price": 2.00, 
-                "tradePrice": 0.50,
-                "currency": "USD"
-            }
+              {
+                 "cntrType": "20GP",
+                 "price": 2.00,
+                 "tradePrice": 0.50, //tradePrice = price - promotions - discounts
+                 "currency": "USD",
+                 "paymentTerms": "P"
+              }
         ],
+       //  If ocean charge switch to collect payment, would need add collect payment charge
+        "collectExtraCharges": [
+             {
+                 "cntrType": "20GP",
+                 "price": 20,
+                 "currency": "USD"
+              },
+              {
+                 "cntrType": "40GP",
+                 "price": 45,
+                 "currency": "USD"
+              },
+              {
+                 "cntrType": "40HQ",
+                 "price": 40,
+                 "currency": "USD"
+              }
+        ],            
         "promotions": {
             "detail": [
                 {
@@ -1111,7 +1131,7 @@ Get the surcharge details of a specific product.
 ### 1. Information
 
 
-* **Path**: /service/synconhub/common/extraChargeFee/${productId}
+* **Path**: /service/synconhub/common/extraChargeFee/general/${productId}
 * **Method**: GET
 
 ### 2. Path parameters
@@ -1130,15 +1150,15 @@ Get the surcharge details of a specific product.
 ### 4. Request sample
 
 ```http
-GET /service/synconhub/common/extraChargeFee/8aaa97667f6dbe37017f71d618e303d4
+GET /service/synconhub/common/extraChargeFee/general/8aaa97667f6dbe37017f71d618e303d4
 ```
 
 ```http
-GET /service/synconhub/common/extraChargeFee/8aaa97667f6dbe37017f71d618e303d4?loadingServiceNo=8a5e11127467f02501747218e25c0001
+GET /service/synconhub/common/extraChargeFee/general/8aaa97667f6dbe37017f71d618e303d4?loadingServiceNo=8a5e11127467f02501747218e25c0001
 ```
 
 ```http
-GET /service/synconhub/common/extraChargeFee/8aaa97667f6dbe37017f71d618e303d4?loadingServiceNo=8a5e11127467f02501747218e25c0001&dischargeServiceNo=8a5e11247866fbec0178681acd3a0008
+GET /service/synconhub/common/extraChargeFee/general/8aaa97667f6dbe37017f71d618e303d4?loadingServiceNo=8a5e11127467f02501747218e25c0001&dischargeServiceNo=8a5e11247866fbec0178681acd3a0008
 ```
 
 ### 5. Response parameters
@@ -1156,37 +1176,51 @@ GET /service/synconhub/common/extraChargeFee/8aaa97667f6dbe37017f71d618e303d4?lo
     "code": 0,
     "message": "",
     "data": [
+        {
+            "chargeModel": "BL",
+            "cntrSize": null, // container type
+            "chargeDetail": [ // detail info
                 {
-                    "chargeModel": "BL",
-                    "cntrSize": null, // container type
-                    "chargeDetail": [ // detail info
-                        {
-                            "chargeCode": "DOC",
-                            "chargeName": "DOC",
-                            "chargeType": "DOC",
-                            "chargeTag": "POR",
-                            "price": 666,
-                            "currency": "USD",
-                            "category": null // charge category
-                        }
-                    ]
-                },
-                {
-                    "chargeModel": "CNTR",
-                    "cntrSize": "20GP",
-                    "chargeDetail": [
-                        {
-                            "chargeCode": "255",
-                            "chargeName": "工本费",
-                            "chargeType": "CNTR_LOCAL",
-                            "chargeTag": "POR",
-                            "price": 10,
-                            "currency": "USD",
-                            "category": "EXTRA_CHARGE"
-                        }
-                    ]
+                    "chargeCode": "DOC",
+                    "chargeName": "DOC",
+                    "chargeType": "DOC",
+                    "chargeTag": "POR",
+                    "price": 666,
+                    "currency": "USD",
+                    "paymentTerms": "P",
+                    "isFollowOceanFee": true, // payment terms follow ocean fee payment terms
+                    "category": null // charge category
+                }， {
+                    "chargeCode": "DOC",
+                    "chargeName": "DOC",
+                    "chargeType": "DOC",
+                    "chargeTag": "POR",
+                    "price": 888,
+                    "currency": "USD",
+                    "paymentTerms": "C",
+                    "isFollowOceanFee": true, // payment terms follow ocean fee payment terms
+                    "category": null // charge category
                 }
-    		]
+            ]
+        },
+        {
+            "chargeModel": "CNTR",
+            "cntrSize": "20GP",
+            "chargeDetail": [
+                {
+                    "chargeCode": "255",
+                    "chargeName": "工本费",
+                    "chargeType": "CNTR_LOCAL",
+                    "chargeTag": "POR",
+                    "price": 10,
+                    "currency": "USD",
+                    "paymentTerms": "P",
+                    "isFollowOceanFee": false,
+                    "category": "EXTRA_CHARGE"
+            	}
+            ]
+        }
+    ]
 }
 ```
 
@@ -1491,7 +1525,7 @@ Please refer to the [General Error Codes](#General Error Codes) .
  - 20068: "The estimated weight of the container is not in the optional range, please re-order"
  - 20070: "CosPlus | Shipper or consignee of shipping related party filled in the product booking is illegal."
  - 20072: "API cannot purchase this type of product"
- - 20073: "Charge Type:xxx,ChargeName:xxx cannot be set to Collect"
+ - 20073: "Charge type :xxx, charge name: xxx cannot be set to collect"
  - 20074: "The long-term product does not exist"
  - 20075: "The long-term product is off-shelf"
  - 20076: "Insufficient amount of available containers"
@@ -1506,7 +1540,6 @@ Please refer to the [General Error Codes](#General Error Codes) .
  - 20085: "cargoInfo.reeferTemperatureType and cargoInfo.reeferTemperatureValue  cannot be empty"
  - 20086: "Ventilation Settings cannot be added when the reefer temperature is less than 0 C or 32 F"
  - 20087: "Ventilation setting must be added when the reefer temperature is ≥0°C or ≥32°F"
-
  - 20091: "Please select one trailer service at least for this product"
  - 20092: "Current product does not support trailer service"
  - 20093: "The trailer door cannot be found"

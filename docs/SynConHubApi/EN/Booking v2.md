@@ -5,11 +5,18 @@
 
 ## Update Logs
 
+v2.1.0 (2022-03-10)
+
+1. **`U `**  Enabled trailer service for the API Booking collect Interface.  [Details](#Booking Interface v2)
+2. **`U `**  Added trailer service information for order details query interface. [Details](#Order Details Query Interface)
+
 v2.0.0 (2021-08-07)
 
-1. **`A `**  Added the API Booking collect interface. 
+1. **`A `**  Added the API Booking collect Interface. [Details](#Booking Interface v2)
 
-## Http Header
+
+
+## HTTP Header
 
 HTTP header information description
 
@@ -30,82 +37,116 @@ HTTP header information description
 
 ## Booking Interface v2 
 
-Customer can place booking throught this interface.  The interface will generate the order with the charge details of the product and related discounts. While customer can apply the coupons to deduct the ocean freight of the Product as well. The avaible counpons infomation can be obtain through the Sport Rate Detail interface. Please note that the minimum amount of the ocean freight for one single container after deduction shall be 1 US dollar. No change in coupon amount. For the details of the Booking Rules, please refer to the Syncon Hub online.
+Customer can place booking through this Interface.  The Interface will generate the order with the charge details of the product and related discounts. While customer can apply the coupons to deduct the ocean freight of the Product as well. The available coupons information can be obtain through the Sport Rate Detail Interface. Please note that the minimum amount of the ocean freight for one single container after deduction shall be 1 US dollar. No change in coupon amount. For the details of the Booking Rules, please refer to the SynconHub online.
 
 
 
-### 1. Informations
+### 1. Information
 
 * **Path**: /service/synconhub/shipment/general/booking
 * **Method**: POST
 
 ### 2. Request parameters
 
-| Name                     |   Type    | Required |                         Description                          |                  **Remarks**                  |
-| :----------------------- | :-------: | :------: | :----------------------------------------------------------: | :-------------------------------------------: |
-| productId                |  string   |   yes    |                          product id                          |                                               |
-| preferPaymentTerms       |  String   |   yes    |                  prefer payment terms type                   |              optional value: P,C              |
-| specificPaymentTerms     | Object[]  |    no    |                 charge payment terms option,                 |                                               |
-| \|--- chargeType         |  String   |   yes    | chargeType from surcharge query interface. For ocean charges, chargeType is 'OCEAN_FEE', loadingService is 'LOADING_TRANSFER', and dischargeservice is 'DISCHARGE_TRANSFER' |                                               |
-| \|--- chargeName         |  String   |    no    | chargeName from surcharge query interface.Chargename is not required for ocean fee and intermodal services |                                               |
-| \|--- paymentTerms       |  String   |   yes    |                                                              |              optional value: P,C              |
-| loadingServiceNo         |  String   |    no    |  intermodalServiceNo from intermodal service query results   |                                               |
-| dischargeServiceNo       |  String   |    no    |  intermodalServiceNo from intermodal service query results   |                                               |
-| containerInfos           | object [] |   yes    |                        container info                        |                                               |
-| \|---containerType       |  string   |   yes    |                                                              |      **optional value:** 20GP,40GP,40HQ       |
-| \|---quantity            |  integer  |   yes    |                                                              |                  **min**: 1                   |
-| \|---estimateWeight      |  decimal  |    no    |                estimate cargo weight per case                |                 **unit**: TON                 |
-| blQuantity               |  integer  |    no    |                         bl quantity                          |          **default**: 1, **min**: 1           |
-| couponsInfo              |  object   |    no    |                       coupon use info                        |                                               |
-| \|---amount              |  integer  |   yes    |                                                              |                  **min**: 1                   |
-| \|---couponId            |  string   |   yes    |                                                              |                                               |
-| includeInsurance         |  boolean  |    no    |                  whether include insurance                   |              **default**: false               |
-| shipperInfo              |  object   |    no    |                         shipper info                         |                                               |
-| \|---name                |  string   |   yes    |                                                              |  **length**: [1, 70], **English characters**  |
-| \|---addressLine1        |  string   |   yes    |              country / region / province / city              |  **length**: [1, 35], **English characters**  |
-| \|---addressLine2        |  string   |   yes    |                         street name                          |  **length**: [1, 35], **English characters**  |
-| \|---addressText         |  string   |    no    |                      additional address                      | **length**: [1, 1200], **English characters** |
-| \|---phone               |  string   |   yes    |                                                              |              **length**: [1, 22]              |
-| \|---email               |  string   |    no    |                                                              |             **length**: [1, 400]              |
-| \|---carrierCustomerCode |  string   |    no    |                    carrier customer code                     |                                               |
-| consigneeInfo            |  object   |    no    |                        consignee info                        |                                               |
-| \|---name                |  string   |   yes    |                                                              |  **length**: [1, 70], **English characters**  |
-| \|---addressLine1        |  string   |   yes    |              country / region / province / city              |  **length**: [1, 35], **English characters**  |
-| \|---addressLine2        |  string   |   yes    |                         street name                          |  **length**: [1, 35], **English characters**  |
-| \|---addressText         |  string   |    no    |                      additional address                      | **length**: [1, 1200], **English characters** |
-| \|---phone               |  string   |   yes    |                                                              |              **length**: [1, 22]              |
-| \|---email               |  string   |    no    |                                                              |             **length**: [1, 400]              |
-| \|---carrierCustomerCode |  string   |    no    |                    carrier customer code                     |                                               |
-| notifyPartyInfo          |  object   |    no    |                      notify party info                       |                                               |
-| \|---name                |  string   |   yes    |                                                              |  **length**: [1, 70], **English characters**  |
-| \|---addressLine1        |  string   |   yes    |              country /region / province / city               |  **length**: [1, 35], **English characters**  |
-| \|---addressLine2        |  string   |   yes    |                         street name                          |  **length**: [1, 35], **English characters**  |
-| \|---addressText         |  string   |    no    |                      additional address                      | **length**: [1, 1200], **English characters** |
-| \|---phone               |  string   |   yes    |                                                              |              **length**: [1, 22]              |
-| \|---email               |  string   |    no    |                                                              |             **length**: [1, 400]              |
-| emergencyContactInfo     |  object   |   yes    |                                                              |                                               |
-| \|---name                |  string   |    no    |                                                              |  **length**: [1, 70], **English characters**  |
-| \|---email               |  string   |   yes    |                                                              |             **length**: [1, 400]              |
-| \|---mobile              |  string   |    no    |                                                              |              **length**: [1, 15]              |
-| \|---phone               |  string   |    no    |                                                              |              **length**: [1, 22]              |
-| \|---address             |  string   |    no    |                                                              | **length**: [1, 245], **English characters**  |
-| cargoInfo                |  object   |   yes    |                          cargo info                          |                                               |
-| \|---desc                |  string   |   yes    |                          cargo name                          |  **length**: [1, 60], **English characters**  |
-| \|---packageType         |  string   |   yes    |                                                              |                                               |
-| \|---quantity            |    int    |   yes    |                                                              |                                               |
-| \|---weight              |  decimal  |   yes    |                                                              |                 **unit**: KG                  |
-| \|---volume              |  decimal  |   yes    |                                                              |            **unit**: m<sup>3</sup>            |
-| \|---remarks             |  string   |    no    |                                                              |            **English characters**             |
-| remarks                  |  string   |    no    |                                                              | **length**: [0, 240], **English characters**  |
+| Name                     |   Type   | Required |                         Description                          |                  **Remarks**                  |
+| :----------------------- | :------: | :------: | :----------------------------------------------------------: | :-------------------------------------------: |
+| productId                |  String  |   yes    |                          product id                          |                                               |
+| preferPaymentTerms       |  String  |   yes    |                  prefer payment terms type                   |              optional value: P,C              |
+| specificPaymentTerms     | Object[] |    no    |                 charge payment terms options                 |                                               |
+| \|--- chargeType         |  String  |   yes    | chargeType from surcharge query Interface. For ocean charges, chargeType is 'OCEAN_FEE', loadingService is 'LOADING_TRANSFER', dischargeService is 'DISCHARGE_TRANSFER', porTrailerService is 'POR_TRAILER' and fndTrailerService is 'FND_TRAILER' |                                               |
+| \|--- chargeName         |  String  |    no    | chargeName from surcharge query Interface and chargeName is not required for ocean fee, Intermodal services and trailer services |                                               |
+| \|--- paymentTerms       |  String  |   yes    |                                                              |              optional value: P,C              |
+| loadingServiceNo         |  String  |    no    |  IntermodalServiceNo from Intermodal service query results   |                                               |
+| dischargeServiceNo       |  String  |    no    |  IntermodalServiceNo from Intermodal service query results   |                                               |
+| porTrailerService        |  Object  |    no    |                     POR trailer service                      |                                               |
+| \|--- doorId             |  String  |   yes    | trailer door id, get from the result of the trailer door query interface. |                                               |
+| \|--- doorName           |  String  |   yes    |                      trailer door name                       |                                               |
+| \|--- doorAddress        |  String  |   yes    |                     trailer door address                     |                                               |
+| \|--- contactName        |  String  |   yes    |                         contact name                         |                                               |
+| \|--- contactTel         |  String  |   yes    |                        contact number                        |                                               |
+| \|--- loadingTime        | ISODate  |   yes    |                      loading time(GMT)                       |          loading time > current time          |
+| \|--- remarks            |  String  |    no    |                                                              |                                               |
+| fndTrailerService        |  Object  |    no    |                     FND trailer service                      |                                               |
+| \|--- doorId             |  String  |   yes    | trailer door id, get from the result of the trailer door query interface. |                                               |
+| \|--- doorName           |  String  |   yes    |                      trailer door name                       |                                               |
+| \|--- doorAddress        |  String  |   yes    |                     trailer door address                     |                                               |
+| \|--- contactName        |  String  |   yes    |                         contact name                         |                                               |
+| \|--- contactTel         |  String  |   yes    |                        contact number                        |                                               |
+| \|--- loadingTime        | ISODate  |   yes    |                      loading time(GMT)                       |          loading time > current time          |
+| \|--- remarks            |  String  |    no    |                                                              |                                               |
+| containerInfos           | Object[] |   yes    |                        container info                        |                                               |
+| \|---containerType       |  String  |   yes    |                                                              |      **optional value:** 20GP,40GP,40HQ       |
+| \|---quantity            | Integer  |   yes    |                                                              |                  **min**: 1                   |
+| \|---estimateWeight      | Decimal  |    no    |                estimate cargo weight per case                |                 **unit**: TON                 |
+| blQuantity               | Integer  |    no    |                         bl quantity                          |          **default**: 1, **min**: 1           |
+| couponsInfo              |  Object  |    no    |                       coupon use info                        |                                               |
+| \|---amount              | Integer  |   yes    |                                                              |                  **min**: 1                   |
+| \|---couponId            |  String  |   yes    |                                                              |                                               |
+| includeInsurance         | Boolean  |    no    |                  whether include insurance                   |              **default**: false               |
+| shipperInfo              |  Object  |    no    |                         shipper info                         |                                               |
+| \|---name                |  String  |   yes    |                                                              |  **length**: [1, 70], **English characters**  |
+| \|---addressLine1        |  String  |   yes    |              country / region / province / city              |  **length**: [1, 35], **English characters**  |
+| \|---addressLine2        |  String  |   yes    |                         street name                          |  **length**: [1, 35], **English characters**  |
+| \|---addressText         |  String  |    no    |                      additional address                      | **length**: [1, 1200], **English characters** |
+| \|---phone               |  String  |   yes    |                                                              |              **length**: [1, 22]              |
+| \|---email               |  String  |    no    |                                                              |             **length**: [1, 400]              |
+| \|---carrierCustomerCode |  String  |    no    |                    carrier customer code                     |                                               |
+| consigneeInfo            |  Object  |    no    |                        consignee info                        |                                               |
+| \|---name                |  String  |   yes    |                                                              |  **length**: [1, 70], **English characters**  |
+| \|---addressLine1        |  String  |   yes    |              country / region / province / city              |  **length**: [1, 35], **English characters**  |
+| \|---addressLine2        |  String  |   yes    |                         street name                          |  **length**: [1, 35], **English characters**  |
+| \|---addressText         |  String  |    no    |                      additional address                      | **length**: [1, 1200], **English characters** |
+| \|---phone               |  String  |   yes    |                                                              |              **length**: [1, 22]              |
+| \|---email               |  String  |    no    |                                                              |             **length**: [1, 400]              |
+| \|---carrierCustomerCode |  String  |    no    |                    carrier customer code                     |                                               |
+| notifyPartyInfo          |  Object  |    no    |                      notify party info                       |                                               |
+| \|---name                |  String  |   yes    |                                                              |  **length**: [1, 70], **English characters**  |
+| \|---addressLine1        |  String  |   yes    |              country /region / province / city               |  **length**: [1, 35], **English characters**  |
+| \|---addressLine2        |  String  |   yes    |                         street name                          |  **length**: [1, 35], **English characters**  |
+| \|---addressText         |  String  |    no    |                      additional address                      | **length**: [1, 1200], **English characters** |
+| \|---phone               |  String  |   yes    |                                                              |              **length**: [1, 22]              |
+| \|---email               |  String  |    no    |                                                              |             **length**: [1, 400]              |
+| emergencyContactInfo     |  Object  |   yes    |                                                              |                                               |
+| \|---name                |  String  |    no    |                                                              |  **length**: [1, 70], **English characters**  |
+| \|---email               |  String  |   yes    |                                                              |             **length**: [1, 400]              |
+| \|---mobile              |  String  |    no    |                                                              |              **length**: [1, 15]              |
+| \|---phone               |  String  |    no    |                                                              |              **length**: [1, 22]              |
+| \|---address             |  String  |    no    |                                                              | **length**: [1, 245], **English characters**  |
+| cargoInfo                |  Object  |   yes    |                          cargo info                          |                                               |
+| \|---desc                |  String  |   yes    |                          cargo name                          |  **length**: [1, 60], **English characters**  |
+| \|---packageType         |  String  |   yes    |                                                              |                                               |
+| \|---quantity            | Integer  |   yes    |                                                              |                                               |
+| \|---weight              | Decimal  |   yes    |                                                              |                 **unit**: KG                  |
+| \|---volume              | Decimal  |   yes    |                                                              |            **unit**: m<sup>3</sup>            |
+| \|---remarks             |  String  |    no    |                                                              |            **English characters**             |
+| remarks                  |  String  |    no    |                                                              | **length**: [0, 240], **English characters**  |
 
 
 ### 3. Request sample
 
 ```javascript
 {
-    "productId": "8a5e11157351b2df01735562622a0000",
+    "productId": "8aaa97667f6dbe37017f71d618e303d4",
     "loadingServiceNo":"8a5e112478e8ac470178e90d79cc0025",
     "dischargeServiceNo":"8a5e112478e8ac470178e8bbe0d90001",
+    "porTrailerService": {
+        "doorId": "8aaad5377f05a93f017f0869b9ef001a",
+        "doorName": "test",
+        "doorAddress": "test",
+        "loadingTime": "2022-03-15T16:00:00.000Z",
+        "contactName": "test",
+        "contactTel": "123456",
+        "remarks": "remarks"
+    },
+    "fndTrailerService": {
+        "doorId": "8aaa81bd7f3fb616017f410fa9cf0250",
+        "doorName": "test",
+        "doorAddress": "test",
+        "loadingTime": "2022-03-15T16:00:00.000Z",
+        "contactName": "test",
+        "contactTel": "123456",
+        "remarks": "remarks"
+    },
     "preferPaymentTerms": "P",
     "specificPaymentTerms":[
       {
@@ -122,7 +163,17 @@ Customer can place booking throught this interface.  The interface will generate
           "chargeType":"DISCHARGE_TRANSFER",
           "chargeName":null,
           "paymentTerms":"C"
-      },  
+      },
+      {
+          "chargeType":"POR_TRAILER",
+          "chargeName":null,
+          "paymentTerms":"C"
+      }, 
+      {
+          "chargeType":"FND_TRAILER",
+          "chargeName":null,
+          "paymentTerms":"C"
+      }, 
       {
           "chargeType":"THC",
           "chargeName":"THC",
@@ -199,11 +250,12 @@ Customer can place booking throught this interface.  The interface will generate
 ### 5. Response sample
 
 ```javascript
-{ "code": 0,
+{ 
+    "code": 0,
     "message": "",
     "data": {
-	  "orderNo": "A00008370",
-	  "brNo": "6889904090"
+	  "orderNo": "A00366039",
+	  "brNo": "4880422750"
     }
 }
 ```
@@ -218,7 +270,7 @@ Customer can place booking throught this interface.  The interface will generate
 
 {
     "code": 20073,
-    "message": "Charge Type:XXX,ChargeName:XXX cannot be set to Collect"
+    "message": "Charge type: XXX, charge name: XXX cannot be set to collect"
 }
 ```
 
@@ -232,7 +284,7 @@ Please refer to the [General Error Codes](#General Error Codes) .
 
 Query brief information of eligible orders based on conditions
 
-### 1. Informations
+### 1. Information
 
 
 - **Path**: /service/synconhub/order/search
@@ -242,11 +294,11 @@ Query brief information of eligible orders based on conditions
 
 |      Name      |  Type   | Required |         Description         |              **Remarks**               |
 | :------------: | :-----: | :------: | :-------------------------: | :------------------------------------: |
-|      brNo      | string  |    no    |   booking request number    |                                        |
-|    orderNo     | string  |    no    |          order no           |                                        |
-|  orderStatus   | string  |    no    |        order status         | **optional value:** CONFIRMED,CANCELED |
-|      page      | integer |   yes    |          page size          |      **default:**1，**minimum:**1      |
-|      size      | integer |   yes    |         record size         |   **default:**20, **range:**[1, 30]    |
+|      brNo      | String  |    no    |   booking request number    |                                        |
+|    orderNo     | String  |    no    |          order no           |                                        |
+|  orderStatus   | String  |    no    |        order status         | **optional value:** CONFIRMED,CANCELED |
+|      page      | Integer |   yes    |          page size          |      **default:**1，**minimum:**1      |
+|      size      | Integer |   yes    |         record size         |   **default:**20, **range:**[1, 30]    |
 | updateDateFrom | ISODate |    no    | Order update time from(GMT) |                                        |
 |  updateDateTo  | ISODate |    no    |  Order update time to(GMT)  |                                        |
 
@@ -254,13 +306,13 @@ Query brief information of eligible orders based on conditions
 
 ```javascript
 {
-  "brNo": "6889903730",
-  "orderNo": "E00007231",
-  "orderStatus": "CONFIRMED",
-  "page": 1,
-  "size": 20,
-  "updateDateFrom": "2020-07-20T03:14:55.200Z",
-  "updateDateTo": "2020-07-25T03:14:55.200Z"
+    "brNo": "6889903730",
+    "orderNo": "E00007231",
+    "orderStatus": "CONFIRMED",
+    "page": 1,
+    "size": 20,
+    "updateDateFrom": "2020-07-20T03:14:55.200Z",
+    "updateDateTo": "2020-07-25T03:14:55.200Z"
 }
 ```
 
@@ -352,7 +404,7 @@ Please refer to the [General Error Codes](#General Error Codes) .
 
 Query order details by order number
 
-### 1. Informations
+### 1. Information
 
 - **Path**: /service/synconhub/order/detail/{orderNo}
 - **Method**: GET
@@ -397,7 +449,7 @@ GET /service/synconhub/order/detail/E00144631
                 }
             ]
         }, 
-        "sailingProduct": {...}, // product info，for the specific structure, please refer to "Spot Rate Query"
+        "sailingProduct": {...}, // product info，for the specific structure, please refer to "Spot Rate Query Interface V2"
         "orderContainerSummaries": [ // container info
             {
                 "cntrType": "20GP",
@@ -441,6 +493,19 @@ GET /service/synconhub/order/detail/E00144631
                 "facilityCode": null,
                 "facilityName": null
             }
+        ],
+        "trailerServices": [
+            {
+                "transferType": "LOADING",	// LOADING: POR trailer service, DISCHARGE: FND trailer service
+                "doorAreaCode": "NGB05",
+                "doorArea": "临平, 余杭, 杭州, 浙江, 中国",
+                "doorName": "test",
+                "doorAddress": "test",
+                "loadingTime": "2020-08-15T16:00:00.000Z",
+                "contactName": "test",
+                "contactTel": "123456",
+                "remarks": "remarks"
+            }
         ]
     }
 }
@@ -458,6 +523,8 @@ GET /service/synconhub/order/detail/E00144631
 ### 7. Error Code Specification
 
 Please refer to the [General Error Codes](#General Error Codes) .
+
+
 
 ## General Error Codes
 
@@ -521,15 +588,15 @@ Please refer to the [General Error Codes](#General Error Codes) .
  - 20059: "API booking cannot purchase FMC products"
  - 20060: "Permission denied"
  - 20061: "CosPlus | product booking must fill in all shipping related party information"
- - 20062: "Wrong import and export type of intermodal service"
- - 20063: "The intermodal service does not exist"
+ - 20062: "Wrong import and export type of Intermodal service"
+ - 20063: "The Intermodal service does not exist"
  - 20064: "Can't find the city"
- - 20066: "Some container types do not support intermodal service"
- - 20067: "The intermodal service fee is charged by weight, and the estimated cargo weight of the box type is required"
+ - 20066: "Some container types do not support Intermodal service"
+ - 20067: "The Intermodal service fee is charged by weight, and the estimated cargo weight of the box type is required"
  - 20068: "The estimated weight of the container is not in the optional range, please re-order"
  - 20070: "CosPlus | Shipper or consignee of shipping related party filled in the product booking is illegal."
  - 20072: "API cannot purchase this type of product"
- - 20073: "Charge Type:xxx,ChargeName:xxx cannot be set to Collect"
+ - 20073: "Charge type :xxx, charge name: xxx cannot be set to collect"
  - 20074: "The long-term product does not exist"
  - 20075: "The long-term product is off-shelf"
  - 20076: "Insufficient amount of available containers"
@@ -544,3 +611,10 @@ Please refer to the [General Error Codes](#General Error Codes) .
  - 20085: "cargoInfo.reeferTemperatureType and cargoInfo.reeferTemperatureValue  cannot be empty"
  - 20086: "Ventilation Settings cannot be added when the reefer temperature is less than 0 C or 32 F"
  - 20087: "Ventilation setting must be added when the reefer temperature is ≥0°C or ≥32°F"
+ - 20091: "Please select one trailer service at least for this product"
+ - 20092: "Current product does not support trailer service"
+ - 20093: "The trailer door cannot be found"
+ - 20094: "The trailer rate cannot be obtained"
+ - 20095: "Some container types do not support trailer service"
+ - 20097: "Error trailer door information"
+ - 20098: "The loading time of the trailer service must be greater than the current time"
