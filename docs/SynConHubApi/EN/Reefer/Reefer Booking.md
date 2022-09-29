@@ -4,6 +4,9 @@
 
 
 ## Update Logs
+v1.1.0 (2022-09-27)
+
+1. **`U `**  Changed limits for freezer temperature and ventilation settings.[Details](#Booking Interface)
 
 v1.0.0 (2021-08-30)
 
@@ -110,7 +113,7 @@ Customer can place booking throught this interface.  The interface will generate
 
 > **Note**
 >
-> When the product's cargo category is `REEFER` ,  the generator set, temperature and temperature type are  required, ventilation depends on the temperature, the freezer temperature < 0 °C or < 32 °F can not add ventilation settings, freezers temperature ≥ 0 °C or ≥ 32 °F must add ventilation settings. When the product's cargo category is `NOR`, it's not necessary to fill in these `cargoInfo` parameters:
+> When the product's cargo category is `REEFER` ,  the generator set, temperature and temperature type are  required, ventilation depends on the temperature, the freezer temperature ≤ -5 °C or ≤ 24 °F can not add ventilation settings, freezers temperature > -5 °C or > 24 °F must add ventilation settings. When the product's cargo category is `NOR`, it's not necessary to fill in these `cargoInfo` parameters:
 >
 > * `reeferGenSetType`
 > * `reeferTemperatureType` and `reeferTemperatureValue`
@@ -593,5 +596,5 @@ Please refer to the [General Error Codes](#General Error Codes) .
  - 20083: "You cannot choose more than one cold box value-added service other than IOT"
  - 20084: "cargoInfo.reeferGenSetType cannot be empty"
  - 20085: "cargoInfo.reeferTemperatureType and cargoInfo.reeferTemperatureValue  cannot be empty"
- - 20086: "Ventilation Settings cannot be added when the reefer temperature is less than 0 C or 32 F"
- - 20087: "Ventilation setting must be added when the reefer temperature is ≥0°C or ≥32°F"
+ - 20086: "Ventilation Settings cannot be added when the reefer temperature is ≤ -5°C or ≤24°F"
+ - 20087: "Ventilation setting must be added when the reefer temperature is >-5°C or >24°F"
