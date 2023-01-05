@@ -56,7 +56,7 @@ TBD.
 
 * During trial operation 
 
-Visit[COP portal website](https://cop.lines.coscoshipping.com/#/) and apply for entrance
+Visit [COP portal website](https://cop.lines.coscoshipping.com/#/) and apply for entrance
 Application procedure [Guidance](https://cop.lines.coscoshipping.com/#/helpCenter/serviceIntroduce)
 
 * During official operation: **TODO**
@@ -65,7 +65,7 @@ Application procedure [Guidance](https://cop.lines.coscoshipping.com/#/helpCente
 The review will be evaluated according to the residency application and the review will be fed back within 15 working days.
 
 ## Issuance of Crenditials ##
-The COP Platform administration team (mailto:MicroService_Mgmt@coscon.com) will send your credentials ApiKey/SecretKey to your email address after your residency application confirmed. In the event of a SecretKey leak, be sure to apply for reset on COP portal Admin. Refer [How to reset HMAC](https://cop.lines.coscoshipping.com/#/helpCenter/commonProblems)
+The COP portal website will send your credentials ApiKey/SecretKey to your email address after your residency application confirmed. In the event of a SecretKey leak, be sure to apply for reset on COP portal Admin. Refer [How to reset HMAC](https://cop.lines.coscoshipping.com/#/helpCenter/commonProblems)
 
 
 ## Other question
