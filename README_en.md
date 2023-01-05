@@ -65,7 +65,7 @@ Application procedure [Guidance](https://cop.lines.coscoshipping.com/#/helpCente
 The review will be evaluated according to the residency application and the review will be fed back within 15 working days.
 
 ## Issuance of Crenditials ##
-The COP portal website will send your credentials ApiKey/SecretKey to your email address after your residency application confirmed. In the event of a SecretKey leak, be sure to apply for reset on COP portal Admin. Refer [How to reset HMAC](https://cop.lines.coscoshipping.com/#/helpCenter/commonProblems)
+The COP portal website will send your credentials ApiKey/SecretKey to your email address after your residency application confirmed. In the event of a SecretKey leak, be sure to apply for reset on COP portal. Refer [How to reset HMAC](https://cop.lines.coscoshipping.com/#/helpCenter/commonProblems)
 
 
 ## Other question
