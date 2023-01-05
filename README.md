@@ -55,28 +55,19 @@ TBD.
 ## 入驻成为开发者
 
 * 试运行期间
-发送以下申请邮件至：[COP平台运营团队](mailto:MicroService_Mgmt@coscon.com)
-
-邮件标题：COP平台开发者入驻申请-XXX公司
-
-|申请信息|说明|
-|------------|:-----------------|
-|联系人姓名：	 |    |
-|联系人电话：	 |    |
-|电子邮箱：	|    |
-|公司名称：	|    |
-|公司国家/地区：	|    |
-|公司详细地址：	||
-|合作标签：	|1、	我是直客；2、	我是货代；3、	我是物流合作方；4、	我是软件服务商；5、	我是信息集成商；|
-|申请用途和说明：|需要说明具体的**合作领域**，例如集运外贸电商(SynconHub)业务、泛亚电商业务、或者货物跟踪/船期等其他业务；|
+访问[COP门户网站](https://cop.lines.coscoshipping.com/#/)完成申请
+申请步骤参考[新手指引](https://cop.lines.coscoshipping.com/#/helpCenter/serviceIntroduce)
 
 * 正式运营期间：**待定**
 
 ## 入驻审核
-[COP平台运营团队](mailto:MicroService_Mgmt@coscon.com)将根据入驻申请进行评估审核，并在15个工作日内反馈审核意见。
+申请的业务方将根据入驻申请进行评估审核，并在15个工作日内反馈审核意见。
 
 ## 安全凭证发放
-入住审核通过之后，[COP平台运营团队](mailto:MicroService_Mgmt@coscon.com)将把您的身份凭证ApiKey/SecretKey发放至您的电子邮箱。如出现SecretKey泄露，请务必在第一时间联系[COP平台运营团队](mailto:MicroService_Mgmt@coscon.com)。
+入驻审核通过之后，COP门户网站系统将把您的身份凭证ApiKey/SecretKey发放至您的电子邮箱。如出现SecretKey泄露，请务必在第一时间在COP门户网站申请重置。请参考[如何申请重置HMAC](https://cop.lines.coscoshipping.com/#/helpCenter/commonProblems)
+
+## 其他疑问
+如有其他疑问，请访问[客户反馈](https://cop.lines.coscoshipping.com/#/customFeedback)
 
 ## 限制和约束
 基于反DOS、性能和API特性综合考虑，所有API的请求体(HTTP Request Body)长度不得超过1MB。  

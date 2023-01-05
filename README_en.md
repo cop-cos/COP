@@ -56,29 +56,20 @@ TBD.
 
 * During trial operation 
 
-Send your application form email to：[COP Administration Team](mailto:MicroService_Mgmt@coscon.com)
-
-Email Subject: COP developer residency application - ${Your Company Name}
-
-|Item|Description|
-|------------|:-----------------|
-|Contact name:	 |    |
-|Contact telephone |    |
-|Email address:|    |
-|Company name:|    |
-|Company country/region:|    |
-|Company state, city:|    |
-|Company street address:|    |
-|My Role:|1. Customer; 2. Agent; 3. Logisitic Partner; 4. Software service vendor; 5. Information Integration Vendor;|
-|Usage:|Describe **areas of cooperation**, such as SynconHub business, epanasia business, or other businesses such as cargo tracking/sailingschedule etc.|
+Visit[COP portal website](https://cop.lines.coscoshipping.com/#/) and apply for entrance
+Application procedure [Guidance](https://cop.lines.coscoshipping.com/#/helpCenter/serviceIntroduce)
 
 * During official operation: **TODO**
 
 ## Confirmation ##
-[COP Administration Team](mailto:MicroService_Mgmt@coscon.com)The review will be evaluated according to the residency application and the review will be fed back within 15 working days.
+The review will be evaluated according to the residency application and the review will be fed back within 15 working days.
 
 ## Issuance of Crenditials ##
-The COP Platform administration team (mailto:MicroService_Mgmt@coscon.com) will send your credentials ApiKey/SecretKey to your email address after your residency application confirmed. In the event of a SecretKey leak, be sure to contact the COP Platform Operations Team (mailto:MicroService_Mgmt@coscon.com) ASAP.
+The COP Platform administration team (mailto:MicroService_Mgmt@coscon.com) will send your credentials ApiKey/SecretKey to your email address after your residency application confirmed. In the event of a SecretKey leak, be sure to apply for reset on COP portal Admin. Refer [How to reset HMAC](https://cop.lines.coscoshipping.com/#/helpCenter/commonProblems)
+
+
+## Other question
+If you have other question, please visit [Feedback](https://cop.lines.coscoshipping.com/#/customFeedback)
 
 ## Limitations and constraints
 Based on the anti-Deny-of-Service, performance and API features, the size of each http request's body (HTTP Request Body) must not exceed 1MB.
